@@ -24,40 +24,40 @@ DROP TABLE IF EXISTS user_db;
 CREATE TABLE acceptList_db
 (
 	acceptId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	mateId int NOT NULL,
-	PRIMARY KEY (acceptId, Id)
+	PRIMARY KEY (acceptId, userId)
 );
 
 
 CREATE TABLE adminBlacklist_db
 (
 	blackListId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
-	PRIMARY KEY (blackListId, Id)
+	userId int NOT NULL,
+	PRIMARY KEY (blackListId, userId)
 );
 
 
 CREATE TABLE banList_db
 (
 	banId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	baneduserId int NOT NULL,
-	PRIMARY KEY (banId, Id)
+	PRIMARY KEY (banId, userId)
 );
 
 
 CREATE TABLE buddy_db
 (
 	buddyId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	category varchar(50) NOT NULL,
 	buddyName varchar(50) NOT NULL,
 	buddyAge int,
 	buddyImage blob NOT NULL,
 	buddyDetail longtext,
 	buddySex boolean NOT NULL,
-	PRIMARY KEY (buddyId, Id)
+	PRIMARY KEY (buddyId, userId)
 );
 
 
@@ -65,7 +65,7 @@ CREATE TABLE chat_db
 (
 	id int NOT NULL AUTO_INCREMENT,
 	acceptId int NOT NULL,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	message varchar(200),
 	PRIMARY KEY (id)
 );
@@ -74,7 +74,7 @@ CREATE TABLE chat_db
 CREATE TABLE like_db
 (
 	likeId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	PRIMARY KEY (likeId)
 );
 
@@ -114,7 +114,7 @@ CREATE TABLE reporter_db
 (
 	reporterId int NOT NULL,
 	reportId int NOT NULL,
-	Id int NOT NULL,
+	userId int NOT NULL,
 	rpContent longtext NOT NULL
 );
 
@@ -122,15 +122,15 @@ CREATE TABLE reporter_db
 CREATE TABLE report_db
 (
 	reportId int NOT NULL AUTO_INCREMENT,
-	Id int NOT NULL,
-	PRIMARY KEY (reportId, Id)
+	userId int NOT NULL,
+	PRIMARY KEY (reportId, userId)
 );
 
 
 CREATE TABLE user_db
 (
 	Id int NOT NULL AUTO_INCREMENT,
-	userName varchar(200) NOT NULL,
+	userId varchar(200) NOT NULL,
 	password varchar(100) NOT NULL,
 	phone varchar(20) NOT NULL,
 	email varchar(100) NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE user_db
 	reportCount int,
 	townAddress varchar(100) NOT NULL,
 	PRIMARY KEY (Id),
-	UNIQUE (userName),
+	UNIQUE (userId),
 	UNIQUE (email)
 );
 
@@ -155,8 +155,8 @@ CREATE TABLE whoau_db
 /* Create Foreign Keys */
 
 ALTER TABLE chat_db
-	ADD FOREIGN KEY (acceptId, Id)
-	REFERENCES acceptList_db (acceptId, Id)
+	ADD FOREIGN KEY (acceptId, userId)
+	REFERENCES acceptList_db (acceptId, userId)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -179,8 +179,8 @@ ALTER TABLE marker_db
 
 
 ALTER TABLE reporter_db
-	ADD FOREIGN KEY (reportId, Id)
-	REFERENCES report_db (reportId, Id)
+	ADD FOREIGN KEY (reportId, userId)
+	REFERENCES report_db (reportId, userId)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -195,7 +195,7 @@ ALTER TABLE acceptList_db
 
 
 ALTER TABLE acceptList_db
-	ADD FOREIGN KEY (Id)
+	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (Id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -203,15 +203,7 @@ ALTER TABLE acceptList_db
 
 
 ALTER TABLE adminBlacklist_db
-	ADD FOREIGN KEY (Id)
-	REFERENCES user_db (Id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE banList_db
-	ADD FOREIGN KEY (Id)
+	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (Id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -226,8 +218,16 @@ ALTER TABLE banList_db
 ;
 
 
+ALTER TABLE banList_db
+	ADD FOREIGN KEY (userId)
+	REFERENCES user_db (Id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
 ALTER TABLE buddy_db
-	ADD FOREIGN KEY (Id)
+	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (Id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -235,7 +235,7 @@ ALTER TABLE buddy_db
 
 
 ALTER TABLE like_db
-	ADD FOREIGN KEY (Id)
+	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (Id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -251,7 +251,7 @@ ALTER TABLE reporter_db
 
 
 ALTER TABLE report_db
-	ADD FOREIGN KEY (Id)
+	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (Id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
