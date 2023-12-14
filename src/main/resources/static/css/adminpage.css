@@ -1,0 +1,46 @@
+side_nav{
+    background-color: rgb(128, 128, 128); width: 20%;
+    height: 800px;
+    text-align: center; 
+    display: flex;
+    flex-direction : column; 
+    border: 3px solid black;
+}
+
+side_nav>h1{
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+}
+
+side_tap{
+    margin-bottom: 20px;
+    border: 3px solid black;
+    width: 100%;
+    padding: 20px;
+    height: max-content;
+}
+
+side_tap>h2{
+    font-weight: bolder;
+}
+
+detail_tap{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    text-align: left;
+    width: 100%;
+    height: max-content;
+}
+
+detail_tap>h3{
+    width: 100%;
+    font-size: x-large;
+}
+
+h3>a{
+    text-decoration: none;
+}
