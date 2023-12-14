@@ -1,4 +1,4 @@
-insert into user_db (Id, userId, password, phone, email, regionAddress, reportCount, townAddress) VALUES
+insert into user_db (Id, userId, password, phone, email, addressId, reportCount) VALUES
   (100,'Cuh4Lbhz','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-6593-1880','7lwq8j08@naver.com','용산구',12,'서빙고동'),
   (1,'Qi7JD2sd','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4801-8752','ukyywxkz@naver.com','중구',8,'태평로2가'),
   (2,'1Z2h7DWO','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4504-6039','wk5f5pj5@naver.com','노원구',5,'상계동'),

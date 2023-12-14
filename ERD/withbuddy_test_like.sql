@@ -1,5 +1,5 @@
 /*좋아요를 체크하는 데이터 추가*/
-insert into like_db (likeId, userId) VALUES
+insert into like_db (likeId, id) VALUES
                                          (1,6),
                                          (2,7),
                                          (3,8),

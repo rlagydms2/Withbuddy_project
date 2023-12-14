@@ -1,4 +1,4 @@
-insert into reporter_db(reporterId, reportId, userId, rpContent) VALUES
+insert into reporter_db(reporterId, reportId, id, rpContent) VALUES
      (50,1,49,'스팸 또는 불법 광고'), (1,1,48,'욕설, 혐오 발언 또는 모욕적인 언어'),
      (2,2,47,'사생활 침해'), (3,3,46,'성적 괴롭힘 또는 성적 언어'),
      (4,4,45,'부적절한 콘텐츠 공유'), (5,5,44,'허위 정보나 사기'),

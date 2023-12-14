@@ -1,4 +1,4 @@
-insert into banlist_db(banId, userId, baneduserId) values
+insert into banlist_db(banId, id, baneduserId) values
    (1,6,48),
    (2,6,47),
    (3,6,46),

@@ -9,12 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
-    private Long id;
-    private String userid;
-    private String passwrod;
-    private String phone;
-    private String email;
+public class Address {
     private int addressid;
-    private String townAddress;
+    private String addressname;
 }
