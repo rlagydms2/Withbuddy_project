@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>ERD\withbuddy.sql</output_path>
+				<output_path>Withbuddy_project\ERD\withbuddy.sql</output_path>
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2023-12-08 16:30:21</creation_date>
-			<updated_date>2023-12-14 15:43:26</updated_date>
+			<updated_date>2023-12-15 13:10:15</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -1703,6 +1703,22 @@
 					<referenced_column>47</referenced_column>
 					<referenced_column>47</referenced_column>
 					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
+					<relation>5</relation>
 					<relation>5</relation>
 					<relation>5</relation>
 					<relation>5</relation>
@@ -2403,7 +2419,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>16</word_id>
+					<word_id>17</word_id>
 					<id>29</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2982,6 +2998,70 @@
 					<referenced_column>47</referenced_column>
 					<referenced_column>47</referenced_column>
 					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<referenced_column>47</referenced_column>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
+					<relation>13</relation>
 					<relation>13</relation>
 					<relation>13</relation>
 					<relation>13</relation>
@@ -3160,12 +3240,12 @@
 		</table>
 		<table>
 			<id>13</id>
-			<height>88</height>
-			<width>233</width>
+			<height>115</height>
+			<width>319</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>180</x>
-			<y>696</y>
+			<x>144</x>
+			<y>802</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -3181,7 +3261,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>14</word_id>
+					<word_id>16</word_id>
 					<id>45</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3287,7 +3367,7 @@
 							<b>0</b>
 						</color>
 					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
+					<parent_cardinality>0..1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
 					<name></name>
 					<on_delete_action>RESTRICT</on_delete_action>
@@ -3326,7 +3406,7 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>17</word_id>
+					<word_id>14</word_id>
 					<id>47</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3360,14 +3440,14 @@
 				</normal_column>
 				<normal_column>
 					<id>48</id>
-					<referenced_column>43</referenced_column>
-					<relation>14</relation>
+					<referenced_column>45</referenced_column>
+					<relation>15</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>addressId</logical_name>
-					<physical_name>addressId</physical_name>
+					<logical_name>authorityId</logical_name>
+					<physical_name>authorityId</physical_name>
 					<type>integer</type>
-					<constraint></constraint>
+					<constraint>DEFAULT 1</constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>true</foreign_key>
@@ -3394,18 +3474,18 @@
 				</normal_column>
 				<normal_column>
 					<id>49</id>
-					<referenced_column>45</referenced_column>
-					<relation>15</relation>
+					<referenced_column>43</referenced_column>
+					<relation>14</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>authorityId</logical_name>
-					<physical_name>authorityId</physical_name>
+					<logical_name>addressId</logical_name>
+					<physical_name>addressId</physical_name>
 					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
+					<not_null>false</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>

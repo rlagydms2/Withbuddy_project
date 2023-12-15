@@ -149,8 +149,8 @@ CREATE TABLE report_db
 CREATE TABLE user_db
 (
 	id int NOT NULL AUTO_INCREMENT,
-	addressId int NOT NULL,
-	authorityId int NOT NULL,
+	authorityId int NOT NULL DEFAULT 1,
+	addressId int,
 	userId varchar(200) NOT NULL,
 	password varchar(100) NOT NULL,
 	phone varchar(20) NOT NULL,
