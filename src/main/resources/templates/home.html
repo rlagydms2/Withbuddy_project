@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/CSS/map.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>WithBuddy-main</title>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9f401d5eee037f01336d46069b8cd7fd"></script>
+    <script src="http://openapi.seoul.go.kr:8088/4562487251726c613132314379516559/json/SeoulGilWalkCourse/1/5"></script>
+
+
 </head>
 <body>
 
+<div id="map">
+    <button id="prev" type="button">이전</button>
+</div>
+<!-- 필터 관련 HTML -->
+<div class="Filter">
+    <label class="strollLabel"><input type="checkbox" id="strollFilter" value="stroll" checked>
+        <div class="FilterIconBox">
+            <div class="OnIconBox"><span>산책로</span></div>
+            <div class="OffIconBox"><span>산책로</span></div>
+        </div>
+    </label>
+    <label class="hospitalLabel"><input type="checkbox" id="hospitalFilter" value="locker" checked>
+        <div class="FilterIconBox">
+            <div class="OnIconBox"><span>동물병원</span></div>
+            <div class="OffIconBox"><span>동물병원</span></div>
+        </div>
+    </label>
+</div>
+
 </body>
+
+<script type="module" src="/js/map.js"></script>
+
 </html>

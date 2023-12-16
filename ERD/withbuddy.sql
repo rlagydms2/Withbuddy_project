@@ -3,18 +3,37 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 /* Drop Tables */
 
 DROP TABLE IF EXISTS chat_db;
+alter table chat_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS acceptList_db;
+alter table acceptlist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS adminBlacklist_db;
+alter table adminblacklist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS banList_db;
+alter table banlist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS buddy_db;
+alter table buddy_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS whoau_db;
+alter table whoau_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS like_db;
-DROP TABLE IF EXISTS map_db;
-DROP TABLE IF EXISTS marker_db;
-DROP TABLE IF EXISTS markerIcon_db;
+alter table like_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS reporter_db;
+alter table reporter_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS report_db;
+alter table report_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS user_db;
+alter table user_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS address_db;
+alter table address_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS Authority_db;
+alter table authority_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS map_db;
+alter table map_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS marker_db;
+alter table marker_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS markerIcon_db;
+alter table markericon_db AUTO_INCREMENT = 1;
+
+
 
 
 
@@ -24,40 +43,57 @@ DROP TABLE IF EXISTS user_db;
 CREATE TABLE acceptList_db
 (
 	acceptId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
+	id int NOT NULL,
 	mateId int NOT NULL,
-	PRIMARY KEY (acceptId, userId)
+	PRIMARY KEY (acceptId, id)
+);
+
+
+CREATE TABLE address_db
+(
+	id int NOT NULL AUTO_INCREMENT,
+	addressName varchar(50) NOT NULL,
+	PRIMARY KEY (id),
+	UNIQUE (addressName)
 );
 
 
 CREATE TABLE adminBlacklist_db
 (
 	blackListId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
-	PRIMARY KEY (blackListId, userId)
+	id int NOT NULL,
+	PRIMARY KEY (blackListId, id)
+);
+
+
+CREATE TABLE Authority_db
+(
+	id int NOT NULL AUTO_INCREMENT,
+	authorityName varchar(20) NOT NULL,
+	PRIMARY KEY (id)
 );
 
 
 CREATE TABLE banList_db
 (
 	banId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
+	id int NOT NULL,
 	baneduserId int NOT NULL,
-	PRIMARY KEY (banId, userId)
+	PRIMARY KEY (banId, id)
 );
 
 
 CREATE TABLE buddy_db
 (
 	buddyId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
+	id int NOT NULL,
 	category varchar(50) NOT NULL,
 	buddyName varchar(50) NOT NULL,
 	buddyAge int,
-	buddyImage blob NOT NULL,
+	buddyImage blob,
 	buddyDetail longtext,
 	buddySex boolean NOT NULL,
-	PRIMARY KEY (buddyId, userId)
+	PRIMARY KEY (buddyId, id)
 );
 
 
@@ -74,7 +110,7 @@ CREATE TABLE chat_db
 CREATE TABLE like_db
 (
 	likeId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
+	id int NOT NULL,
 	PRIMARY KEY (likeId)
 );
 
@@ -114,7 +150,7 @@ CREATE TABLE reporter_db
 (
 	reporterId int NOT NULL,
 	reportId int NOT NULL,
-	userId int NOT NULL,
+	id int NOT NULL,
 	rpContent longtext NOT NULL
 );
 
@@ -122,22 +158,22 @@ CREATE TABLE reporter_db
 CREATE TABLE report_db
 (
 	reportId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
-	PRIMARY KEY (reportId, userId)
+	id int NOT NULL,
+	PRIMARY KEY (reportId, id)
 );
 
 
 CREATE TABLE user_db
 (
-	Id int NOT NULL AUTO_INCREMENT,
+	id int NOT NULL AUTO_INCREMENT,
+	authorityId int NOT NULL DEFAULT 1,
+	addressId int,
 	userId varchar(200) NOT NULL,
 	password varchar(100) NOT NULL,
 	phone varchar(20) NOT NULL,
 	email varchar(100) NOT NULL,
-	regionAddress varchar(100) NOT NULL,
 	reportCount int,
-	townAddress varchar(100) NOT NULL,
-	PRIMARY KEY (Id),
+	PRIMARY KEY (id),
 	UNIQUE (userId),
 	UNIQUE (email)
 );
@@ -156,7 +192,23 @@ CREATE TABLE whoau_db
 
 ALTER TABLE chat_db
 	ADD FOREIGN KEY (acceptId, userId)
-	REFERENCES acceptList_db (acceptId, userId)
+	REFERENCES acceptList_db (acceptId, id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_db
+	ADD FOREIGN KEY (addressId)
+	REFERENCES address_db (id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE user_db
+	ADD FOREIGN KEY (authorityId)
+	REFERENCES Authority_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -179,8 +231,8 @@ ALTER TABLE marker_db
 
 
 ALTER TABLE reporter_db
-	ADD FOREIGN KEY (reportId, userId)
-	REFERENCES report_db (reportId, userId)
+	ADD FOREIGN KEY (reportId, id)
+	REFERENCES report_db (reportId, id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -188,23 +240,31 @@ ALTER TABLE reporter_db
 
 ALTER TABLE acceptList_db
 	ADD FOREIGN KEY (mateId)
-	REFERENCES user_db (Id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE acceptList_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE adminBlacklist_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE banList_db
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -212,31 +272,23 @@ ALTER TABLE adminBlacklist_db
 
 ALTER TABLE banList_db
 	ADD FOREIGN KEY (baneduserId)
-	REFERENCES user_db (Id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE banList_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE buddy_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE like_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -244,15 +296,15 @@ ALTER TABLE like_db
 
 ALTER TABLE reporter_db
 	ADD FOREIGN KEY (reporterId)
-	REFERENCES user_db (Id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE report_db
-	ADD FOREIGN KEY (userId)
-	REFERENCES user_db (Id)
+	ADD FOREIGN KEY (id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -260,10 +312,11 @@ ALTER TABLE report_db
 
 ALTER TABLE whoau_db
 	ADD FOREIGN KEY (otherId)
-	REFERENCES user_db (Id)
+	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
+
 
 
 

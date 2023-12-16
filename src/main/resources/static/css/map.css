@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    justify-content: center;
+
+}
+
+#map {
+    display: flex;
+    justify-content: center;
+    width: 1200px;
+    height: 980px;
+}
+
+#prev {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+}
+
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding: 2px;
+}
+
+.info {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.info .title {
+    font-weight: bold;
+}
+
+.Filter{
+    position: relative;
+    height: 470px;
+
+}
+
+.SafetyFilter{
+    position: absolute;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    float: right;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    padding: 50px 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.FilterIconBox{
+    position: relative;
+    margin: 5px;
+    width: 75px;
+    height: 50px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.OnIconBox{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    background: #eee7ff;
+
+    z-index: 2;
+}
+
+.OffIconBox{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    color: gray;
+    background:#eee7ff;
+    z-index: 1;
+}
+
+h5 {
+    text-align: center;
+}
+
+
+
+
