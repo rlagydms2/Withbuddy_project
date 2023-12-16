@@ -1,22 +1,45 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
+Show tables;
+
+select * from user_db;
+
+select count(*), addressName from address_db, user_db where user_db.addressId=address_db.id group by addressName;
+
 /* Drop Tables */
 
 DROP TABLE IF EXISTS chat_db;
+alter table chat_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS acceptList_db;
+alter table acceptlist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS adminBlacklist_db;
+alter table adminblacklist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS banList_db;
+alter table banlist_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS buddy_db;
+alter table buddy_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS whoau_db;
+alter table whoau_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS like_db;
+alter table like_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS reporter_db;
+alter table reporter_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS report_db;
+alter table report_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS user_db;
+alter table user_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS address_db;
+alter table address_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS Authority_db;
+alter table authority_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS map_db;
+alter table map_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS marker_db;
+alter table marker_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS markerIcon_db;
+alter table markericon_db AUTO_INCREMENT = 1;
+
+
 
 
 
@@ -73,7 +96,7 @@ CREATE TABLE buddy_db
 	category varchar(50) NOT NULL,
 	buddyName varchar(50) NOT NULL,
 	buddyAge int,
-	buddyImage blob NOT NULL,
+	buddyImage blob,
 	buddyDetail longtext,
 	buddySex boolean NOT NULL,
 	PRIMARY KEY (buddyId, id)

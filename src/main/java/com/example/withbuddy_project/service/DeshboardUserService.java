@@ -1,11 +1,12 @@
 package com.example.withbuddy_project.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
+
+
 public interface DeshboardUserService {
+    // 대쉬보드 지역별 유저 수 조회
+    List<String> address();
 
-        // 대쉬보드 지역별 유저 수 조회
-
-
+    List<Integer> usercount();
 }

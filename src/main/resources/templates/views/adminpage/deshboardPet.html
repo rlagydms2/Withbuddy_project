@@ -51,7 +51,7 @@
         <deshboard>
             <!-- 회원 데이터 -->
             <person_data style="display:flex; align-items: center; justify-content: center"><hr>
-                <canvas id="personChart" width="1000px" height="430px"></canvas>
+                <canvas id="personChart" width="1000px" height="430px" style="overflow: scroll"></canvas>
             </person_data>
             <!-- 반려견 데이터 -->
             <pet_data>
@@ -75,10 +75,10 @@
         var myChart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: [[${address}]],
+            labels: [[${petcategory}]],
             datasets: [{
               label: "",
-              data: [[${usercount}]],
+              data: [[${categorycount}]],
               backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
               borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
               borderWidth: 1

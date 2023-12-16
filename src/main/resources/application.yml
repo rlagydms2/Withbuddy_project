@@ -63,7 +63,7 @@ spring:
 # MyBatis ??(mapper) ?? ?? ??
 # src/main/resources ??? ?? ??
 mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
+  mapper-locations: classpath:/static/mapper/*.xml
 #
 #app:
 #  # ?? ??? ??

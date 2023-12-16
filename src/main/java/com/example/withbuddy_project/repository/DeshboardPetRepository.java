@@ -1,13 +1,11 @@
 package com.example.withbuddy_project.repository;
 
-
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface DeshboardUserRepository {
-    List<String> getAddressName();
+public interface DeshboardPetRepository {
 
-    List<String> getUserAddress();
+    List<String> gettypeName();
 }
