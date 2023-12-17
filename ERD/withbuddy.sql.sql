@@ -1,40 +1,23 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
+
 /* Drop Tables */
 
 DROP TABLE IF EXISTS chat_db;
-alter table chat_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS acceptList_db;
-alter table acceptlist_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS adminBlacklist_db;
-alter table adminblacklist_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS banList_db;
-alter table banlist_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS buddy_db;
-alter table buddy_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS whoau_db;
-alter table whoau_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS like_db;
-alter table like_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS reporter_db;
-alter table reporter_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS report_db;
-alter table report_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS user_db;
-alter table user_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS address_db;
-alter table address_db AUTO_INCREMENT = 1;
-DROP TABLE IF EXISTS Authority_db;
-alter table authority_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS map_db;
-alter table map_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS adminBlacklist_db;
+DROP TABLE IF EXISTS banList_db;
+DROP TABLE IF EXISTS buddy_db;
+DROP TABLE IF EXISTS whoau_db;
+DROP TABLE IF EXISTS like_db;
+DROP TABLE IF EXISTS reporter_db;
+DROP TABLE IF EXISTS report_db;
+DROP TABLE IF EXISTS user_db;
+DROP TABLE IF EXISTS address_db;
+DROP TABLE IF EXISTS Authority_db;
 DROP TABLE IF EXISTS marker_db;
-alter table marker_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS markerIcon_db;
-alter table markericon_db AUTO_INCREMENT = 1;
-
-
-
 
 
 
@@ -53,6 +36,7 @@ CREATE TABLE address_db
 (
 	id int NOT NULL AUTO_INCREMENT,
 	addressName varchar(50) NOT NULL,
+	count int NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
 	UNIQUE (addressName)
 );
@@ -90,7 +74,7 @@ CREATE TABLE buddy_db
 	category varchar(50) NOT NULL,
 	buddyName varchar(50) NOT NULL,
 	buddyAge int,
-	buddyImage blob,
+	buddyImage blob NOT NULL,
 	buddyDetail longtext,
 	buddySex boolean NOT NULL,
 	PRIMARY KEY (buddyId, id)
@@ -118,9 +102,7 @@ CREATE TABLE like_db
 CREATE TABLE map_db
 (
 	mapId int NOT NULL AUTO_INCREMENT,
-	region varchar(50) NOT NULL,
-	town varchar(50) NOT NULL,
-	count int NOT NULL DEFAULT 0,
+	addressId int NOT NULL,
 	map_X varchar(100) NOT NULL,
 	map_Y varchar(100) NOT NULL,
 	PRIMARY KEY (mapId)
@@ -193,6 +175,14 @@ CREATE TABLE whoau_db
 ALTER TABLE chat_db
 	ADD FOREIGN KEY (acceptId, userId)
 	REFERENCES acceptList_db (acceptId, id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE map_db
+	ADD FOREIGN KEY (addressId)
+	REFERENCES address_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -316,7 +306,6 @@ ALTER TABLE whoau_db
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
-
 
 
 
