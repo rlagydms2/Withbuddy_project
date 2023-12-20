@@ -1,6 +1,6 @@
 package com.example.withbuddy_project.controller;
 
-import com.example.withbuddy_project.service.MatchService;
+import com.example.withbuddy_project.service.MatchServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 public class MatchController {
 
-    private final MatchService matchService;
+    private final MatchServiceImpl matchServiceImpl;
 
 
 }

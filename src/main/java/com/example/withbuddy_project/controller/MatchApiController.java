@@ -3,7 +3,7 @@ package com.example.withbuddy_project.controller;
 
 import com.example.withbuddy_project.domain.dto.MatchRequest;
 import com.example.withbuddy_project.domain.dto.MatchResponse;
-import com.example.withbuddy_project.service.MatchService;
+import com.example.withbuddy_project.service.MatchServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,20 +14,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class MatchApiController {
-    private final MatchService matchService;
+    private final MatchServiceImpl matchServiceImpl;
 //    private final SimpMessagingTemplate messagingTemplate;
 
     @PostMapping("/api/match")
     public int matchSave(@RequestParam(name = "senderId") Long senderId, @RequestParam(name = "receiverId") Long receiverId) {
         log.info("receiverId={}", receiverId);
-        int save = matchService.save(senderId, receiverId);
-        boolean match = matchService.ifExist(senderId, receiverId);
+        int save = matchServiceImpl.save(senderId, receiverId);
+        boolean match = matchServiceImpl.ifExist(senderId, receiverId);
         return (match != true) ? save : 0;
     }
 
     @GetMapping("/api/alert/{userId}")
     public List<MatchResponse> matchList(@PathVariable(name = "userId") Long userId) {
-        List<MatchResponse> list = matchService.list(userId);
+        List<MatchResponse> list = matchServiceImpl.list(userId);
         log.info("matchList : {} " ,list);
         return list;
     }
@@ -43,8 +43,8 @@ public class MatchApiController {
                 .senderId(senderId)
                 .receiverId(receiverId)
                 .build();
-        matchService.acceptMatch(match);
-        matchService.acceptMatch(match2);
+        matchServiceImpl.acceptMatch(match);
+        matchServiceImpl.acceptMatch(match2);
     }
 
     @DeleteMapping("/api/matchDelete")
@@ -57,7 +57,7 @@ public class MatchApiController {
                 .senderId(receiverId)
                 .receiverId(senderId)
                 .build();
-        matchService.delete(match1);
-        matchService.delete(match2);
+        matchServiceImpl.delete(match1);
+        matchServiceImpl.delete(match2);
     }
 }

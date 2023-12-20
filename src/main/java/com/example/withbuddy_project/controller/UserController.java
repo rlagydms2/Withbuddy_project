@@ -1,6 +1,6 @@
 package com.example.withbuddy_project.controller;
 
-import com.example.withbuddy_project.service.UserService;
+import com.example.withbuddy_project.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping("/login")
     public void login(Model model) {

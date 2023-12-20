@@ -1,7 +1,7 @@
 package com.example.withbuddy_project.controller;
 
 import com.example.withbuddy_project.domain.dto.ChatDto;
-import com.example.withbuddy_project.service.ChatService;
+import com.example.withbuddy_project.service.ChatServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -14,14 +14,14 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 public class ChatController {
 
-    private final ChatService chatService;
+    private final ChatServiceImpl chatServiceImpl;
 //    private final SimpMessagingTemplate template;
 
     @MessageMapping("/chat/{roomId}")
     @SendTo("/topic/chat/{roomId}")
     public ChatDto sendMessage(@DestinationVariable String roomId, ChatDto message) {
-        chatService.create(roomId,message.getSenderId(),message.getMessage());
+        chatServiceImpl.create(roomId,message.getSenderId(),message.getMessage());
 
-        return chatService.findChat(roomId);
+        return chatServiceImpl.findChat(roomId);
     }
 }

@@ -1,12 +1,9 @@
 package com.example.withbuddy_project.controller;
 
 import com.example.withbuddy_project.domain.User;
-import com.example.withbuddy_project.domain.dto.AddressUserDto;
-import com.example.withbuddy_project.service.MapService;
-import com.example.withbuddy_project.service.UserService;
+import com.example.withbuddy_project.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserApiController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
 //    @PostMapping("/api/home")
 //    public AddressUserDto buttonList(@RequestParam(name = "addressName") String addressName) {
@@ -27,13 +24,13 @@ public class UserApiController {
 //    }
 @GetMapping("/api/user")
 public List<User> userList(Long id) {
-    List<User> list = userService.findWithoutMe(id);
+    List<User> list = userServiceImpl.findWithoutMe(id);
     return list;
 }
 
     @GetMapping("/api/userProfile/{userId}")
     public User userProfile(@PathVariable Long userId) {
-        return userService.findById(userId);
+        return userServiceImpl.findById(userId);
     }
 //    @GetMapping("/api/user")
 //    public List<User> userList(Long id,Long code) {
@@ -43,7 +40,7 @@ public List<User> userList(Long id) {
 
     @PostMapping("/api/dmList")
     public List<User> dmListUser(@RequestParam(name = "loginId") Long loginId) {
-        return userService.findUsername(loginId);
+        return userServiceImpl.findUsername(loginId);
     }
 
 }
