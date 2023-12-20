@@ -6,7 +6,6 @@ import com.example.withbuddy_project.domain.dto.MatchResponse;
 import com.example.withbuddy_project.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -9,7 +9,6 @@ import com.example.withbuddy_project.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,14 +20,13 @@ public class MatchService {
 
     private MatchRepository matchRepository;
     private UserRepository userRepository;
-    private SimpMessagingTemplate template;
+//    private SimpMessagingTemplate template;
 
 
     @Autowired
-    public MatchService(SqlSession sqlSession, SimpMessagingTemplate template) {
+    public MatchService(SqlSession sqlSession) {
       matchRepository = sqlSession.getMapper(MatchRepository.class);
       userRepository = sqlSession.getMapper(UserRepository.class);
-      this.template=template;
     }
 
     public int save(Long senderId,Long receiverId) {
