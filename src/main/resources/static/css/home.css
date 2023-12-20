@@ -1,20 +1,96 @@
 body {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
+}
+#navBox {
+    /* border: solid black; */
+    margin: 10px;
+    margin-top: 18px;
+    float: right;
+    font-size: small;
+}
 
+#navBox a{
+    margin: 10px;
+}
+
+#clear {
+    clear: right;
+}
+
+#header {
+    width: 100%;
+    /*background-color: #070a38;*/
+    height: 80px;
+}
+
+#logo {
+    /* border: solid black; */
+    margin: 10px;
+    width: 250px;
+}
+
+/*----------------------------header css 끝--------------------------*/
+#BOX {
+    display: flex;
+    /* background-color: antiquewhite; */
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #070a38;
+    background-color: #ffffff;
+}
+
+/* content 전체 박스 */
+
+#mypageBox {
+    /* background-color: aliceblue; */
+    display: flex;
+    width: 200px;
+    /*background-color: #4a5f91;*/
+}
+
+#mypageBtn{
+    /* border: solid red; */
+    width: 50px;
+    height: 50px;
+}
+
+#mypage {
+    /* background-color: aqua; */
+    height: 960px;
+}
+
+/*↑↑↑↑↑↑--------------------------mypage CSS-------------------------↑↑↑↑↑↑↑↑*/
+
+/*-------------------------- main CSS --------------------------*/
+
+
+#main {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    border-left:0.5px solid #dbd8d8;
+    /* background-color: blue; */
 }
 
 #map {
+    border-right:0.5px solid #dbd8d8;
     display: flex;
     justify-content: center;
-    width: 1200px;
-    height: 980px;
+    width: 75%;
+    height: 960px;
 }
 
 #prev {
     position: absolute;
-    left: 0;
+    right: 0;
+    margin-right: 20px;
     z-index: 2;
+    margin: 2px;
+
 }
 
 .area {
@@ -37,67 +113,20 @@ body {
     font-weight: bold;
 }
 
-.Filter{
-    position: relative;
-    height: 470px;
-
-}
-
-.SafetyFilter{
-    position: absolute;
-    justify-content:center;
-    align-items: center;
+p {
     text-align: center;
-    display: flex;
-    float: right;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    padding: 50px 0px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.FilterIconBox{
-    position: relative;
-    margin: 5px;
-    width: 75px;
-    height: 50px;
+    color:rgb(233, 255, 238);
     font-weight: bold;
-    font-size: large;
+    font-size: x-small;
+}
+/*↑↑↑↑-------------map CSS--------------↑↑↑↑*/
+
+#userList {
+    /* background-color: aqua; */
+    width: 25%;
 }
 
-.OnIconBox{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    color: rgb(0, 0, 0);
-    background: #eee7ff;
-
-    z-index: 2;
-}
-
-.OffIconBox{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    color: gray;
-    background:#eee7ff;
-    z-index: 1;
-}
-
-h5 {
-    text-align: center;
-}
+/*↑↑↑↑------userList CSS----------↑↑↑↑*/
 
 
 
