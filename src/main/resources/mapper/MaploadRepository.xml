@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.withbuddy_project.repository.MaploadRepository">
+    
+    <resultMap id="MapData" type="com.example.withbuddy_project.domain.Map">
+        <result column="mapId" property="mapId"></result>
+        <result column="addressId" property="addressId"></result>
+        <result column="count" property="usercount"></result>
+        <result column="addressName" property="addressName"></result>
+        <result column="map_X" property="mapX"></result>
+        <result column="map_Y" property="mapY"></result>
+    </resultMap>
+
+    <select id="getData" resultMap="MapData">
+        SELECT m.mapId, m.addressId, a.count, a.addressName,m.map_X,m.map_Y
+        FROM map_db m, address_db a
+        WHERE m.addressId = a.id
+    </select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.withbuddy_project.repository.UserRepository">
+
+    <select id="findByAddressId" resultType="com.example.withbuddy_project.domain.dto.AddressUserDto">
+        SELECT u.id, a.id, a.addressName
+        FROM address_db a
+                 LEFT JOIN user_db u ON a.id = u.addressId
+        WHERE a.addressName = #{addressName}
+    </select>
+</mapper>

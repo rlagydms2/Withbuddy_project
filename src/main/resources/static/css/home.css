@@ -1,0 +1,141 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+#navBox {
+    /* border: solid black; */
+    margin: 10px;
+    margin-top: 30px;
+    float: right;
+    font-size: small;
+}
+
+#navBox a{
+    margin: 15px;
+    font-weight: bold;
+}
+
+#clear {
+    clear: right;
+}
+
+#header {
+    width: 100%;
+    /*background-color: #070a38;*/
+    height: 80px;
+}
+
+#logo {
+    /* border: solid black; */
+    margin: 10px;
+    width: 250px;
+}
+
+/*----------------------------header css 끝--------------------------*/
+#BOX {
+    display: flex;
+    /* background-color: antiquewhite; */
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid #070a38;
+    background-color: #ffffff;
+}
+
+/* content 전체 박스 */
+
+#mypageBox {
+    /* background-color: aliceblue; */
+    display: flex;
+    width: 1px;
+    /*background-color: #4a5f91;*/
+}
+
+#mypageBtn{
+    /* border: solid red; */
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    margin-left: 10px;
+}
+
+#mypage {
+    /* background-color: aqua; */
+    width: 280px;
+    height: 960px;
+}
+
+/*↑↑↑↑↑↑--------------------------mypage CSS-------------------------↑↑↑↑↑↑↑↑*/
+
+/*-------------------------- main CSS --------------------------*/
+
+
+#main {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    border-left:0.5px solid #dbd8d8;
+    /* background-color: blue; */
+}
+
+#map {
+    border-right:0.5px solid #dbd8d8;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    height: 960px;
+}
+
+#prev {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    z-index: 2;
+    margin: 2px;
+
+}
+
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding: 2px;
+}
+
+.info {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.info .title {
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    color:rgb(233, 255, 238);
+    font-weight: bold;
+    font-size: x-small;
+}
+/*↑↑↑↑-------------map CSS--------------↑↑↑↑*/
+
+#userList {
+    /* background-color: aqua; */
+    width: 25%;
+}
+
+#listIcon {
+    width: 50px;
+}
+
+/*↑↑↑↑------userList CSS----------↑↑↑↑*/
+
+
+
+
