@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.withbuddy_project.repository.UserRepository">
-
+    <sql id="BASE">
+        SELECT
+            id "id",
+            username "userId",
+            password "password",
+            role "role"
+        FROM user_db
+        WHERE 1=1
+    </sql>
     <select id="findByAddressId" resultType="com.example.withbuddy_project.domain.dto.AddressUserDto">
         SELECT u.id, a.id, a.addressName
         FROM address_db a
                  LEFT JOIN user_db u ON a.id = u.addressId
         WHERE a.addressName = #{addressName}
     </select>
+    <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND username=#{userId}
+    </select>
+    <select id="findById" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND id=#{id}
+    </select>
+    <select id="findAllWithoutId" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND id!=#{id}
+    </select>
+    <select id="findAllUser" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+    </select>
+    <select id="findDmListByLoginUserId" resultType="com.example.withbuddy_project.domain.User">
+        SELECT DISTINCT
+            u.username "userId",
+            u.id "id"
+        FROM user_db u,
+             match_db m
+        WHERE u.id=m.senderId
+          AND m.accept=1
+    </select>
+    <!--    <select id="findAllWithoutId" resultType="com.example.demo.domain.User">-->
+    <!--        <include refid="BASE"/>-->
+    <!--        AND id!=#{id} AND addressId=#{addressId}-->
+    <!--    </select>-->
+
 </mapper>

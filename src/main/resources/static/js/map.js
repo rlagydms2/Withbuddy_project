@@ -38,7 +38,7 @@ function setAreas(areas, data) {
         map: map,
         path: ground, // 좌표 배열의 배열로 하나의 다각형을 표시할 수 있습니다
         strokeWeight: 2,
-        strokeColor: '#fff',
+        strokeColor: '#070a38',
         strokeOpacity: 0.8,
         fillColor: '#fff',
         fillOpacity: 1
@@ -61,7 +61,7 @@ let mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {       //지도에 들어가는 옵션 설정
         center: new kakao.maps.LatLng(37.5639, 126.9738), // 지도의 중심좌표
         level: 8,// 지도의 확대 레벨
-        // draggable: false, // 8level에서 지도 이동 불가
+        draggable: false, // 8level에서 지도 이동 불가
         disableDoubleClickZoom: true
     };
 
@@ -262,6 +262,8 @@ $('#prev').on('click', function () {
     // map.getLevel()+2
     let y = 37.5639;
     let x = 126.9738;
+
+    setDraggable(false);
 
     MarkerController(backup_polygon, map);
 
