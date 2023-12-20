@@ -1,42 +1,42 @@
 let stompClient = null;
 $(document).ready(function () {
-    $("#userListBtn").click(function () {
+    $("#userListBtn").click(function () { //버튼을 누르면 특정 조건의 유저의 정보를 렌더링함
         $.ajax({
-            url: "/api/user?id=" + login_id,
+            url: "/api/user?id=" + login_id, //로그인한 유저의 아이디로 자신 빼고 나머지 특정 조건을 가진 유저를 찾음
             type: "GET",
             success: function (data) {
                 // console.log("userList data:", data);
                 // console.log("sender id: ", login_id);
                 if (data !== undefined) {
-                    showList(data);
+                    showList(data); // 그러한 유저들의 정보를 렌더링
                 }
             },
         })
     });
 
-    $("#userTable").on("click", ".btn", function () {
-        var userId = $(this).closest('tr').data("modal-tr");
+    $("#userTable").on("click", ".btn", function () { // 유저 테이블에서 특정 유저를 선택하면 유저 프로필이 나옴
+        var userId = $(this).closest('tr').data("modal-tr"); //선택한 유저의 프로필을 찾기위한 id
         console.log("UserID:", userId);
         $.ajax({
-            url: "/api/userProfile/" + userId,
+            url: "/api/userProfile/" + userId, // 선택한 유저의 아이디를 보내 그 유저의 정보를 찾기
             type: 'GET',
             success: (function (data) {
                 // console.log("userProfile data:", data);
                 if (data != undefined) {
-                    showProfile(data);
+                    showProfile(data); //찾아서 화면에 그 유저의 정보 렌더링
                 }
             }),
         })
     });
     $("#profileModal").on("click", ".modal-btn", function () {
-        const receiverId = $(this).data("mc-btn");
+        const receiverId = $(this).data("mc-btn"); // 프로필 유저의 id
         // console.log(receiverId);
 
-        $(".modal-btn").hide();
+        $(".modal-btn").hide();        // 매칭하기를 누르면 버튼이 사라짐
         const data = {
             "senderId": login_id,
             "receiverId": receiverId,
-        };
+        };  // 컨트롤러에 보낼 data
         $.ajax({
             url: "/api/match",
             type: "POST",
@@ -44,33 +44,33 @@ $(document).ready(function () {
             cache: false,
             success: function (data) {
                 console.log(data);
-            },
+            },  // 수락을 눌렀으니 accept를 true로
         });
-        $("#profileModal").modal("hide");
+        $("#profileModal").modal("hide"); // 유저 프로필에서 나감
 
     });
     $("#alarmBtn").click(function () {
-        const userId = login_id;
+        const userId = login_id; // 로그인한 유저의 id
         $.ajax({
-            url: "/api/alert/" + login_id,
+            url: "/api/alert/" + login_id,  //로그인한 유저의 id로 매칭알림을 가져옴
             type: "GET",
             cache: false,
             success: function (data) {
                 console.log(data);
-                showAlarm(data);
+                showAlarm(data); // 매칭 알림을 로그인한 유저에게 렌더링
             },
         })
     });
-    $("#alarmModal").on("click", ".accept-btn", function () {
-        const senderId = login_id;
-        const receiverId = $(this).data("alac-sender");
+    $("#alarmModal").on("click", ".accept-btn", function () { //매칭을 수락하는 버튼
+        const senderId = login_id;  // 매칭을 요청한 사람의 id
+        const receiverId = $(this).data("alac-sender"); // 매칭을 요청받은 사람의 id
         console.log(receiverId);
         const data = {
             "senderId": senderId,
             "receiverId": receiverId,
-        }
+        }  // 매칭을 수락하기 위해 보내는 data
         $.ajax({
-            url: "/api/matchUpdate",
+            url: "/api/matchUpdate",  // data를 보내서 일치하는 match의 accept를 true로 업데이트
             type: "put",
             data: data,
             success: function (data) {
@@ -78,7 +78,7 @@ $(document).ready(function () {
             },
         })
         $.ajax({
-            url: "/chatroom/room",
+            url: "/chatroom/room", // match가 accept인 유저들의 채팅방을 만듬
             type: "POST",
             data: data,
             success: function (data) {
@@ -86,10 +86,10 @@ $(document).ready(function () {
             },
         });
         $("#alarmModal").modal("hide");
-        $("#alarmTable").html(" ");
+        $("#alarmTable").html("");
 
     });
-    $("#alarmModal").on("click", ".reject-btn", function () {
+    $("#alarmModal").on("click", ".reject-btn", function () { // 거절 버튼
         const senderId = login_id;
         const receiverId = $(this).data("alrj-sender");
         console.log(receiverId);
@@ -98,7 +98,7 @@ $(document).ready(function () {
             "receiverId": receiverId,
         }
         $.ajax({
-            url: "/api/matchDelete",
+            url: "/api/matchDelete",  // 매칭요청을 거절하면 매칭을 삭제
             type: "delete",
             data: data,
             success: function (data) {
@@ -107,74 +107,75 @@ $(document).ready(function () {
         })
     });
 
-    $("#dmListBtn").click(function () {
+    $("#dmListBtn").click(function () { // 매칭이 연결된 채팅방을 가진 유저들을 모아놓은 리스트를 보여지게하기 위한 버튼
         const data = {
             "loginId": login_id,
         }
         $.ajax({
-            url: "/api/dmList",
+            url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
             type: "post",
             data: data,
             success: function (data) {
                 console.log(data);
-                showDmList(data);
+                showDmList(data); // dmList에 있는 유저들을 화면에 렌더링
             },
         })
     });
-    $("#dmModal").on("click", ".dmChat", function () {
+    $("#dmModal").on("click", ".dmChat", function () { // 채팅방을 들어가기 위한 버튼
         const userId = $(this).data("dm-btn");
 
         console.log("dm-btn:" + userId);
         $("#dmModal").modal("hide");
         $("#chatModal").modal("show");
-        $("#chatSendBtn").attr("data-send-bt", userId);
+        $("#chatSendBtn").attr("data-send-bt", userId); //data-send-bt 특성을 가진 버튼에 userId를 전달
         const data = {
             "userId": userId,
             "loginId": login_id,
         };
         $.ajax({
-            url: "/chatroom/find",
+            url: "/chatroom/find", // userId와 나와의 채팅방을 연결
             type: "POST",
             data: data,
             success: function (data) {
                 console.log(data);
-                connect(data);
+                connect(data); // stomp로 구독시킴
             },
         });
         $.ajax({
-            url: "/api/chatList",
+            url: "/api/chatList", // 채팅방의 채팅을 찾아옴
             type: "POST",
             data: data,
             success: function (data) {
                 console.log(data);
-                loadMessage(data);
+                loadMessage(data); // 전에 했던 채팅을 보여줌
             },
         });
     });
 
-    $("#chatClose").click(function () {
+    $("#chatClose").click(function () { // 채팅방을 끄면 연결이 끊어지게
         disconnect();
-        $("#dmModal").modal('show');
+        $("#dmModal").modal('show'); // dmlist를 다시 보여줌
     });
     $("#chatSendBtn").click(function () {
         const userId = $("#chatSendBtn").attr("data-send-bt"); //data-send-bt
+        // 전달받은 data를 꺼내서 사용
         console.log("receiver userId: " + userId);
         const data = {
             "userId": userId,
             "loginId": login_id
         }
         $.ajax({
-            url: "/chatroom/find",
+            url: "/chatroom/find",  // userId와 loginId를 가지고 찾은 채팅방에 메시지를 전달
             type: "POST",
             data: data,
             success: function (data) {
                 console.log(data);
-                sendChat(data);
+                sendChat(data); // 채팅방 메시지를 db에 전달해서 나와 상대방에게 보여줌
             },
         });
     });
     $("#chatModal").on('shown.bs.modal', function () {
-        scroll();
+        scroll();  // 채팅방에 들어가면 스크롤이 내려가게
     });
 });
 
@@ -291,9 +292,9 @@ function connect(data) {
     stompClient = Stomp.over(socket);
     const roomId = data.roomId;
     console.log(roomId);
-    stompClient.connect({}, function (frame) {
+    stompClient.connect({}, function (frame) { //stomp를 연결
         console.log("연결됨: ", frame);
-        stompClient.subscribe("/topic/chat/" + roomId, function (response) {
+        stompClient.subscribe("/topic/chat/" + roomId, function (response) { // url에 구독하겠다는 여부를 전달하여 구독
             console.log(JSON.parse(response.body));
             showMessage(JSON.parse(response.body));
         });
@@ -315,7 +316,7 @@ function sendChat(data) {
         "message": message,
         "senderId": login_id
     }
-    stompClient.send("/home/chat/" + roomId, {}, JSON.stringify(messageData));
+    stompClient.send("/home/chat/" + roomId, {}, JSON.stringify(messageData)); // 구독한 방의 모든이에게 메시지를 broadCast
     chatValue.value = '';
 }
 

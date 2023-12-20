@@ -24,7 +24,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     }
 
     @Override
-    public ChatRoom createRoom(Long userId, Long senderId) {
+    public ChatRoom createRoom(Long userId, Long senderId) {  // 채팅방 만들고 저장
         ChatRoom room = ChatRoom.create();
         chatRoomRepository.save(room);
         User user = userRepository.findById(userId);
@@ -36,7 +36,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     }
 
     @Override
-    public ChatRoom findRoomByUserId(Long userId,Long loginId) {
+    public ChatRoom findRoomByUserId(Long userId,Long loginId) { // userId와 loginId가 일치하는 채팅방 찾기
         ChatRoom room = chatRoomRepository.findByUserId(userId,loginId);
         return room;
     }

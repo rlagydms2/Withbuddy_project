@@ -16,7 +16,7 @@ public class ChatRoom {
 
     public static ChatRoom create() {
         ChatRoom room=new ChatRoom();
-        room.setRoomId(UUID.randomUUID().toString());
+        room.setRoomId(UUID.randomUUID().toString()); //채팅방 id를 랜덤으로 만들어서 저장하기 위함
         return room;
     }
 

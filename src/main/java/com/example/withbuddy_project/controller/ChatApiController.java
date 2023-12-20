@@ -17,10 +17,10 @@ import java.util.List;
 public class ChatApiController {
     private final ChatServiceImpl chatServiceImpl;
 
-    @PostMapping("/api/chatList")
+    @PostMapping("/api/chatList") //@RequestParam 파라미터를 요청함
     public List<ChatDto> loadChat(@RequestParam(name = "userId") Long userId, @RequestParam(name = "loginId") Long loginId) {
-        List<ChatDto> list = chatServiceImpl.findAllChat(userId, loginId);
-        log.info("list : {} ", list);
-        return list;
+        List<ChatDto> list = chatServiceImpl.findAllChat(userId, loginId); // html에서 요청한 파라미터를 넣어서 서비스를 실행
+//        log.info("list : {} ", list);
+        return list;   // 채팅방의 모든 채팅을 담은 list
     }
 }

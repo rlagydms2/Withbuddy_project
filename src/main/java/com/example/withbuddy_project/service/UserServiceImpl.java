@@ -28,15 +28,15 @@ public class UserServiceImpl {
     }
 
 
-    public List<User> findWithoutMe(Long id) {
+    public List<User> findWithoutMe(Long id) { // 나 뺴고 찾음
         return userRepository.findAllWithoutId(id);
     }
 
-    public User findById(Long id) {
+    public User findById(Long id) {  // 로그인한 유저의 정보
         return userRepository.findById(id);
     }
 
-    public List<User> findUsername(Long loginId) {
+    public List<User> findDm(Long loginId) { // 로그인한 유저가 갖고있는 모든 dm채팅방 정보
 
         List<User> list = userRepository.findDmListByLoginUserId(loginId);
         log.info("dmList user: {} ", list);

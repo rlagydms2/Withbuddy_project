@@ -26,7 +26,7 @@ public class Chat {
         this.sendTime=LocalDateTime.now();
     }
 
-    public static Chat createChat(ChatRoom chatRoom, Long senderId, String message) {
+    public static Chat createChat(ChatRoom chatRoom, Long senderId, String message) { // 채팅을 만드는 메서드
         return Chat.builder()
                 .roomId(chatRoom.getRoomId())
                 .senderId(senderId)

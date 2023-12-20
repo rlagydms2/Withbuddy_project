@@ -17,11 +17,11 @@ public class ChatController {
     private final ChatServiceImpl chatServiceImpl;
 //    private final SimpMessagingTemplate template;
 
-    @MessageMapping("/chat/{roomId}")
-    @SendTo("/topic/chat/{roomId}")
-    public ChatDto sendMessage(@DestinationVariable String roomId, ChatDto message) {
-        chatServiceImpl.create(roomId,message.getSenderId(),message.getMessage());
+    @MessageMapping("/chat/{roomId}") // prefix/chat/{roomId}에서 메시지 받음
+    @SendTo("/topic/chat/{roomId}")  // 외부 브로커가 /topic/chat/{roomId} 로 메시지를 전달
+    public ChatDto sendMessage(@DestinationVariable String roomId, ChatDto message) { // roomId가 위의 어노테이션들에 바인딩 되어야함을 알려줌
+        chatServiceImpl.create(roomId,message.getSenderId(),message.getMessage());  // 채팅을 만들기 위해 ChatDto message에 send를 통해 받아온 정보를 저장
 
-        return chatServiceImpl.findChat(roomId);
+        return chatServiceImpl.findChat(roomId); // roomId에 채팅을 전달하기 위해 roomId로 보낸 채팅을 찾기
     }
 }

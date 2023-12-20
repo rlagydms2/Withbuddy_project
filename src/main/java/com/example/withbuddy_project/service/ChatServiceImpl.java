@@ -27,7 +27,7 @@ public class ChatServiceImpl implements ChatService{
 
 
     @Override
-    public void create(String roomId,Long senderId, String message) {
+    public void create(String roomId,Long senderId, String message) { //send받은 정보를 토대로 채팅메시지 만들어 저장
         ChatRoom chatRoom = chatRoomRepository.findById(roomId);
         int save = chatRepository.save(Chat.createChat(chatRoom, senderId, message));
         log.info("save: {} ", save);
@@ -35,13 +35,13 @@ public class ChatServiceImpl implements ChatService{
     }
 
     @Override
-    public ChatDto findChat(String roomId) {
+    public ChatDto findChat(String roomId) { // 채팅방의 가장 최신 채팅을 찾음
         ChatDto chat = chatRepository.findChatByRoomId(roomId);
         return chat;
     }
 
     @Override
-    public List<ChatDto> findAllChat(Long userId,Long loginId) {
+    public List<ChatDto> findAllChat(Long userId,Long loginId) { // 로그인한 사람과 매칭된 사람이 쓰는 채팅방의 모든 채팅을 찾음
         ChatRoom roomId = chatRoomRepository.findByUserId(userId, loginId);
         List<ChatDto> list = chatRepository.findAllChatByRoomId(roomId.getRoomId());
         return list;

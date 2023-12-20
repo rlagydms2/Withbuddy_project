@@ -29,7 +29,7 @@ public class MatchServiceImpl {
       userRepository = sqlSession.getMapper(UserRepository.class);
     }
 
-    public int save(Long senderId,Long receiverId) {
+    public int save(Long senderId,Long receiverId) { // 수락 버튼을 누르면 매칭 저장
         Match match=Match.builder()
                 .senderId(senderId)
                 .receiverId(receiverId)
@@ -45,18 +45,18 @@ public class MatchServiceImpl {
     }
 
 
-    public boolean ifExist(Long senderId,Long receiverId) {
+    public boolean ifExist(Long senderId,Long receiverId) { // 매칭 존재여부 확인
         Match match = matchRepository.findBySenderIdAndReceiverId(senderId, receiverId);
         return (match != null) ? true : false; //존재하면 true 아니면 false, false인 경우에 save되게
     }
 
 
     public int acceptMatch(MatchRequest match) {
-        return matchRepository.update(match);
+        return matchRepository.update(match);  // 매칭을 수락하면 accept를 true로 업데이트
     }
 
 
-    public List<MatchResponse> list(Long userId) {
+    public List<MatchResponse> list(Long userId) { // 로그인한 유저의 매칭요청 리스트
         List<MatchResponse> matchResponses = matchRepository.findByLoginUserId(userId);    //userId인 matchinglist 불러오기
         List<MatchResponse> responses = new ArrayList<>();
         for (int i = 0; i < matchResponses.size(); i++) {
@@ -71,7 +71,7 @@ public class MatchServiceImpl {
         return responses;
     }
 
-    public void delete(MatchRequest request) {
+    public void delete(MatchRequest request) {  // 삭제
         Match match = matchRepository.findBySenderIdAndReceiverId(request.getReceiverId(), request.getSenderId());
         matchRepository.delete(match.getId());
     }
