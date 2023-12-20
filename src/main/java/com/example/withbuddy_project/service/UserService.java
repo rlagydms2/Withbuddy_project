@@ -12,11 +12,9 @@ import java.util.List;
 public class UserService {
 
     private UserRepository userRepository;
-
     public UserService(SqlSession sqlSession) {
         userRepository = sqlSession.getMapper(UserRepository.class);
     }
-
     public AddressUserDto selectAddress(String addressName) {
         return userRepository.findByAddressId(addressName);
     }

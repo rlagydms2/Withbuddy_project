@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class Address {
     private Long id;
     private String addressName;
+    private Long count;
 }

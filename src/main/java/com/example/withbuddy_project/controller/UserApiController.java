@@ -1,6 +1,7 @@
 package com.example.withbuddy_project.controller;
 
 import com.example.withbuddy_project.domain.dto.AddressUserDto;
+import com.example.withbuddy_project.service.MapService;
 import com.example.withbuddy_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,10 @@ public class UserApiController {
 
     private final UserService userService;
 
-    @PostMapping("/api/home")
-    public AddressUserDto buttonList(@RequestParam(name = "addressName") String addressName) {
-        AddressUserDto addressUserDto = userService.selectAddress(addressName);
-        return addressUserDto;
-    }
+//    @PostMapping("/api/home")
+//    public AddressUserDto buttonList(@RequestParam(name = "addressName") String addressName) {
+//        AddressUserDto addressUserDto = userService.selectAddress(addressName);
+//        return addressUserDto;
+//    }
 
 }
