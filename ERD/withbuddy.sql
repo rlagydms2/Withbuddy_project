@@ -1,5 +1,6 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
-
+select * from address_db;
+select * from map_db;
 
 /* Drop Tables */
 
@@ -10,7 +11,7 @@ DROP TABLE IF EXISTS adminBlacklist_db;
 DROP TABLE IF EXISTS banList_db;
 DROP TABLE IF EXISTS buddy_db;
 DROP TABLE IF EXISTS whoau_db;
-DROP TABLE IF EXISTS like_db;
+DROP TABLE IF EXISTS like_db;/*빼기*/
 DROP TABLE IF EXISTS reporter_db;
 DROP TABLE IF EXISTS report_db;
 DROP TABLE IF EXISTS user_db;
