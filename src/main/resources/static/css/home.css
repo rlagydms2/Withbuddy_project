@@ -7,9 +7,18 @@ body {
 #navBox {
     /* border: solid black; */
     margin: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
     float: right;
     font-size: small;
+}
+#navBox * {
+    color: #3d6976;
+
+}
+
+#navBox button{
+    width: 30px;
+    margin-right: 10px;
 }
 
 #navBox a{
@@ -35,6 +44,8 @@ body {
 
 /*----------------------------header css 끝--------------------------*/
 #BOX {
+    padding: 20px;
+    border-left:0.5px solid #dbd8d8;
     display: flex;
     /* background-color: antiquewhite; */
     justify-content: center;
@@ -44,13 +55,6 @@ body {
 }
 
 /* content 전체 박스 */
-
-#mypageBox {
-    /* background-color: aliceblue; */
-    display: flex;
-    width: 1px;
-    /*background-color: #4a5f91;*/
-}
 
 #mypageBtn{
     /* border: solid red; */
@@ -62,8 +66,8 @@ body {
 
 #mypage {
     /* background-color: aqua; */
-    width: 280px;
-    height: 960px;
+    width: 400px;
+    height: 955px;
 }
 
 /*↑↑↑↑↑↑--------------------------mypage CSS-------------------------↑↑↑↑↑↑↑↑*/
@@ -71,29 +75,25 @@ body {
 /*-------------------------- main CSS --------------------------*/
 
 
-#main {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    width: 100%;
-    border-left:0.5px solid #dbd8d8;
-    /* background-color: blue; */
-}
+
 
 #map {
     border-right:0.5px solid #dbd8d8;
     display: flex;
     justify-content: center;
     width: 75%;
-    height: 960px;
+    height: 955px;
+}
+
+#map button {
+    color: #070a38;
 }
 
 #prev {
     position: absolute;
-    right: 0;
-    margin-right: 20px;
+    left: 0;
+    margin-left: 17px;
     z-index: 2;
-    margin: 2px;
 
 }
 
@@ -125,8 +125,11 @@ p {
 }
 /*↑↑↑↑-------------map CSS--------------↑↑↑↑*/
 
+/*-------------↓↓↓↓↓↓↓↓↓↓↓↓강현아 여기다↓↓↓↓↓↓↓↓↓↓↓↓--------------*/
+
 #userList {
     /* background-color: aqua; */
+    margin-left: 20px;
     width: 25%;
 }
 
