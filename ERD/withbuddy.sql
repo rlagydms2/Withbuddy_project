@@ -1,23 +1,24 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
+select * from address_db;
+select * from map_db;
 
 /* Drop Tables */
 
 DROP TABLE IF EXISTS chat_db;
 DROP TABLE IF EXISTS acceptList_db;
+DROP TABLE IF EXISTS map_db;
 DROP TABLE IF EXISTS adminBlacklist_db;
 DROP TABLE IF EXISTS banList_db;
 DROP TABLE IF EXISTS buddy_db;
 DROP TABLE IF EXISTS whoau_db;
-DROP TABLE IF EXISTS like_db;
+DROP TABLE IF EXISTS like_db;/*빼기*/
 DROP TABLE IF EXISTS reporter_db;
 DROP TABLE IF EXISTS report_db;
 DROP TABLE IF EXISTS user_db;
 DROP TABLE IF EXISTS address_db;
 DROP TABLE IF EXISTS Authority_db;
-DROP TABLE IF EXISTS map_db;
 DROP TABLE IF EXISTS marker_db;
 DROP TABLE IF EXISTS markerIcon_db;
-
 
 
 
@@ -36,6 +37,7 @@ CREATE TABLE address_db
 (
 	id int NOT NULL AUTO_INCREMENT,
 	addressName varchar(50) NOT NULL,
+	count int NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
 	UNIQUE (addressName)
 );
@@ -101,9 +103,7 @@ CREATE TABLE like_db
 CREATE TABLE map_db
 (
 	mapId int NOT NULL AUTO_INCREMENT,
-	region varchar(50) NOT NULL,
-	town varchar(50) NOT NULL,
-	count int NOT NULL DEFAULT 0,
+	addressId int NOT NULL,
 	map_X varchar(100) NOT NULL,
 	map_Y varchar(100) NOT NULL,
 	PRIMARY KEY (mapId)
@@ -149,8 +149,8 @@ CREATE TABLE report_db
 CREATE TABLE user_db
 (
 	id int NOT NULL AUTO_INCREMENT,
-	addressId int NOT NULL,
-	authorityId int NOT NULL,
+	authorityId int NOT NULL DEFAULT 1,
+	addressId int,
 	userId varchar(200) NOT NULL,
 	password varchar(100) NOT NULL,
 	phone varchar(20) NOT NULL,
@@ -176,6 +176,14 @@ CREATE TABLE whoau_db
 ALTER TABLE chat_db
 	ADD FOREIGN KEY (acceptId, userId)
 	REFERENCES acceptList_db (acceptId, id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE map_db
+	ADD FOREIGN KEY (addressId)
+	REFERENCES address_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
