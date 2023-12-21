@@ -1,5 +1,6 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
+
 /* Drop Tables */
 
 DROP TABLE IF EXISTS map_db;
