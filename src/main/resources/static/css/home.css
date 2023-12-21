@@ -1,9 +1,14 @@
 body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+    margin: 0;
 }
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background: linear-gradient(to bottom, #ffffff,#fffdf7);*/
+}
+
 #navBox {
     /* border: solid black; */
     margin: 10px;
@@ -11,9 +16,8 @@ body {
     float: right;
     font-size: small;
 }
-#navBox * {
+#header * {
     color: #3d6976;
-
 }
 
 #navBox button{
@@ -26,21 +30,13 @@ body {
     font-weight: bold;
 }
 
-#clear {
-    clear: right;
-}
-
-#header {
-    width: 100%;
-    /*background-color: #070a38;*/
-    height: 80px;
-}
 
 #logo {
     /* border: solid black; */
     margin: 10px;
     width: 250px;
 }
+
 
 /*----------------------------header css 끝--------------------------*/
 #BOX {
@@ -50,13 +46,13 @@ body {
     /* background-color: antiquewhite; */
     justify-content: center;
     width: 100%;
-    border-top: 1px solid #070a38;
-    background-color: #ffffff;
+    border-top: 2px solid #6f879d;
+    background: linear-gradient(to bottom, #ffffff, #fffff3, #f5ffff, #f5ffff);
 }
 
 /* content 전체 박스 */
 
-#mypageBtn{
+#mypagesideBtn{
     /* border: solid red; */
     width: 50px;
     height: 50px;
@@ -78,11 +74,12 @@ body {
 
 
 #map {
-    border-right:0.5px solid #dbd8d8;
+    border-left:0.5px solid #dbd8d8;
     display: flex;
     justify-content: center;
-    width: 75%;
+    width: 80%;
     height: 955px;
+    position: relative;
 }
 
 #map button {
@@ -117,11 +114,11 @@ body {
     font-weight: bold;
 }
 
-p {
+#Gu {
     text-align: center;
-    color:rgb(233, 255, 238);
-    font-weight: bold;
-    font-size: x-small;
+    color: rgb(250, 253, 255);
+    font-size: 12px;
+    font-family: 'Diphylleia', serif;
 }
 /*↑↑↑↑-------------map CSS--------------↑↑↑↑*/
 
@@ -130,15 +127,84 @@ p {
 #userList {
     /* background-color: aqua; */
     margin-left: 20px;
-    width: 25%;
+    width: 20%;
+    background: linear-gradient(to bottom, #ffffff, #fffff3, #f5ffff, #f5ffff);
+    margin-right: 20px;
 }
 
 #listIcon {
     width: 50px;
+    padding: 10px;
 }
 
 /*↑↑↑↑------userList CSS----------↑↑↑↑*/
 
+#mypageBox {
+    height: 955px;
+    display: flex;
+    justify-content: center;
+}
+
+#whoau {
+    width: 306px;
+}
 
 
+#mypage p {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 18px;
+}
+
+#mypage a {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 12.5px;
+    text-decoration: none;
+
+}
+
+#infoBox {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#mypageImage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.myImage {
+    border-radius: 20px;
+    border: dotted #070a38;
+    width: 70%;
+    margin-bottom: 20px;
+    display: inline;
+}
+
+#myinfo {
+    width: 400px;
+    display: flex;
+}
+
+#infoBox a {
+    text-align: end;
+    margin: 8px;
+}
+
+#information {
+    border-top: solid #3d6976;
+    border-bottom: solid #3d6976;
+    border-collapse: separate;
+    border-spacing: 10px 10px;
+}
+
+
+/* 반응형 */
+
+@media screen and (max-width: 768px) {
+
+}
 

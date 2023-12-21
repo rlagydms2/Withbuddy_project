@@ -38,12 +38,12 @@ function setAreas(areas, data) {
         map: map,
         path: ground, // 좌표 배열의 배열로 하나의 다각형을 표시할 수 있습니다
         strokeWeight: 2,
-        strokeColor: '#070a38',
+        strokeColor: '#445A6EFF',
         strokeOpacity: 0.8,
         fillColor: '#fff',
         fillOpacity: 1
     });
-        displayArea(areas);
+    displayArea(areas);
 }
 
 function selectJson() {     // 구별 폴리곤 API 호출
@@ -68,7 +68,7 @@ let mapContainer = document.getElementById('map'), // 지도를 표시할 div
 let map = new kakao.maps.Map(mapContainer, mapOption),
     customOverlay = new kakao.maps.CustomOverlay({}),
     infowindow = new kakao.maps.InfoWindow({ removable: true });
-    map.setMaxLevel(8); //level 제한 메소드
+map.setMaxLevel(8); //level 제한 메소드
 
 // 버튼 클릭에 따라 지도 확대, 축소 기능을 막거나 풀고 싶은 경우에는 map.setZoomable 함수를 사용합니다
 setZoomable(); // zoom제한 메소드
@@ -87,7 +87,7 @@ function setDraggable(draggable) {
 //////////////////////////////////////////////////////'구'이름 마커/////////////////////////////////////////////////////////////
 
 // 마커 이미지의 이미지 주소입니다
-var imageSrc = "../image/marker.png";
+var imageSrc = "../image/marker2.png";
 // 마커 이미지의 이미지 크기 입니다
 var imageSize = new kakao.maps.Size(45, 45);
 // 마커 이미지를 생성합니다
@@ -127,85 +127,85 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 function displayArea(area) {
     let polygonArr = [];
-        $.each(area, function (i, data) {
-            // 다각형을 생성합니다
-                let polygon = new kakao.maps.Polygon({
-                map: map, // 다각형을 표시할 지도 객체
-                path: data.path, //왜 areas가 아니라 area인지 질문!!!!!!!
-                strokeWeight: 2.0,
-                strokeColor: '#323C73',
-                strokeOpacity: 0.8,
-                fillColor: '#FFF',
-                fillOpacity: 1
-            });
-            var polygonCenter;
-            $.each(mapData,function (i, value){
-                if(data.name == value.addressName){
-                    polygonCenter = new kakao.maps.LatLng(parseFloat(value.mapY), parseFloat(value.mapX));
-                }
-            })
-            // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
-            // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-            kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
-                polygon.setOptions({ fillColor: '#FFFf8d' });
-                customOverlay.setContent('<div id="area" class="area">' + data.name + '</div>');
-                customOverlay.setPosition(mouseEvent.latLng);
-                customOverlay.setMap(map);
-            });
-
-            // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
-            kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
-                customOverlay.setPosition(mouseEvent.latLng);
-            });
-
-            // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
-            // 커스텀 오버레이를 지도에서 제거합니다
-            kakao.maps.event.addListener(polygon, 'mouseout', function () {
-                polygon.setOptions({ fillColor: '#FFF' });
-                customOverlay.setMap(null);
-            });
-
-            // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시하고 폴리곤을 지도에서 제거합니다
-            kakao.maps.event.addListener(polygon, 'click', function (click) {
-                setDraggable(true);
-                polygon.setOptions({ fillColor: '#FFF' });
-                // 현재 지도 레벨에서 2레벨 확대한 레벨
-                let level = (map.getLevel() <= 5 ? map.getLevel() : map.getLevel() - 3) // 현재 레벨에서 3를 더한 값을 사용합니다.
-
-                // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대
-                map.setLevel(level, {
-                    anchor: map.setCenter(polygonCenter),
-                    animate: {
-                        duration: 350 // 확대 애니메이션 시간
-                    }
-                });
-                // 클릭된 폴리곤을 지도에서 제거 (숨기고 싶으면 setMap(null) 대신에 hide()를 사용)
-                polygonBG.setOptions({
-                    path:[ground,polygon.Ug]
-                })
-                MarkerController(polygon, null);
-
-                // 이전에 지워진 폴리곤이 존재 시 다시 생성
-                if (backup_polygon != null && backup_polygon != polygon) {
-                    MarkerController(backup_polygon, map)
-                };
-                // 지워진 폴리곤을 백업함.(다른 폴리곤 클릭 시 재생성을 위해 저장)
-                backup_polygon = polygon;
-
-                // 인포윈도우도 지도에서 제거
-                infowindow.setMap(null);
-            });
-            polygonArr.push({"Name":data.name,"polygon":polygon});
+    $.each(area, function (i, data) {
+        // 다각형을 생성합니다
+        let polygon = new kakao.maps.Polygon({
+            map: map, // 다각형을 표시할 지도 객체
+            path: data.path, //왜 areas가 아니라 area인지 질문!!!!!!!
+            strokeWeight: 2.0,
+            strokeColor: '#445A6EFF',
+            strokeOpacity: 0.8,
+            fillColor: '#FFF',
+            fillOpacity: 1
         });
+        var polygonCenter;
+        $.each(mapData,function (i, value){
+            if(data.name == value.addressName){
+                polygonCenter = new kakao.maps.LatLng(parseFloat(value.mapY), parseFloat(value.mapX));
+            }
+        })
+        // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
+        // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+        kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+            polygon.setOptions({ fillColor: '#FFFf8d' });
+            customOverlay.setContent('<div id="area" class="area">' + data.name + '</div>');
+            customOverlay.setPosition(mouseEvent.latLng);
+            customOverlay.setMap(map);
+        });
+
+        // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
+        kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+            customOverlay.setPosition(mouseEvent.latLng);
+        });
+
+        // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+        // 커스텀 오버레이를 지도에서 제거합니다
+        kakao.maps.event.addListener(polygon, 'mouseout', function () {
+            polygon.setOptions({ fillColor: '#FFF' });
+            customOverlay.setMap(null);
+        });
+
+        // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시하고 폴리곤을 지도에서 제거합니다
+        kakao.maps.event.addListener(polygon, 'click', function (click) {
+            setDraggable(true);
+            polygon.setOptions({ fillColor: '#FFF' });
+            // 현재 지도 레벨에서 2레벨 확대한 레벨
+            let level = (map.getLevel() <= 5 ? map.getLevel() : map.getLevel() - 3) // 현재 레벨에서 3를 더한 값을 사용합니다.
+
+            // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대
+            map.setLevel(level, {
+                anchor: map.setCenter(polygonCenter),
+                animate: {
+                    duration: 350 // 확대 애니메이션 시간
+                }
+            });
+            // 클릭된 폴리곤을 지도에서 제거 (숨기고 싶으면 setMap(null) 대신에 hide()를 사용)
+            polygonBG.setOptions({
+                path:[ground,polygon.Ug]
+            })
+            MarkerController(polygon, null);
+
+            // 이전에 지워진 폴리곤이 존재 시 다시 생성
+            if (backup_polygon != null && backup_polygon != polygon) {
+                MarkerController(backup_polygon, map)
+            };
+            // 지워진 폴리곤을 백업함.(다른 폴리곤 클릭 시 재생성을 위해 저장)
+            backup_polygon = polygon;
+
+            // 인포윈도우도 지도에서 제거
+            infowindow.setMap(null);
+        });
+        polygonArr.push({"Name":data.name,"polygon":polygon});
+    });
 
     $.each(mapData, function (i, value) {
         let position = new kakao.maps.LatLng(parseFloat(value.mapY), parseFloat(value.mapX));
-        let content = '<p>' + value.addressName + '<br>' + value.usercount + '</p>';
+        let content = '<h5 id="Gu">' + value.addressName + '<br>' + value.usercount + '</h5>';
         let marker = new kakao.maps.Marker({
             map: map,
             position: position,
             title: value.addressName,
-            image: markerImage
+            image: markerImage,
         });
         let customOverlay = new kakao.maps.CustomOverlay({
             map: map,
