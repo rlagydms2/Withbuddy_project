@@ -30,6 +30,10 @@ body {
     font-weight: bold;
 }
 
+#adminBtn {
+    display: none;
+}
+
 
 #logo {
     /* border: solid black; */
