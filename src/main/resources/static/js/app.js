@@ -1,14 +1,14 @@
 let stompClient = null;
 $(document).ready(function () {
-    $("#userListBtn").click(function () { //버튼을 누르면 특정 조건의 유저의 정보를 렌더링함
+    $("#userListBtn").click(function () { //버튼을 누르면 특정 조건의 유저의 정보를 화면에 보여줌
         $.ajax({
-            url: "/api/user?id=" + login_id, //로그인한 유저의 아이디로 자신 빼고 나머지 특정 조건을 가진 유저를 찾음
+            url: "/api/user?id=" + login_id, //로그인한 유저의 아이디로 자신 빼고 나머지 지역코드가 같은 유저를 찾음
             type: "GET",
             success: function (data) {
                 // console.log("userList data:", data);
                 // console.log("sender id: ", login_id);
                 if (data !== undefined) {
-                    showList(data); // 그러한 유저들의 정보를 렌더링
+                    showList(data); // 지역코드가 같은 유저들의 정보를 화면에 리스트로 보여줌
                 }
             },
         })
@@ -23,7 +23,7 @@ $(document).ready(function () {
             success: (function (data) {
                 // console.log("userProfile data:", data);
                 if (data != undefined) {
-                    showProfile(data); //찾아서 화면에 그 유저의 정보 렌더링
+                    showProfile(data); //찾아서 모달에 그 유저의 정보를 보여줌
                 }
             }),
         })
@@ -186,20 +186,18 @@ function showList(list) {
         console.log("data-modal-tr:", id);
 
         let username = user.userId;
+        const buddyImage = user.buddyImage;
+        const buddyName = user.buddyName;
 
         const row =
             `
             <tr data-modal-tr="${id}">
-                <td>img</td>
+                <td><img src="${buddyImage}"></td>
                 <td>
                     <button type="button" class="btn">${username}</button>
                 </td>
                 <td>
-                <div class="row">
-                    <div class="col-12">asdf</div>
-                    <div class="col-12">asdf</div>
-                    <div class="col-12">asdf</div>
-                </div>
+                    <span>${buddyName}</span>
                 </td>
             </tr>
             `;
@@ -212,7 +210,17 @@ function showProfile(user) {
 
     let id = user.id;
     let username = user.userId;
-
+    const category = user.category;
+    const buddyImage = user.buddyImage;
+    const buddyName = user.buddyName;
+    const buddyAge = user.buddyAge;
+    const buddyDetail = user.buddyDetail;
+    let buddySex = user.buddySex;
+    if (buddySex == 1) {
+        buddySex = '수';
+    } else {
+        buddySex = '암';
+    }
     const row =
         `
             <div class="modal-header">
@@ -220,7 +228,13 @@ function showProfile(user) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>땡땡</p>
+                <img src="/image/list_icon.png">
+                <img src="/image/${buddyImage}">
+                <p>이름 : ${buddyName}</p>
+                <p>견종 : ${category}</p>
+                <p>나이 : ${buddyAge}</p>
+                <p>성별 : ${buddySex}</p>   
+                <p>상세설명 : ${buddyDetail}</p>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark modal-btn" data-mc-btn="${id}" role="button">매칭하기</button>
@@ -266,6 +280,7 @@ function showDmList(list) {
     const out = [];
     list.forEach(list => {
         const userId = list.id;
+        const buddyImage=list.buddyImage;
         const username = list.userId;
         console.log(userId);
         if (userId != login_id) {
@@ -274,8 +289,13 @@ function showDmList(list) {
                 `
             <tr>
                 <td>
-                    <div>
+                    <div class="d-inline-flex">
+                    <div class="col-4">
+                        <img src="/image/${buddyImage}">
+                    </div>
+                    <div class="col-8 d-flex">
                         <button type="button" data-dm-btn="${userId}" class="btn btn-white dmChat">${username}</button>
+                    </div>
                     </div>
                 </td>
             </tr>

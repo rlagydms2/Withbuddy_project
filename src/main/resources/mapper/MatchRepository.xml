@@ -28,15 +28,18 @@
         AND senderId=#{senderId} AND receiverId=#{receiverId}
     </select>
     <select id="findByLoginUserId" resultType="com.example.withbuddy_project.domain.dto.MatchResponse">
-        SELECT u.username   "username",
+        SELECT b.buddyImage "buddyImage",
+               u.username   "username",
                m.receiverId "receiverId",
                m.senderId   "senderId",
                m.accept     "accept"
         FROM match_db m,
-             user_db u
+             user_db u,
+             buddy_db b
         WHERE m.receiverId = u.id
+          AND b.id=u.id
           AND m.receiverId = #{userId}
-        AND u.id=#{userId}
+          AND u.id = #{userId}
     </select>
 <!--    <select id="findUsernameBySenderId" resultType="com.example.demo.domain.dto.MatchResponse">-->
 <!--        SELECT-->

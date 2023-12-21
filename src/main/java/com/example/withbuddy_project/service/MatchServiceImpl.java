@@ -61,9 +61,11 @@ public class MatchServiceImpl {
         List<MatchResponse> responses = new ArrayList<>();
         for (int i = 0; i < matchResponses.size(); i++) {
             User user = userRepository.findById(matchResponses.get(i).getSenderId());
-            MatchResponse matchResponse=MatchResponse.builder()
+            MatchResponse matchResponse=MatchResponse
+                    .builder()
+                    .buddyImage(matchResponses.get(i).getBuddyImage())
                     .senderId(matchResponses.get(i).getSenderId())
-                    .username(user.getUserId())
+                    .userId(user.getUserId())
                     .build();
             responses.add(matchResponse);
         }

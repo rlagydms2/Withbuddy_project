@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MatchResponse {
+    private String buddyImage;
     private Long receiverId;
-    private String username;
+    private String userId;
     private Long senderId;
     private boolean accept;
 }

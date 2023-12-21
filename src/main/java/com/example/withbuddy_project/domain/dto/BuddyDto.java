@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class BuddyDto {
     private Long id;
     private String userId;
-    private String addressName;
     private String category;
     private String buddyName;
     private String buddyImage;
-
+    private Long buddyAge;
+    private String buddyDetail;
+    private boolean buddySex;
 }
