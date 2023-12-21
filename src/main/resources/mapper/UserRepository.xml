@@ -20,6 +20,15 @@
         VALUES
             (#{userId},#{password},#{phone},#{email})
     </insert>
+
+    <insert id="buddy" flushCache="true" parameterType="com.example.withbuddy_project.domain.MypagePet"
+            keyColumn="buddyId" keyProperty="buddyId" useGeneratedKeys="true">
+        INSERT INTO buddy_db
+            (id,buddyName,category,buddyAge,buddySex,buddyDetail,buddyImage)
+        VALUES
+            (#{id},#{buddyName},#{category},#{buddyAge},#{buddySex},#{buddyDetail},#{buddyImage})
+    </insert>
+
     <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
         <include refid="BASE"/>
         AND userId=#{userId}

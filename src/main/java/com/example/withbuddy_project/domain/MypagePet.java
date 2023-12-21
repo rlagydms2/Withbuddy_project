@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Buddy {
+public class MypagePet {    // 마이페이지(펫정보)
     private Long buddyId;
-    private String category;
     private String buddyName;
-    private Long buddyAge;
-    private String buddyImage;
+    private String category;
+    private String buddyAge;
+    private int buddySex;
     private String buddyDetail;
-    private Long buddySex;
+    private String buddyImage;
     private Long id;
-    private User user;
 }

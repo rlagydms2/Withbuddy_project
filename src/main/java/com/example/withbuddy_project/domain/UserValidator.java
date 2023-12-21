@@ -63,10 +63,8 @@ public class UserValidator implements Validator {
 //            errors.rejectValue("jumin", "주민등록번호 형식에 맞지 않습니다.");
 //        }
 
-        if ( !user.getPassword().equals(user.getRe_password())) {
+        if (!user.getPassword().equals(user.getRe_password()))
             errors.rejectValue("re_password", "동일한 비밀번호를 입력해주세요.");
-        }
     }
-
 }
 

@@ -1,5 +1,6 @@
 package com.example.withbuddy_project.repository;
 
+import com.example.withbuddy_project.domain.MypagePet;
 import com.example.withbuddy_project.domain.User;
 import com.example.withbuddy_project.domain.dto.AddressUserDto;
 import com.example.withbuddy_project.domain.dto.BuddyDto;
@@ -23,4 +24,6 @@ public interface UserRepository {
     BuddyDto findUserById(Long id,Long code);  // id를 통해 유저의 정보를 찾음
 
     User findByEmail(String email);
+
+    int buddy(MypagePet mypagePet);
 }

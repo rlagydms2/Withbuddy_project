@@ -1,6 +1,7 @@
 package com.example.withbuddy_project.service;
 
 import com.example.withbuddy_project.domain.Authority;
+import com.example.withbuddy_project.domain.MypagePet;
 import com.example.withbuddy_project.domain.User;
 import com.example.withbuddy_project.domain.dto.BuddyDto;
 import com.example.withbuddy_project.domain.dto.UserDto;
@@ -30,4 +31,8 @@ public interface UserService {
 
     // 신규 회원 등록
     int register(User user);
+
+    void buddyregister(MypagePet mypagePet);
+
+
 }

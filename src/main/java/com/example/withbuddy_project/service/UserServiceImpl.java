@@ -1,6 +1,7 @@
 package com.example.withbuddy_project.service;
 
 import com.example.withbuddy_project.domain.Authority;
+import com.example.withbuddy_project.domain.MypagePet;
 import com.example.withbuddy_project.domain.User;
 import com.example.withbuddy_project.domain.dto.AddressUserDto;
 import com.example.withbuddy_project.domain.dto.BuddyDto;
@@ -97,4 +98,10 @@ public class UserServiceImpl implements UserService {
 
         return 1;
     }
+
+    @Override
+    public void buddyregister(MypagePet mypagePet) {
+        userRepository.buddy(mypagePet);
+    }
+
 }

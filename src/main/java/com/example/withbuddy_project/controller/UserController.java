@@ -1,14 +1,20 @@
 package com.example.withbuddy_project.controller;
 
+import com.example.withbuddy_project.config.PrincipalDetails;
+import com.example.withbuddy_project.domain.MypagePet;
 import com.example.withbuddy_project.domain.User;
+import com.example.withbuddy_project.domain.UserValidator;
 import com.example.withbuddy_project.service.UserService;
 import com.example.withbuddy_project.service.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -62,8 +68,49 @@ public class UserController {
         return "/user/registerOk";
     }
 
-    //일반 로그인 완료후 메인페이지로
-    @GetMapping("/main")
-    public void main() {
+
+    // 애완견 등록
+    @GetMapping("/buddy")
+    public String buddy() {
+        return "user/buddy";
     }
+
+
+//    //  메인페이지(내정보)
+//    @GetMapping("/home")  // 정보조회용도 ==> Getmapping
+//    public String home(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+////        // 현재 로그인한 사용자의 아이디 가져오기
+//        String userId = principalDetails.getUsername();
+//
+////        로그인id, err확인
+////        log.info("userId : {}",userId);
+////        log.error("userId : {}",userId);
+//
+//        User user = userService.findByUsername(userId);
+//        MypagePet buddy = mypageService.getByPetBuddyId(user.getId());
+////        System.out.println("user : "  + user.getUserId());
+//        model.addAttribute("user",user);
+//        model.addAttribute("buddy", buddy);
+//        return "user/home";
+//    }
+
+    @PostMapping("/buddy")
+    public String join(@AuthenticationPrincipal PrincipalDetails principalDetails, MypagePet mypagePet) {
+        //        // 현재 로그인한 사용자의 아이디 가져오기
+
+        mypagePet.setId(principalDetails.getId());
+        userService.buddyregister(mypagePet);
+        return "redirect:/home";
+    }
+
+
+    @Autowired
+    UserValidator userValidator;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setValidator(userValidator);
+    }
+
+
 }
