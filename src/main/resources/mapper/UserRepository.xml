@@ -15,7 +15,7 @@
     </sql>
     <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
         <include refid="BASE"/>
-        AND username=#{userId}
+        AND uesrId=#{userId}
     </select>
     <select id="findById" resultType="com.example.withbuddy_project.domain.User">
         AND id=#{id}
