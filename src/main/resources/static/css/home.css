@@ -203,6 +203,15 @@ body {
     border-collapse: separate;
     border-spacing: 10px 10px;
 }
+#dmModal{
+    z-index: 20;
+}
+#alarmModal{
+    z-index: 20;
+}
+#dmModal{
+    z-index: 20;
+}
 
 
 /* 반응형 */

@@ -34,9 +34,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // URL 과 접근권한 세팅(들)
                         // ↓  URL로 들어오는 요청은 '인증'만 필요.
-                        .requestMatchers("/board/detail/**").authenticated()
+                        .requestMatchers("/").authenticated()
                         // ↓  URL로 들어오는 요청은 '인증' 뿐 아니라 ROLE_MEMBER 나 ROLE_ADMIN 권한을 갖고 있어야 한다. ('인가')
-                        .requestMatchers("/board/write/**", "/board/update/**", "/board/delete/**").hasAnyRole("MEMBER", "ADMIN")
+                        .requestMatchers("/", "/home").hasAnyRole("유저", "권한")
                         // ↓ 그 밖의 다른 요청은 모두 permit!
                         .anyRequest().permitAll()
 

@@ -50,16 +50,18 @@ $(document).ready(function () {
 
     });
     $("#alarmBtn").click(function () {
-        const userId = login_id; // 로그인한 유저의 id
-        $.ajax({
-            url: "/api/alert/" + login_id,  //로그인한 유저의 id로 매칭알림을 가져옴
-            type: "GET",
-            cache: false,
-            success: function (data) {
-                console.log(data);
-                showAlarm(data); // 매칭 알림을 로그인한 유저에게 렌더링
-            },
-        })
+        // const userId = login_id; // 로그인한 유저의 id
+        // $.ajax({
+        //     url: "/api/alert/" + login_id,  //로그인한 유저의 id로 매칭알림을 가져옴
+        //     type: "GET",
+        //     cache: false,
+        //     success: function (data) {
+        //         console.log(data);
+        //         showAlarm(data); // 매칭 알림을 로그인한 유저에게 렌더링
+        //     },
+        // })
+        console.log("알람버튼클릭");
+        $("#alarmModal").modal("show");
     });
     $("#alarmModal").on("click", ".accept-btn", function () { //매칭을 수락하는 버튼
         const senderId = login_id;  // 매칭을 요청한 사람의 id
@@ -105,21 +107,24 @@ $(document).ready(function () {
 
             },
         })
+        $("#alarmModal").modal("hide");
+        $("#alarmTable").html("");
     });
 
     $("#dmListBtn").click(function () { // 매칭이 연결된 채팅방을 가진 유저들을 모아놓은 리스트를 보여지게하기 위한 버튼
-        const data = {
-            "loginId": login_id,
-        }
-        $.ajax({
-            url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
-            type: "post",
-            data: data,
-            success: function (data) {
-                console.log(data);
-                showDmList(data); // dmList에 있는 유저들을 화면에 렌더링
-            },
-        })
+        // const data = {
+        //     "loginId": login_id,
+        // }
+        // $.ajax({
+        //     url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
+        //     type: "post",
+        //     data: data,
+        //     success: function (data) {
+        //         console.log(data);
+        //         showDmList(data); // dmList에 있는 유저들을 화면에 렌더링
+        //     },
+        // })
+        $("#dmModal").modal("show");
     });
     $("#dmModal").on("click", ".dmChat", function () { // 채팅방을 들어가기 위한 버튼
         const userId = $(this).data("dm-btn");

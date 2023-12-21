@@ -33,7 +33,7 @@
     </select>
     <select id="findDmListByLoginUserId" resultType="com.example.withbuddy_project.domain.User">
         SELECT DISTINCT
-            u.username "userId",
+            u.userId "userId",
             u.id "id"
         FROM user_db u,
              match_db m
