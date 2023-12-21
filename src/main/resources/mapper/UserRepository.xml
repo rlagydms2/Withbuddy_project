@@ -1,11 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.withbuddy_project.repository.UserRepository">
-
-    <select id="findByAddressId" resultType="com.example.withbuddy_project.domain.dto.AddressUserDto">
-        SELECT u.id, a.id, a.addressName
-        FROM address_db a
-                 LEFT JOIN user_db u ON a.id = u.addressId
-        WHERE a.addressName = #{addressName}
+    <sql id="BASE">
+        SELECT
+            id "id",
+            userId "userId",
+            password "password",
+            phone "phone",
+            email "email",
+            addressId "addressId",
+            authorityId "authorityId"
+        FROM user_db
+        WHERE 1=1
+    </sql>
+    <insert id="save" flushCache="true" parameterType="com.example.withbuddy_project.domain.User"
+            keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO user_db
+            (userId,password,phone,email)
+        VALUES
+            (#{userId},#{password},#{phone},#{email})
+    </insert>
+    <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND userId=#{userId}
+    </select>
+    <select id="findById" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND id=#{id}
+    </select>
+    <select id="findAllUser" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+    </select>
+    <select id="findDmListByLoginUserId" resultType="com.example.withbuddy_project.domain.User">
+        SELECT DISTINCT
+            u.username "userId",
+            u.id "id"
+        FROM user_db u,
+             match_db m
+        WHERE u.id=m.senderId
+          AND m.accept=1
+    </select>
+        <select id="findAllWithoutId" resultType="com.example.withbuddy_project.domain.dto.UserDto">
+            SELECT u.id          "id",
+                   u.userId      "userId",
+                   a.addressName "addressName",
+                   b.category    "category",
+                   b.buddyName   "buddyName",
+                   b.buddyImage  "buddyImage"
+            FROM user_db u,
+                 address_db a,
+                 buddy_db b
+            WHERE 1 = 1
+              AND u.id!=#{id}
+              AND a.addressId=u.addressId
+              AND u.addressId=#{code}
+              AND u.id=b.id
+        </select>
+    <select id="findUserById" flushCache="true" resultType="com.example.withbuddy_project.domain.dto.BuddyDto">
+        SELECT
+            u.id "id",
+            u.userId "userId",
+            b.buddyName "buddyName",
+            b.buddyImage "buddyImage",
+            b.buddyAge "buddyAge",
+            b.buddyDetail "buddyDetail",
+            b.buddySex "buddySex",
+            b.category "category"
+        FROM user_db u, buddy_db b
+        WHERE u.id=b.id
+          AND b.id=#{id}
+    </select>
+    <select id="findByEmail" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND email=#{email}
     </select>
 </mapper>
