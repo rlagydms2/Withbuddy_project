@@ -9,6 +9,8 @@ import com.example.withbuddy_project.repository.AuthorityRepository;
 import com.example.withbuddy_project.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(SqlSession sqlSession) {
         userRepository = sqlSession.getMapper(UserRepository.class);
@@ -60,4 +65,36 @@ public class UserServiceImpl implements UserService {
         return authorityRepository.findByUser(user);
     }
 
+    @Override
+    public boolean isExist(String userId) {
+        User user = findByUsername(userId);
+        return (user != null) ? true : false;
+    }
+
+    @Override
+    public boolean isExistEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return (user != null) ? true : false;
+    }
+
+
+    @Override
+    public int register(User user) {
+        // DB 에는 회원 username 을 대문자로 저장
+        user.setUserId(user.getUserId().toUpperCase());
+
+        // password 는 암호화 해서 저장.  PasswordEncoder 객체 사용
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);  // 새로운 회원 (User) 저장.  id 값 받아옴.
+
+        // 신규회원은 ROLE_MEMBER 권한을 부여하기
+//        Authority auth = authorityRepository.findByName("ROLE_MEMBER");
+
+
+//        int auth_id = auth.getId();
+//        String authorityName = auth.getAuthorityName();
+//        authorityRepository.addAuthority(auth_id,authorityName);
+
+        return 1;
+    }
 }

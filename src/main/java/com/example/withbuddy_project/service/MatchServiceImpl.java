@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class MatchServiceImpl {
+public class MatchServiceImpl implements MatchService {
 
     private MatchRepository matchRepository;
     private UserRepository userRepository;

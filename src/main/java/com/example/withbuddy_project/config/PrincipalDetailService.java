@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 // 리턴되면 -----> Session으로 들어감
 //  name : value ===> Session : Authentication(로그인 정보 객체),( principal : userdetails(로그인한 user 정보) )
 @Service
-@RequiredArgsConstructor
 public class PrincipalDetailService implements UserDetailsService {
 
     @Autowired

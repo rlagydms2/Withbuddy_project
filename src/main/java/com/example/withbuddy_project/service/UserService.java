@@ -19,4 +19,15 @@ public interface UserService {
     BuddyDto findBuddy(Long id, Long code);
 
     List<User> findDm(Long loginId);
+
+    default boolean isExist(String username) {
+        return false;
+    }
+
+    default boolean isExistEmail(String email) {
+        return false;
+    }
+
+    // 신규 회원 등록
+    int register(User user);
 }

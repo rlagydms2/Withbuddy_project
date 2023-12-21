@@ -13,11 +13,19 @@
         FROM user_db
         WHERE 1=1
     </sql>
+    <insert id="save" flushCache="true" parameterType="com.example.withbuddy_project.domain.User"
+            keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO user_db
+            (userId,password,phone,email)
+        VALUES
+            (#{userId},#{password},#{phone},#{email})
+    </insert>
     <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
         <include refid="BASE"/>
-        AND uesrId=#{userId}
+        AND userId=#{userId}
     </select>
     <select id="findById" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
         AND id=#{id}
     </select>
     <select id="findAllUser" resultType="com.example.withbuddy_project.domain.User">
@@ -61,5 +69,9 @@
         FROM user_db u, buddy_db b
         WHERE u.id=b.id
           AND b.id=#{id}
+    </select>
+    <select id="findByEmail" resultType="com.example.withbuddy_project.domain.User">
+        <include refid="BASE"/>
+        AND email=#{email}
     </select>
 </mapper>

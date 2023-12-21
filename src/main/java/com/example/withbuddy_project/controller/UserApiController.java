@@ -3,6 +3,7 @@ package com.example.withbuddy_project.controller;
 import com.example.withbuddy_project.domain.User;
 import com.example.withbuddy_project.domain.dto.BuddyDto;
 import com.example.withbuddy_project.domain.dto.UserDto;
+import com.example.withbuddy_project.service.UserService;
 import com.example.withbuddy_project.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserApiController {
 
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
 //    @PostMapping("/api/home")
 //    public AddressUserDto buttonList(@RequestParam(name = "addressName") String addressName) {
@@ -26,13 +27,13 @@ public class UserApiController {
 //    }
 @GetMapping("/api/user")
 public List<UserDto> userList(Long id) {
-    List<UserDto> list = userServiceImpl.findWithoutMe(id); // 나빼고 다 찾기 추후 같은 지역에 사는 사람들만 나오게할 것
+    List<UserDto> list = userService.findWithoutMe(id); // 나빼고 다 찾기 추후 같은 지역에 사는 사람들만 나오게할 것
     return list;
 }
 
     @GetMapping("/api/userProfile/{userId}")
     public BuddyDto userProfile(@PathVariable Long userId,Long code) {
-        return userServiceImpl.findBuddy(userId,code); // list에 나온 user의 정보를 찾아온걸 html에 전달
+        return userService.findBuddy(userId,code); // list에 나온 user의 정보를 찾아온걸 html에 전달
     }
 //    @GetMapping("/api/user")
 //    public List<User> userList(Long id,Long code) {
@@ -42,7 +43,7 @@ public List<UserDto> userList(Long id) {
 
     @PostMapping("/api/dmList")
     public List<User> dmListUser(@RequestParam(name = "loginId") Long loginId) {
-        return userServiceImpl.findDm(loginId);     // dmList에 렌더링할 유저들의 정보
+        return userService.findDm(loginId);     // dmList에 렌더링할 유저들의 정보
     }
 
 }
