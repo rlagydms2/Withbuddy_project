@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.spring.withbuddy_project.repository.ChatRoomRepository">
+
+    <insert id="save" parameterType="com.lec.spring.withbuddy_project.domain.ChatRoom">
+        INSERT INTO chatRoom_db
+            (roomId)
+        VALUES
+            (#{roomId})
+    </insert>
+    <insert id="addUserList">
+        INSERT INTO userList
+        (roomId,userId)
+        VALUES (#{param1},#{param2})
+    </insert>
+    <select id="findAllRoomIdByUserId" resultType="com.lec.spring.withbuddy_project.domain.ChatRoom">
+        SELECT ul.roomId "roomId"
+        FROM userList ul,
+             user_db u
+        WHERE ul.userId = #{userId}
+          AND ul.userId = user.userId
+    </select>
+    <select id="findById" resultType="com.lec.spring.withbuddy_project.domain.ChatRoom">
+        select roomId "roomId"
+        from chatRoom_db
+        where 1=1
+        AND roomId=#{roomId}
+    </select>
+    <select id="findByUserId" resultType="com.lec.spring.withbuddy_project.domain.ChatRoom">
+        SELECT roomId "roomId"
+        FROM userList
+        WHERE userId IN (#{userId},#{loginId})
+        GROUP BY roomId
+        HAVING COUNT(DISTINCT userId) = 2
+    </select>
+    <delete id="deleteById" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.ChatRoom">
+        DELETE FROM chatRoom_db WHERE roomId=#{roomId}
+    </delete>
+
+</mapper>

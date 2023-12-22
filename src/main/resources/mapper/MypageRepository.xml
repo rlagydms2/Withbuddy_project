@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.spring.withbuddy_project.repository.MypageRepository">
+    <!--/* 메인페이지 사용자정보 */-->
+    <resultMap id="MapMain" type="com.lec.spring.withbuddy_project.domain.MainPage">
+        <result column="buddyImage" property="buddyImage" />
+        <result column="userId" property="userId" />
+        <result column="buddyName" property="buddyName" />
+        <result column="category" property="category" />
+    </resultMap>
+    <select id="getByuserIdMain" resultMap="MapMain">
+        SELECT
+            p.buddyImage "buddyImage",
+            u.userId "userId",
+            p.buddyName "buddyName",
+            p.category "category"
+        FROM user_db u, buddy_db p
+        WHERE u.id = p.id AND u.id = #{id}
+    </select>
+
+
+    <!--/* 마이페이지 사용자정보 */-->
+    <resultMap id="MapMyInfo" type="com.lec.spring.withbuddy_project.domain.MypageUser">
+        <result column="userId" property="userId"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="addressName" property="addressName"/>
+        <result column="buddyImage" property="buddyImage"/>
+    </resultMap>
+    <select id="getByMyInfoUserId" resultMap="MapMyInfo">
+        SELECT
+            u.userId "userId",
+            u.password "password",
+            u.phone "phone",
+            u.email "email",
+            j.addressName "addressName",
+            p.buddyImage "buddyImage"
+        FROM user_db u, buddy_db p, address_db j
+        WHERE u.id = j.id AND u.id = p.id AND u.id = #{id}
+    </select>
+
+
+    <!--/* 마이페이지 펫정보 */-->
+    <resultMap id="MapMyPet" type="com.lec.spring.withbuddy_project.domain.MypagePet">
+        <result column="buddyName" property="buddyName"/>
+        <result column="category" property="category"/>
+        <result column="buddyAge" property="buddyAge"/>
+        <result column="buddySex" property="buddySex"/>
+        <result column="buddyDetail" property="buddyDetail"/>
+        <result column="buddyImage" property="buddyImage"/>
+    </resultMap>
+    <select id="getByPetUserId" resultType="com.lec.spring.withbuddy_project.domain.MypagePet">
+        SELECT * FROM buddy_db
+        WHERE 1=1
+          AND id=#{id}
+    </select>
+
+
+    <!--/* 마이페이지 */-->
+    <resultMap id="MapMypage" type="com.lec.spring.withbuddy_project.domain.Mypage">
+        <result column="userId" property="userId"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="addressName" property="addressName"/>
+        <result column="buddyName" property="buddyName"/>
+        <result column="category" property="category"/>
+        <result column="buddyAge" property="buddyAge"/>
+        <result column="buddySex" property="buddySex"/>
+        <result column="buddyDetail" property="buddyDetail"/>
+        <result column="buddyImage" property="buddyImage"/>
+    </resultMap>
+    <select id="getByMypageUserId" resultMap="MapMypage">
+        SELECT
+            u.userId "userId",
+            u.password "password",
+            u.phone "phone",
+            u.email "email",
+            j.addressName "addressName",
+            p.buddyName "buddyName",
+            p.category "category",
+            p.buddyAge "buddyAge",
+            p.buddySex "buddySex",
+            p.buddyDetail "buddyDetail",
+            p.buddyImage "buddyImage"
+        FROM user_db u, buddy_db p, address_db j
+        WHERE u.id = p.id AND u.id = j.id AND u.id = #{id}
+    </select>
+
+
+    <!--/* 사용자정보수정 */-->
+    <update id="updateUser" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.MypageUser">
+        UPDATE user_db
+        SET password = #{password},
+            phone = #{phone},
+            email = #{email},
+            address = #{address}
+        WHERE id = #{id}
+    </update>
+
+
+    <!--/* 펫정보수정 */-->
+    <update id="updatePet" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.MypagePet">
+        UPDATE buddy_db
+        SET buddyName = #{buddyName},
+            category = #{category},
+            buddyAge = #{buddyAge},
+            buddySex = #{buddySex},
+            buddyDetail = #{buddyDetail},
+            buddyImage = #{buddyImage}
+        WHERE id = #{id}
+    </update>
+
+
+</mapper>

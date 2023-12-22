@@ -1,0 +1,43 @@
+input {
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form {
+    display: flex;
+}
+.container {
+    border: 1px solid black;
+    justify-content: center;
+    float: right;
+    vertical-align: middle;
+}
+.mypagecontainer {
+    border: 1px solid green;
+    display: flex;
+    /*margin-top: 50px;*/
+}
+.btncontainer {
+    border: 1px solid black;
+}
+.myp {
+    border: 1px solid red;
+    display: flex;
+    overflow-x: auto;
+}
+.tablecontainer {
+    /*border: 1px solid blue;*/
+    display: flex;
+}
+label {
+    border: 1px solid red;
+}
+.tds {
+    /*border: 1px solid black;*/
+    width: 30%;
+}
+
+#userId, #pw, #phone, #email, #region, #buddyName, #category, #buddyAge, #buddySex, #buddyDetail {
+    width: 100%;
+}
+

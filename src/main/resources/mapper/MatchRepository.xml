@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.spring.withbuddy_project.repository.MatchRepository">
+    <sql id="SELECT_MATCH">
+        SELECT
+            matchId "id",
+            senderId "senderId",
+            receiverId "receiverId",
+            accept "accept"
+        FROM match_db
+        WHERE 1=1
+    </sql>
+    <insert id="save" useGeneratedKeys="true" parameterType="com.lec.spring.withbuddy_project.domain.Match"
+    keyColumn="matchId" keyProperty="id">
+        INSERT INTO match_db
+        (senderId,receiverId,accept)
+        VALUES (#{senderId},#{receiverId},#{accept})
+    </insert>
+    <update id="update" flushCache="true">
+        UPDATE match_db
+        SET accept=1
+        WHERE receiverId=#{receiverId}
+          AND senderId=#{senderId}
+    </update>
+
+    <select id="findBySenderIdAndReceiverId" resultType="com.lec.spring.withbuddy_project.domain.Match">
+        <include refid="SELECT_MATCH"/>
+        AND senderId=#{senderId} AND receiverId=#{receiverId}
+    </select>
+    <select id="findByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.dto.MatchResponse">
+        SELECT b.buddyImage "buddyImage",
+               u.username   "username",
+               m.receiverId "receiverId",
+               m.senderId   "senderId",
+               m.accept     "accept"
+        FROM match_db m,
+             user_db u,
+             buddy_db b
+        WHERE m.receiverId = u.id
+          AND b.id=u.id
+          AND m.receiverId = #{userId}
+          AND u.id = #{userId}
+    </select>
+<!--    <select id="findUsernameBySenderId" resultType="com.example.demo.domain.dto.MatchResponse">-->
+<!--        SELECT-->
+<!--            u.username "username",-->
+<!--            m.senderId "senderId",-->
+<!--            m.receiverId "receiverId"-->
+<!--        FROM match_db m, user_db u-->
+<!--        WHERE m.senderId=#{senderId}-->
+<!--    </select>-->
+
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.Match">
+        DELETE FROM match_db WHERE matchId=#{id}
+    </delete>
+</mapper>

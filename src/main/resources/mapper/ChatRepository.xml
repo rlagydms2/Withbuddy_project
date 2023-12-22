@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lec.spring.withbuddy_project.repository.ChatRepository">
+    <insert id="save" parameterType="com.lec.spring.withbuddy_project.domain.Chat"
+    useGeneratedKeys="true" keyProperty="id" keyColumn="chatId">
+        INSERT INTO chat_db(roomId, senderId, message)
+        VALUES (#{roomId},#{senderId},#{message})
+    </insert>
+    <select id="findChatByRoomId" flushCache="true" resultType="com.lec.spring.withbuddy_project.domain.dto.ChatDto">
+        SELECT
+            roomId "roomId",
+            senderId "senderId",
+            message "message",
+            sendTime "sendTime"
+        FROM chat_db
+        WHERE 1=1
+        AND roomId=#{roomId}
+        ORDER BY sendTime DESC
+        LIMIT 1
+    </select>
+    <select id="findBySenderId" resultType="com.lec.spring.withbuddy_project.domain.Chat">
+        SELECT roomId   "roomId",
+               senderId "senderId",
+               message  "message",
+               sendTime "sendTime"
+        FROM chat_db
+        WHERE 1 = 1
+          AND senderId = #{senderId}
+          AND roomId = #{roomId}
+        ORDER BY chatId ASC
+    </select>
+    <select id="findAllChatByRoomId" resultType="com.lec.spring.withbuddy_project.domain.dto.ChatDto">
+        SELECT
+            roomId "roomId",
+            senderId "senderId",
+            message "message",
+            sendTime "sendTime"
+        FROM chat_db
+        WHERE 1=1
+          AND roomId=#{roomId}
+        ORDER BY sendTime ASC
+    </select>
+</mapper>

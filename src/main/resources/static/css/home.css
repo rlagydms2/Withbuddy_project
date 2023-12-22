@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background: linear-gradient(to bottom, #ffffff,#fffdf7);*/
+}
+
+#navBox {
+    /* border: solid black; */
+    margin: 10px;
+    margin-top: 20px;
+    float: right;
+    font-size: small;
+}
+#header * {
+    color: #3d6976;
+}
+
+#navBox button{
+    width: 30px;
+    margin-right: 10px;
+}
+
+#navBox a{
+    margin: 15px;
+    font-weight: bold;
+}
+
+#adminBtn {
+    display: none;
+}
+
+#logo {
+    /* border: solid black; */
+    margin: 10px;
+    width: 250px;
+}
+
+
+/*----------------------------header css 끝--------------------------*/
+#BOX {
+    padding: 20px;
+    border-left:0.5px solid #dbd8d8;
+    display: flex;
+    /* background-color: antiquewhite; */
+    justify-content: center;
+    width: 100%;
+    border-top: 2px solid #6f879d;
+    background: linear-gradient(to bottom, #ffffff, #fffff3, #f5ffff, #f5ffff);
+}
+
+/* content 전체 박스 */
+
+#mypagesideBtn{
+    /* border: solid red; */
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    margin-left: 10px;
+}
+
+#mypage {
+    /* background-color: aqua; */
+    width: 400px;
+    height: 955px;
+}
+
+/*↑↑↑↑↑↑--------------------------mypage CSS-------------------------↑↑↑↑↑↑↑↑*/
+
+/*-------------------------- main CSS --------------------------*/
+
+
+
+
+#map {
+    border-left:0.5px solid #dbd8d8;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 955px;
+    position: relative;
+}
+
+#map button {
+    color: #070a38;
+}
+
+#prev {
+    position: absolute;
+    left: 0;
+    margin-left: 17px;
+    z-index: 2;
+
+}
+
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding: 2px;
+}
+
+.info {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.info .title {
+    font-weight: bold;
+}
+
+#Gu {
+    text-align: center;
+    color: rgb(250, 253, 255);
+    font-size: 12px;
+    font-family: 'Diphylleia', serif;
+}
+/*↑↑↑↑-------------map CSS--------------↑↑↑↑*/
+
+/*-------------↓↓↓↓↓↓↓↓↓↓↓↓강현아 여기다↓↓↓↓↓↓↓↓↓↓↓↓--------------*/
+
+#userList {
+    /* background-color: aqua; */
+    margin-left: 20px;
+    width: 20%;
+    background: linear-gradient(to bottom, #ffffff, #fffff3, #f5ffff, #f5ffff);
+    margin-right: 20px;
+}
+
+#listIcon {
+    width: 50px;
+    padding: 10px;
+}
+
+/*↑↑↑↑------userList CSS----------↑↑↑↑*/
+
+#mypageBox {
+     height: 955px;
+    display: flex;
+    justify-content: center;
+}
+
+#whoau {
+    width: 306px;
+}
+
+
+#mypage p {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 18px;
+}
+
+#mypage a {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 12.5px;
+    text-decoration: none;
+
+}
+
+#infoBox {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#mypageImage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.myImage {
+    border-radius: 20px;
+    border: dotted #070a38;
+    width: 70%;
+    margin-bottom: 20px;
+    display: inline;
+}
+
+#myinfo {
+    width: 400px;
+    display: flex;
+}
+
+#infoBox a {
+    text-align: end;
+    margin: 8px;
+}
+
+#information {
+    border-top: solid #3d6976;
+    border-bottom: solid #3d6976;
+    border-collapse: separate;
+    border-spacing: 10px 10px;
+}
+
+
+/* 반응형 */
+
+@media screen and (max-width: 768px) {
+
+}
+
+
+
+
+

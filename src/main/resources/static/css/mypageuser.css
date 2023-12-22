@@ -1,0 +1,58 @@
+input {
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+select {
+    height: 40px;
+    align-items: center;
+}
+form {
+    display: flex;
+}
+.mypagecontainer {
+    border: 1px solid green;
+    display: flex;
+}
+.btncontainer {
+    border: 1px solid black;
+}
+.myp {
+    /* border: 1px solid red; */
+    display: flex;
+    overflow-x: auto;
+}
+.tablecontainer {
+    /* border: 1px solid blue; */
+    display: flex;
+}
+.td {
+    /*border: 1px solid black;*/
+    width: 25%;
+    align-items: center;
+}
+.conten {
+    width: 75%;
+}
+#userId ,#pw, #repw, #phone, #email, #region {
+    border: 1px solid black;
+    width: 100%;
+}
+#myupdate {
+    width: 100px;
+    margin-left: 680px;
+}
+#email {
+    border: 1px solid black;
+    width: 30%;
+}
+#email1, #region {
+    border: 1px solid black;
+    width: 40%;
+}
+#emailbox, #regionbox {
+    display: flex;
+}
+#emailbtn, #regionbtn {
+    width: 30%;
+}
