@@ -100,7 +100,6 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (99,'xuquWNw7','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0135-3250','a1w6itl8@gmail.com',20,0,1),
       (100,'CAyEqcb4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-3020-5438','nrfp4nln@gmail.com',16,4,1);
 
-select * from user_db;
 
-
-
+select *
+from match_db;

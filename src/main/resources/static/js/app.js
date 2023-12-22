@@ -1,19 +1,5 @@
 let stompClient = null;
 $(document).ready(function () {
-    $("#userListBtn").click(function () { //버튼을 누르면 특정 조건의 유저의 정보를 화면에 보여줌
-        $.ajax({
-            url: "/api/user?id=" + login_id, //로그인한 유저의 아이디로 자신 빼고 나머지 지역코드가 같은 유저를 찾음
-            type: "GET",
-            success: function (data) {
-                // console.log("userList data:", data);
-                // console.log("sender id: ", login_id);
-                if (data !== undefined) {
-                    showList(data); // 지역코드가 같은 유저들의 정보를 화면에 리스트로 보여줌
-                }
-            },
-        })
-    });
-
     $("#userTable").on("click", ".btn", function () { // 유저 테이블에서 특정 유저를 선택하면 유저 프로필이 나옴
         var userId = $(this).closest('tr').data("modal-tr"); //선택한 유저의 프로필을 찾기위한 id
         console.log("UserID:", userId);
@@ -23,6 +9,7 @@ $(document).ready(function () {
             success: (function (data) {
                 // console.log("userProfile data:", data);
                 if (data != undefined) {
+                    console.log("프로필버튼 누름" + data);
                     showProfile(data); //찾아서 모달에 그 유저의 정보를 보여줌
                 }
             }),
@@ -50,16 +37,16 @@ $(document).ready(function () {
 
     });
     $("#alarmBtn").click(function () {
-        // const userId = login_id; // 로그인한 유저의 id
-        // $.ajax({
-        //     url: "/api/alert/" + login_id,  //로그인한 유저의 id로 매칭알림을 가져옴
-        //     type: "GET",
-        //     cache: false,
-        //     success: function (data) {
-        //         console.log(data);
-        //         showAlarm(data); // 매칭 알림을 로그인한 유저에게 렌더링
-        //     },
-        // })
+        const userId = login_id; // 로그인한 유저의 id
+        $.ajax({
+            url: "/api/alert/" + login_id,  //로그인한 유저의 id로 매칭알림을 가져옴
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                showAlarm(data); // 매칭 알림을 로그인한 유저에게 렌더링
+            },
+        })
         console.log("알람버튼클릭");
         $("#alarmModal").modal("show");
     });
@@ -112,18 +99,18 @@ $(document).ready(function () {
     });
 
     $("#dmListBtn").click(function () { // 매칭이 연결된 채팅방을 가진 유저들을 모아놓은 리스트를 보여지게하기 위한 버튼
-        // const data = {
-        //     "loginId": login_id,
-        // }
-        // $.ajax({
-        //     url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
-        //     type: "post",
-        //     data: data,
-        //     success: function (data) {
-        //         console.log(data);
-        //         showDmList(data); // dmList에 있는 유저들을 화면에 렌더링
-        //     },
-        // })
+        const data = {
+            "loginId": login_id,
+        }
+        $.ajax({
+            url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
+            type: "post",
+            data: data,
+            success: function (data) {
+                console.log(data);
+                showDmList(data); // dmList에 있는 유저들을 화면에 렌더링
+            },
+        })
         $("#dmModal").modal("show");
     });
     $("#dmModal").on("click", ".dmChat", function () { // 채팅방을 들어가기 위한 버튼
@@ -191,13 +178,12 @@ function showList(list) {
         console.log("data-modal-tr:", id);
 
         let username = user.userId;
-        const buddyImage = user.buddyImage;
         const buddyName = user.buddyName;
 
         const row =
             `
             <tr data-modal-tr="${id}">
-                <td><img src="${buddyImage}"></td>
+                <td><img src="/image/dog1.jpg" style="width: 40px; height: 40px;"></td>
                 <td>
                     <button type="button" class="btn">${username}</button>
                 </td>
@@ -215,7 +201,9 @@ function showProfile(user) {
 
     let id = user.id;
     let username = user.userId;
+    console.log(username);
     const category = user.category;
+    console.log(category);
     const buddyImage = user.buddyImage;
     const buddyName = user.buddyName;
     const buddyAge = user.buddyAge;
@@ -233,8 +221,7 @@ function showProfile(user) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="/image/list_icon.png">
-                <img src="/image/${buddyImage}">
+                <img src="/image/dog1.jpg" style="justify-content: center;width: 200px;height: 200px;">
                 <p>이름 : ${buddyName}</p>
                 <p>견종 : ${category}</p>
                 <p>나이 : ${buddyAge}</p>

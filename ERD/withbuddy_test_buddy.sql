@@ -1,5 +1,4 @@
-select *
-from buddy_db;
+
 
 INSERT INTO buddy_db (buddyId, id, category, buddyName, buddyAge, buddyDetail, buddySex)
 VALUES

@@ -87,7 +87,7 @@ CREATE TABLE chat_db
 	roomId varchar(255) NOT NULL,
 	senderId int NOT NULL,
 	message varchar(200),
-	sendTime datetime,
+	sendTime datetime DEFAULT now(),
 	PRIMARY KEY (chatId)
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE marker_db
 
 CREATE TABLE match_db
 (
-	matchId int NOT NULL,
+	matchId int NOT NULL AUTO_INCREMENT,
 	senderId int NOT NULL,
 	receiverId int NOT NULL,
 	accept boolean,

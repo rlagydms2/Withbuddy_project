@@ -203,17 +203,47 @@ body {
     border-collapse: separate;
     border-spacing: 10px 10px;
 }
-#dmModal{
-    z-index: 20;
-}
-#alarmModal{
-    z-index: 20;
-}
-#dmModal{
-    z-index: 20;
+.modal-backdrop{
+    z-index: 100;
 }
 
-
+#chatBox{
+    display:flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.msg_container{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: whitesmoke;
+    padding: 10px;
+    position: relative;
+}
+.msg_container_send{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: khaki;
+    padding: 10px;
+    position: relative;
+}
+.msg_time{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    color: black;
+    font-size: 10px;
+}
+.msg_time_send{
+    position: absolute;
+    right:0;
+    bottom: -15px;
+    color: black;
+    font-size: 10px;
+}
 /* 반응형 */
 
 @media screen and (max-width: 768px) {

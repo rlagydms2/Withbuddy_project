@@ -12,7 +12,7 @@ public interface UserService {
 
     User findByUsername(String userId);
 
-    List<UserDto> findWithoutMe(Long id);
+    List<UserDto> findWithoutMe(Long id,Long addressId);
 
     User findById(Long id);
 

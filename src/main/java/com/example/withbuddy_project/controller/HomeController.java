@@ -13,13 +13,12 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/")
 public class HomeController {
     private final UserService userService;
 
     @GetMapping("/")
     public String Home() {
 
-        return "/home";
+        return "redirect:/home";
     }
 }

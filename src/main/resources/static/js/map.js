@@ -139,9 +139,12 @@ function displayArea(area) {
                 fillOpacity: 1
             });
             var polygonCenter;
+            var addressId;
             $.each(mapData,function (i, value){
                 if(data.name == value.addressName){
                     polygonCenter = new kakao.maps.LatLng(parseFloat(value.mapY), parseFloat(value.mapX));
+                    addressId=value.addressId;
+                    console.log(addressId);
                 }
             })
             // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
@@ -167,6 +170,11 @@ function displayArea(area) {
 
             // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시하고 폴리곤을 지도에서 제거합니다
             kakao.maps.event.addListener(polygon, 'click', function (click) {
+                const data={
+                    "loginId" : login_id,
+                    "addressId" : addressId
+                }
+                clickPolygon(data);
                 setDraggable(true);
                 polygon.setOptions({ fillColor: '#FFF' });
                 // 현재 지도 레벨에서 2레벨 확대한 레벨
@@ -277,3 +285,56 @@ $('#prev').on('click', function () {
     FilterMarker(hospital, null);
 
 });
+function clickPolygon(list) {
+    $.ajax({
+        url: "/api/user?id=" + login_id + "&addressId=" + list.addressId, //로그인한 유저의 아이디로 자신 빼고 나머지 지역코드가 같은 유저를 찾음
+        type: "GET",
+        success: function (data) {
+            // console.log("userList data:", data);
+            // console.log("sender id: ", login_id);
+            if (data !== undefined) {
+                showList(data); // 지역코드가 같은 유저들의 정보를 화면에 리스트로 보여줌
+            }
+        },
+    });
+}
+// function showProfile(user) {
+//
+//     let id = user.id;
+//     let username = user.userId;
+//     const category = user.category;
+//     const buddyImage = user.buddyImage;
+//     const buddyName = user.buddyName;
+//     const buddyAge = user.buddyAge;
+//     const buddyDetail = user.buddyDetail;
+//     let buddySex = user.buddySex;
+//     if (buddySex == 1) {
+//         buddySex = '수';
+//     } else {
+//         buddySex = '암';
+//     }
+//     const row =
+//         `
+//             <div class="modal-header">
+//                 <h1 class="modal-title">${username} 님의 프로필</h1>
+//                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//             </div>
+//             <div class="modal-body">
+//                 <img src="/image/list_icon.png">
+//                 <img src="/image/dog1.jpg" style="width: 40px; height: 40px;">
+//                 <p>이름 : ${buddyName}</p>
+//                 <p>견종 : ${category}</p>
+//                 <p>나이 : ${buddyAge}</p>
+//                 <p>성별 : ${buddySex}</p>
+//                 <p>상세설명 : ${buddyDetail}</p>
+//             </div>
+//             <div class="modal-footer">
+//                     <button type="button" class="btn btn-outline-dark modal-btn" data-mc-btn="${id}" role="button">매칭하기</button>
+//             </div>
+//         `;
+//
+//     $("#profileModalContent").html(row);
+//     $("#profileModal").modal("show");
+// }
+
+
