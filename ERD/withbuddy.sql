@@ -1,6 +1,5 @@
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
-
 /* Drop Tables */
 
 DROP TABLE IF EXISTS map_db;
@@ -163,8 +162,8 @@ CREATE TABLE user_db
 	addressId int,
 	userId varchar(200) NOT NULL,
 	password varchar(100) NOT NULL,
-	phone varchar(20) ,
-	email varchar(100) ,
+	phone varchar(20) NOT NULL,
+	email varchar(100) NOT NULL,
 	reportCount int,
 	PRIMARY KEY (id),
 	UNIQUE (userId),

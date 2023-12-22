@@ -42,7 +42,9 @@
             crossorigin="anonymous"></script>
     <script th:inline="javascript">
         <!--    서버에서 가져온 데이터 js로 공유-->
+
         var mapData = [[${location}]];</script>
+
 </head>
 <th:block th:with="logged_user=${#authentication.principal.user}">
 
@@ -85,22 +87,22 @@
                              src="https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665ehttps://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665e"><br>
                     </div>
                     <div id="infoBox">
-                        <a id="mypageBtn" th:href="@{/home}">
+                        <a id="mypageBtn" th:href="@{/user/mypage}">
                             My page<i class="fa-solid fa-angles-right"></i>
                         </a>
                         <form name="frmmynfo" method="post">
                             <table th:id="information">
                                 <tr>
                                     <td class="tdm">NAME :</td>
-                                    <td style="width: 180px;"></td>
+                                    <td style="width: 180px;"><span th:utext="${user.userId}"></span></td>
                                 </tr>
                                 <tr>
                                     <td class="tdm">Buddy :</td>
-                                    <td style="width: 180px;"></span></td>
+                                    <td style="width: 180px;"><span th:utext="${buddy.buddyName}"></span></td>
                                 </tr>
                                 <tr>
                                     <td class="tdm">Dog Breeds:</td>
-                                    <td style="width: 180px;"></span></td>
+                                    <td style="width: 180px;"><span th:utext="${buddy.category}"></span></td>
                                 </tr>
                             </table>
                         </form>

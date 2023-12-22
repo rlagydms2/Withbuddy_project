@@ -46,7 +46,7 @@ function setAreas(areas, data) {
         displayArea(areas);
 }
 
-function selectJson() {     // 구별 폴리곤 API 호출
+function selectJson() {     //window 구별 폴리곤 API 호출
     $.getJSON('../JSON/geojson.json', function (geojson) {
         var data = geojson.features;
         setAreas(areas, data);
@@ -82,7 +82,7 @@ function setZoomable(zoomable) {
 function setDraggable(draggable) {
     // 마우스 드래그로 지도 이동 가능여부를 설정합니다
     map.setDraggable(draggable);
-}
+};
 
 //////////////////////////////////////////////////////'구'이름 마커/////////////////////////////////////////////////////////////
 
@@ -259,6 +259,7 @@ function FilterMarker(hospital, leve) {
 
 $('#prev').on('click', function () {
     let level = (map.getLevel() <= 5 ? map.getLevel() + 3 : map.getLevel()) // 현재 레벨에서 3를 더한 값을 사용합니다.
+
     // map.getLevel()+2
     let y = 37.5639;
     let x = 126.9738;

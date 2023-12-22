@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.withbuddy_project.repository.MatchRepository">
+<mapper namespace="com.lec.spring.withbuddy_project.repository.MatchRepository">
     <sql id="SELECT_MATCH">
         SELECT
             matchId "id",
@@ -10,7 +10,7 @@
         FROM match_db
         WHERE 1=1
     </sql>
-    <insert id="save" useGeneratedKeys="true" parameterType="com.example.withbuddy_project.domain.Match"
+    <insert id="save" useGeneratedKeys="true" parameterType="com.lec.spring.withbuddy_project.domain.Match"
     keyColumn="matchId" keyProperty="id">
         INSERT INTO match_db
         (senderId,receiverId,accept)
@@ -23,11 +23,11 @@
           AND senderId=#{senderId}
     </update>
 
-    <select id="findBySenderIdAndReceiverId" resultType="com.example.withbuddy_project.domain.Match">
+    <select id="findBySenderIdAndReceiverId" resultType="com.lec.spring.withbuddy_project.domain.Match">
         <include refid="SELECT_MATCH"/>
         AND senderId=#{senderId} AND receiverId=#{receiverId}
     </select>
-    <select id="findByLoginUserId" resultType="com.example.withbuddy_project.domain.dto.MatchResponse">
+    <select id="findByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.dto.MatchResponse">
         SELECT b.buddyImage "buddyImage",
                u.username   "username",
                m.receiverId "receiverId",
@@ -50,7 +50,7 @@
 <!--        WHERE m.senderId=#{senderId}-->
 <!--    </select>-->
 
-    <delete id="delete" flushCache="true" parameterType="com.example.withbuddy_project.domain.Match">
+    <delete id="delete" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.Match">
         DELETE FROM match_db WHERE matchId=#{id}
     </delete>
 </mapper>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.withbuddy_project.repository.UserRepository">
+<mapper namespace="com.lec.spring.withbuddy_project.repository.UserRepository">
     <sql id="BASE">
         SELECT
             id "id",
@@ -13,7 +13,7 @@
         FROM user_db
         WHERE 1=1
     </sql>
-    <insert id="save" flushCache="true" parameterType="com.example.withbuddy_project.domain.User"
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.User"
             keyColumn="id" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO user_db
             (userId,password,phone,email)
@@ -21,7 +21,7 @@
             (#{userId},#{password},#{phone},#{email})
     </insert>
 
-    <insert id="buddy" flushCache="true" parameterType="com.example.withbuddy_project.domain.MypagePet"
+    <insert id="buddy" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.MypagePet"
             keyColumn="buddyId" keyProperty="buddyId" useGeneratedKeys="true">
         INSERT INTO buddy_db
             (id,buddyName,category,buddyAge,buddySex,buddyDetail,buddyImage)
@@ -29,18 +29,18 @@
             (#{id},#{buddyName},#{category},#{buddyAge},#{buddySex},#{buddyDetail},#{buddyImage})
     </insert>
 
-    <select id="findByUsername" resultType="com.example.withbuddy_project.domain.User">
+    <select id="findByUsername" resultType="com.lec.spring.withbuddy_project.domain.User">
         <include refid="BASE"/>
         AND userId=#{userId}
     </select>
-    <select id="findById" resultType="com.example.withbuddy_project.domain.User">
+    <select id="findById" resultType="com.lec.spring.withbuddy_project.domain.User">
         <include refid="BASE"/>
         AND id=#{id}
     </select>
-    <select id="findAllUser" resultType="com.example.withbuddy_project.domain.User">
+    <select id="findAllUser" resultType="com.lec.spring.withbuddy_project.domain.User">
         <include refid="BASE"/>
     </select>
-    <select id="findDmListByLoginUserId" resultType="com.example.withbuddy_project.domain.User">
+    <select id="findDmListByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.User">
         SELECT DISTINCT
             u.username "userId",
             u.id "id"
@@ -49,7 +49,7 @@
         WHERE u.id=m.senderId
           AND m.accept=1
     </select>
-        <select id="findAllWithoutId" resultType="com.example.withbuddy_project.domain.dto.UserDto">
+        <select id="findAllWithoutId" resultType="com.lec.spring.withbuddy_project.domain.dto.UserDto">
             SELECT u.id          "id",
                    u.userId      "userId",
                    a.addressName "addressName",
@@ -65,7 +65,7 @@
               AND u.addressId=#{code}
               AND u.id=b.id
         </select>
-    <select id="findUserById" flushCache="true" resultType="com.example.withbuddy_project.domain.dto.BuddyDto">
+    <select id="findUserById" flushCache="true" resultType="com.lec.spring.withbuddy_project.domain.dto.BuddyDto">
         SELECT
             u.id "id",
             u.userId "userId",
@@ -79,7 +79,7 @@
         WHERE u.id=b.id
           AND b.id=#{id}
     </select>
-    <select id="findByEmail" resultType="com.example.withbuddy_project.domain.User">
+    <select id="findByEmail" resultType="com.lec.spring.withbuddy_project.domain.User">
         <include refid="BASE"/>
         AND email=#{email}
     </select>

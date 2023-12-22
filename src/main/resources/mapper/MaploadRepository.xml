@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.withbuddy_project.repository.MaploadRepository">
+<mapper namespace="com.lec.spring.withbuddy_project.repository.MaploadRepository">
     
-    <resultMap id="MapData" type="com.example.withbuddy_project.domain.Map">
+    <resultMap id="MapData" type="com.lec.spring.withbuddy_project.domain.Map">
         <result column="mapId" property="mapId"></result>
         <result column="addressId" property="addressId"></result>
         <result column="count" property="usercount"></result>
