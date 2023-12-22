@@ -1,6 +1,3 @@
-select *
-from buddy_db;
-
 INSERT INTO buddy_db (buddyId, id, category, buddyName, buddyAge, buddyDetail, buddySex)
 VALUES
     (1,1,'웰시코기','뿌리 ',8,'친절하고 사교적이며 가족과 잘 어울립니다.',1),

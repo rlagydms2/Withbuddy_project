@@ -2,42 +2,48 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS map_db;
-DROP TABLE IF EXISTS adminBlacklist_db;
-DROP TABLE IF EXISTS banList_db;
-DROP TABLE IF EXISTS buddy_db;
 DROP TABLE IF EXISTS chat_db;
-DROP TABLE IF EXISTS match_db;
-DROP TABLE IF EXISTS reporter_db;
-DROP TABLE IF EXISTS report_db;
-DROP TABLE IF EXISTS userList;
+alter table chat_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS acceptList_db;
+alter table acceptlist_db AUTO_INCREMENT = 1;
+alter table banlist_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS buddy_db;
+alter table buddy_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS user_db;
+alter table user_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS address_db;
+alter table address_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS Authority_db;
-DROP TABLE IF EXISTS chatRoom_db;
+alter table authority_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS map_db;
+alter table map_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS marker_db;
+alter table marker_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS markerIcon_db;
+alter table markericon_db AUTO_INCREMENT = 1;
+
+
 
 
 
 
 /* Create Tables */
 
+CREATE TABLE acceptList_db
+(
+	acceptId int NOT NULL AUTO_INCREMENT,
+	id int NOT NULL,
+	mateId int NOT NULL,
+	PRIMARY KEY (acceptId, id)
+);
+
+
 CREATE TABLE address_db
 (
 	id int NOT NULL AUTO_INCREMENT,
 	addressName varchar(50) NOT NULL,
-	count int NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
 	UNIQUE (addressName)
-);
-
-
-CREATE TABLE adminBlacklist_db
-(
-	blackListId int NOT NULL AUTO_INCREMENT,
-	id int NOT NULL,
-	PRIMARY KEY (blackListId, id)
 );
 
 
@@ -47,16 +53,6 @@ CREATE TABLE Authority_db
 	authorityName varchar(20) NOT NULL,
 	PRIMARY KEY (id)
 );
-
-
-CREATE TABLE banList_db
-(
-	banId int NOT NULL AUTO_INCREMENT,
-	id int NOT NULL,
-	baneduserId int NOT NULL,
-	PRIMARY KEY (banId, id)
-);
-
 
 CREATE TABLE buddy_db
 (
@@ -127,23 +123,6 @@ CREATE TABLE match_db
 	receiverId int NOT NULL,
 	accept boolean,
 	PRIMARY KEY (matchId)
-);
-
-
-CREATE TABLE reporter_db
-(
-	reportId int NOT NULL,
-	userId int NOT NULL,
-	repotedId int NOT NULL,
-	rpContent longtext NOT NULL
-);
-
-
-CREATE TABLE report_db
-(
-	reportId int NOT NULL AUTO_INCREMENT,
-	userId int NOT NULL,
-	PRIMARY KEY (reportId, userId)
 );
 
 
@@ -221,47 +200,6 @@ ALTER TABLE marker_db
 	ON DELETE RESTRICT
 ;
 
-
-ALTER TABLE reporter_db
-	ADD FOREIGN KEY (reportId, userId)
-	REFERENCES report_db (reportId, userId)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE adminBlacklist_db
-	ADD FOREIGN KEY (id)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE banList_db
-	ADD FOREIGN KEY (id)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE banList_db
-	ADD FOREIGN KEY (baneduserId)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE buddy_db
-	ADD FOREIGN KEY (id)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE chat_db
 	ADD FOREIGN KEY (senderId)
 	REFERENCES user_db (id)
@@ -280,22 +218,6 @@ ALTER TABLE match_db
 
 ALTER TABLE match_db
 	ADD FOREIGN KEY (receiverId)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE reporter_db
-	ADD FOREIGN KEY (repotedId)
-	REFERENCES user_db (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE report_db
-	ADD FOREIGN KEY (userId)
 	REFERENCES user_db (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
