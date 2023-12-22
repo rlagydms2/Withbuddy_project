@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -32,16 +33,33 @@
     <!--/* 부트스트랩 5version */-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!--/* 부트스트랩 3version */-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"-->
+<!--          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"-->
+<!--          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"-->
+<!--            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"-->
+<!--            crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
 
     <script th:inline="javascript">
         <!--    서버에서 가져온 데이터 js로 공유-->
+        var mapData = [[${location}]];
+        console.log(mapData);
+    </script>
 
         var mapData = [[${location}]];</script>
 
 </head>
 <th:block th:with="logged_user=${#authentication.principal.user}">
-
     <body>
+    <script th:inline="javascript">
+        const login_id=[[${logged_user.id}]];
+        console.log(login_id);
+    </script>
     <div id="header">
         <a id="homeBtn" th:href="@{'/home'}">
             <img id="logo" src="/image/withbuddy_logo2.png">
@@ -146,8 +164,10 @@
         </div>
 
     </div>
+
+    </body>
     <!-- 모달 모음 유저 프로필 모달 , dm 모달 , 채팅 모달 -->
-    <div class="modal fade" id="alarmModal" tabindex="-1" aria-labelledby="profileModalLabel">
+    <div class="modal fade" id="alarmModal"  aria-labelledby="profileModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,14 +181,14 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel">
+    <div class="modal show" id="profileModal"  aria-labelledby="profileModalLabel">
         <div class="modal-dialog">
             <div class="modal-content" id="profileModalContent">
 
             </div>
         </div>
     </div>
-    <div class="modal fade" id="dmModal" tabindex="-1" aria-labelledby="dmModalLabel">
+    <div class="modal fade" id="dmModal"  aria-labelledby="dmModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -208,8 +228,6 @@
         </div>
     </div>
     <!-- 모달 모음 유저 프로필 모달 , dm 모달 , 채팅 모달 -->
-
-    </body>
     <script th:src="@{/js/map.js}"></script>
     <script src="/js/app.js"></script>
 </th:block>

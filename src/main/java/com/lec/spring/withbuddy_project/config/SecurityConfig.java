@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/home", "/user/mypage").hasAnyRole("유저", "권한")
                         // ↓ 그 밖의 다른 요청은 모두 permit!
                         .anyRequest().permitAll()
+
                 )
                 /********************************************
                  * ② 폼 로그인 설정
@@ -51,12 +52,12 @@ public class SecurityConfig {
                         .loginProcessingUrl("/user/login")  // "/user/login" url 로 POST request 가 들어오면 시큐리티가 낚아채서 처리, 대신 로그인을 진행해준다(인증).
                         // 이와 같이 하면 Controller 에서 /user/login (POST) 를 굳이 만들지 않아도 된다!
                         // 위 요청이 오면 자동으로 UserDetailsService 타입 빈객체의 loadUserByUsername() 가 실행되어 인증여부 확인진행 <- 이를 제공해주어야 한다.
-                        .defaultSuccessUrl("/home") // '직접 /login' → /login(post) 에서 성공하면 "/" 로 이동시키기
+                        .defaultSuccessUrl("/") // '직접 /login' → /login(post) 에서 성공하면 "/" 로 이동시키기
                         // 만약 다른 특정페이지에 진입하려다 로그인 하여 성공하면 해당 페이지로 이동 (너무 편리!)
 
                         // 로그인 성공직후 수행할코드
                         //.successHandler(AuthenticationSuccessHandler)  // 로그인 성공후 수행할 코드.
-                        .successHandler(new CustomLoginSuccessHandler("/home"))
+                        .successHandler(new CustomLoginSuccessHandler("/"))
 
                         // 로그인 실패하면 수행할 코드
                         // .failureHandler(AuthenticationFailureHandler)
@@ -88,23 +89,24 @@ public class SecurityConfig {
                  * OAuth2 로그인
                  * .oauth2Login(OAuth2LoginConfigurer)
                  ********************************************/
-//                .oauth2Login(httpSecurityOAuth2LoginConfigurer -> httpSecurityOAuth2LoginConfigurer
-//                                .loginPage("/user/login")   // 로그인 페이지는 기존과 동일한 url 로 지정
-//
-//                        // 구글 인증후에 후처리가 필요하다.
-//                        //  - 우리측 회원 가입
-//                        //  - 로그인후 세션 생성
-//
-//                        // code 를 받아오는 것이 아니라, AccessToken 과 사용자 profile 정보를 받아오게 된다.
-//                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
-//                                // userService(OAuth2UserService<OAuth2UserRequest, OAuth2User>)
-//                                //   이 설정을 통해 인증서버의 UserInfo Endpoint 후처리 진행
-//                                .userService(principalOauth2UserService)
-//                        )
-//
-//
-//
-//                )
+                .oauth2Login(httpSecurityOAuth2LoginConfigurer -> httpSecurityOAuth2LoginConfigurer
+                        .loginPage("/user/login")   // 로그인 페이지는 기존과 동일한 url 로 지정
+
+                        .defaultSuccessUrl("/")
+                        .successHandler(new CustomLoginSuccessHandler("/"))
+                        // 구글 인증후에 후처리가 필요하다.
+                        //  - 우리측 회원 가입
+                        //  - 로그인후 세션 생성
+
+                        // code 를 받아오는 것이 아니라, AccessToken 과 사용자 profile 정보를 받아오게 된다.
+                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
+                                // userService(OAuth2UserService<OAuth2UserRequest, OAuth2User>)
+                                //   이 설정을 통해 인증서버의 UserInfo Endpoint 후처리 진행
+                                .userService(principalOauth2UserService)
+                        )
+                )
+
+
 
                 .build();
     }

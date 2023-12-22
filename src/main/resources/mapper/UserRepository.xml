@@ -42,7 +42,7 @@
     </select>
     <select id="findDmListByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.User">
         SELECT DISTINCT
-            u.username "userId",
+            u.userId "userId",
             u.id "id"
         FROM user_db u,
              match_db m
@@ -61,8 +61,8 @@
                  buddy_db b
             WHERE 1 = 1
               AND u.id!=#{id}
-              AND a.addressId=u.addressId
-              AND u.addressId=#{code}
+              AND a.id=u.addressId
+              AND u.addressId=#{addressId}
               AND u.id=b.id
         </select>
     <select id="findUserById" flushCache="true" resultType="com.lec.spring.withbuddy_project.domain.dto.BuddyDto">

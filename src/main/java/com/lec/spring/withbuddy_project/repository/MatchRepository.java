@@ -17,7 +17,7 @@ public interface MatchRepository {
 
     int delete(Long matchId); // 삭제
 
-    List<MatchResponse> findByLoginUserId(Long userId); // 로그인한 사람의 accept가 false인 모든 매칭요청을 찾음
+    List<MatchResponse> findByLoginUserId(Long id); // 로그인한 사람의 accept가 false인 모든 매칭요청을 찾음
 
 
 }

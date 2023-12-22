@@ -54,7 +54,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
                 @Override
                 public String getAuthority() {
                     return
-                           "ROLE_"+ auth.getAuthorityName();
+                            "ROLE_" + auth.getAuthorityName();
                 }
 
                 // thymeleaf 등에서 확인 활용하기 위하 문자열 (학습목적)
