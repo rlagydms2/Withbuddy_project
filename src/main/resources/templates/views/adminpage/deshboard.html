@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminpage.css}">
+    <script src="https://kit.fontawesome.com/51772bd9bd.js"></script>
+    <title>통계 페이지</title>
+</head>
+
+<body style="display: flex; flex-flow: wrap;">
+    <header style="background-color: black; display: flex;text-align: center; width: 100%; height: 200px;">
+        <div style="width: 500px; height: 200px; display: flex; align-items: center; justify-content: center"><img id="logo_img" th:src="@{/image/withbuddy_logo.png}"></div>
+    </header>
+    <side_nav>
+            <h1>조회 및 관리</h1>
+            <label class="detail_tap" for="joinlist_btn">
+                <h3>- 구역별 가입자 -</h3>
+                <input type="radio" name="detail_tap" id="joinlist_btn" checked>
+            </label>
+            <label class="detail_tap" for="userlist_btn">
+                <h3>- 유저 리스트 -</h3>
+                <input type="radio" name="detail_tap" id="userlist_btn">
+            </label>
+            <label class="detail_tap" for="petdata_btn">
+                <h3>- 반려견 통계 -</h3>
+                <input type="radio" name="detail_tap" id="petdata_btn">
+            </label>
+    </side_nav>
+    <section style="display: flex; background-color: rgb(128,128,128); width:1060px; height: 465px;">
+        <joindata> <!-- 가입자 통계 데이터 -->
+                <canvas id="personChart" width="1060px" height="465px"></canvas>
+        </joindata>
+        <userlist style="display: flex; width: 100%"> <!--가입된 유저 리스트-->
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="UT_No">No</th>
+                        <th class="UT_ID">유저 ID</th>
+                        <th class="UT_Email">유저 Email</th>
+                        <th class="UT_Match">매칭 수</th>
+                        <th class="UT_Address">활동 지역</th>
+                        <th class="UT_Name">버디 네임 </th>
+                        <th class="UT_Category">견종</th>
+                        <th class="UT_Age">버디 나이</th>
+                        <th class="UT_Sex">버디 성별</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="userboard: ${list}">
+                        <td class="UT_No"><span th:text="${userboard.id}"></span></td>
+                        <td class="UT_ID"><span th:text="${userboard.userId}"></span></td>
+                        <td class="UT_Email"><span th:text="${userboard.email}"></span></td>
+                        <td class="UT_Match"><span th:text="${userboard.matchCnt}"></span></td>
+                        <td class="UT_Address"><span th:text="${userboard.address}"></span></td>
+                        <td class="UT_Name"><span th:text="${userboard.name}"></span></td>
+                        <td class="UT_Category"><span th:text="${userboard.category}"></span></td>
+                        <td class="UT_Age"><span th:text="${userboard.age}"></span></td>
+                        <td class="UT_Sex"><span th:text="${userboard.sex}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </userlist>
+        <petdata> <!--DB에 저장된 펫 정보들의 통계 데이터-->
+            <canvas id="petChart" width="1060px" height="465px" style="overflow: scroll"></canvas>
+        </petdata>
+    </section>
+
+    <script th:inline="javascript">
+        // Get the canvas element
+        var ctx = document.getElementById('petChart').getContext('2d');
+        // Create a bar chart
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [[${petcategory}]],
+                datasets: [{
+                    data: [[${categorycount}]],
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options:{
+                plugins:{
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script th:inline="javascript">
+        // Get the canvas element
+        var ctx = document.getElementById('personChart').getContext('2d');
+        // Create a bar chart
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [[${address}]],
+                datasets: [{
+                    data: [[${usercount}]],
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins:{
+                    legend: {
+                        display:false
+                    }
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: true,
+                    bodySpacing: 10,
+                    titleMarginBottom: 8,
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    bodyFontColor: '#000',
+                    borderColor: '#ccc',
+                    borderWidth: 1,
+                    titleFontColor: '#333',
+                    titleFontSize: 14,
+                    displayColors: false
+                }
+            }
+        });
+    </script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script th:src="@{/js/adminpage.js}"></script>
+</html>
