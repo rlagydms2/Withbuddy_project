@@ -372,6 +372,7 @@ function showMessage(data) {
 }
 
 function loadMessage(data) {
+    $("#chatBox").html("");
     const out = [];
     data.forEach(list => {
         let senderId = list.senderId;
@@ -402,7 +403,7 @@ function loadMessage(data) {
                 `;
             out.push(row);
         }
-        $("#chatBox").html("");
+
         $("#chatBox").html(out.join('\n'));
     });
 }
