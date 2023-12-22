@@ -1,9 +1,6 @@
 package com.lec.spring.withbuddy_project.service;
 
-import com.lec.spring.withbuddy_project.domain.MainPage;
-import com.lec.spring.withbuddy_project.domain.Mypage;
-import com.lec.spring.withbuddy_project.domain.MypagePet;
-import com.lec.spring.withbuddy_project.domain.MypageUser;
+import com.lec.spring.withbuddy_project.domain.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -29,7 +26,9 @@ public interface MypageService {
 
 
     // 사용자정보 수정
-    int updateUser(MypageUser mypageuser);
+    int updateUser(User user);
 
     int updatePet(MypagePet mypagePet, Map<String, MultipartFile> files);
+
+    String checkaddress(Long userId);
 }

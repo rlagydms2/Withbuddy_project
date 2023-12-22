@@ -1,9 +1,6 @@
 package com.lec.spring.withbuddy_project.service;
 
-import com.lec.spring.withbuddy_project.domain.MainPage;
-import com.lec.spring.withbuddy_project.domain.Mypage;
-import com.lec.spring.withbuddy_project.domain.MypagePet;
-import com.lec.spring.withbuddy_project.domain.MypageUser;
+import com.lec.spring.withbuddy_project.domain.*;
 import com.lec.spring.withbuddy_project.repository.MypageRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +65,10 @@ public class MypageServiceImpl implements MypageService {
 
     // 사용자정보 수정
     @Override
-    public int updateUser(MypageUser mypageuser) {
+    public int updateUser(User user) {
 
-        // 비밀번호 인코딩
-        mypageuser.setPassword(passwordEncoder.encode(mypageuser.getPassword()));
-
-        return mypageRepository.updateUser(mypageuser);
+        System.out.println("user수정 : " + user);
+        return mypageRepository.updateUser(user);
     }
 
 
@@ -81,6 +76,11 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public int updatePet(MypagePet mypagePet, Map<String, MultipartFile> files) {
         return mypageRepository.updatePet(files, mypagePet);
+    }
+
+    @Override
+    public String checkaddress(Long userId) {
+        return mypageRepository.checkaddress(userId);
     }
 
 

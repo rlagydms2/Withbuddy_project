@@ -28,10 +28,10 @@
                         <td class="tds">아이디 : </td>
                         <td class="conten col-12"><input type="text" class="form-control" id="userId" th:value="${user.userId}" disabled></td>
                     </tr>
-                    <tr>
-                        <td class="tds">비밀번호 : </td>
-                        <td class="conten col-12"><input type="password" class="form-control" id="pw" th:value="${user.password}" disabled></td>
-                    </tr>
+<!--                    <tr> 일반적으로 마이페이지에 비밀번호는 보이지 않는다 -->
+<!--                        <td class="tds">비밀번호 : </td>-->
+<!--                        <td class="conten col-12"><input type="password" class="form-control" id="pw" disabled></td>-->
+<!--                    </tr>-->
                     <tr>
                         <td class="tds">연락처 : </td>
                         <td class="conten col-12"><input type="text" class="form-control" id="phone" th:value="${user.phone}" disabled></td>
@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td class="tds">주소(구) : </td>
-                        <td class="conten col-12"><input type="text" class="form-control" id="region" th:value="${user.addressId}" disabled></td>
+                        <td class="conten col-12"><input type="text" class="form-control" id="region" th:value="${addressName}" disabled></td>
                     </tr>
                     <tr>
                         <td class="tds">펫이름 : </td>

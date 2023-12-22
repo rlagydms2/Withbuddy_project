@@ -14,6 +14,8 @@
     <select id="getData" resultMap="MapData">
         SELECT m.mapId, m.addressId, a.count, a.addressName,m.map_X,m.map_Y
         FROM map_db m, address_db a
-        WHERE m.addressId = a.id
+        WHERE m.addressID = a.id;
+
+
     </select>
 </mapper>

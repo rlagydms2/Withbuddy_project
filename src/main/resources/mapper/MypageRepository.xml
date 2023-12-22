@@ -87,16 +87,21 @@
         FROM user_db u, buddy_db p, address_db j
         WHERE u.id = p.id AND u.id = j.id AND u.id = #{id}
     </select>
+    <select id="checkaddress" resultType="java.lang.String">
+        SELECT a.addressName
+        FROM user_db u, address_db a
+        WHERE u.id = #{userId} AND u.addressId = a.id
+    </select>
 
 
     <!--/* 사용자정보수정 */-->
-    <update id="updateUser" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.MypageUser">
+    <update id="updateUser" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.User">
         UPDATE user_db
-        SET password = #{password},
+        SET userId = #{userId},
             phone = #{phone},
             email = #{email},
-            address = #{address}
-        WHERE id = #{id}
+            addressId = #{addressId}
+        WHERE userId = #{userId}
     </update>
 
 

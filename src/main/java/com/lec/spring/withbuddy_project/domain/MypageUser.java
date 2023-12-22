@@ -19,6 +19,7 @@ public class MypageUser {   // 마이페이지 (사용자정보)
 
     private String phone;
     private String email;
+    private Long addressId;
     private String addressName;
     private String buddyImage;
 

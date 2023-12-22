@@ -16,7 +16,8 @@ public class User {
     private String re_password;
     private String phone;
     private String email;
-    private Long addressId;
     private String provider;
     private String providerId;
+    private Long addressId;
+    private String addressName;
 }

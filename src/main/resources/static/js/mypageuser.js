@@ -1,10 +1,48 @@
 // 문서가 전부 로딩되고 실행
+
+
 $(document).ready(function (){
     $("#myupdate").click(function (){
-        let answer = confirm("수정완료되었습니다.");
-        if(answer) {
-            $("form[name='frmupdate']").submit();
-        }
+
+
+        // 사용자가 수정한 정보를 가져옴
+        var userId = $("#userId").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var addressId = $("#regionbtn").val();
+
+
+        // 수정된 정보 서버에 전송
+        $.ajax({
+            type: "POST",    //
+            url: "/user/mypageuser",
+            data: {
+                userId: userId,
+                phone: phone,
+                email: email,
+                addressId: addressId
+            },
+            success: function (response) {
+                alert("정보가 성공적으로 수정되었습니다.");
+                window.location.href = "/user/mypage";
+            },
+            error: function (error) {
+                alert("정보수정실패, 입력양식을 확인해주세요.")
+            }
+        });
+        $("#regionbtn").change(function (){
+            console.log("값변경 : " + $(this).val());
+            $("#cahngeInput").val($(this).val());
+        })
+        console.log(userId);
+            console.log(phone);
+            console.log(email);
+            console.log(addressId);
+
+        // let answer = confirm("수정완료되었습니다.");
+        // if(answer) {
+        //     $("form[name='frmupdate']").submit();
+        // }
     });
 });
 

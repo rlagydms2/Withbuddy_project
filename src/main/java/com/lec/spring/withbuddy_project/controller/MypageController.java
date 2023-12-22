@@ -1,10 +1,7 @@
 package com.lec.spring.withbuddy_project.controller;
 
 import com.lec.spring.withbuddy_project.config.PrincipalDetails;
-import com.lec.spring.withbuddy_project.domain.MypagePet;
-import com.lec.spring.withbuddy_project.domain.MypageUser;
-import com.lec.spring.withbuddy_project.domain.MypageValidator;
-import com.lec.spring.withbuddy_project.domain.User;
+import com.lec.spring.withbuddy_project.domain.*;
 import com.lec.spring.withbuddy_project.service.MapService;
 import com.lec.spring.withbuddy_project.service.MypageService;
 import com.lec.spring.withbuddy_project.service.UserService;
@@ -79,19 +76,20 @@ public class MypageController {
     //  마이페이지(사용자정보 수정완료) -- 작성 미완
     @PostMapping("/user/mypageuser")   // 저장==>PostMapping , Getmapping으로 html확인
     public String mypageuserOk(
-            @Valid MypageUser mypageUser    // 업데이트할 정보(Valid로 유효성검사)
+            @Valid User user    // 업데이트할 정보(Valid로 유효성검사)
             , BindingResult bindingResult   // 검증결과를 받는 매개변수(유효성검사결과확인)
             , Model model   //  담아서 보내는 용도
             , RedirectAttributes redirectAttributes) {  // redirect시 데이터를 전달하기위해(에러날경우 에러메시지와 입력값을 다시 전달하기위해 사용)
-
+        System.out.println("UUUUU" + user);
         // Validator적용
-        mypageValidator.validate(mypageService, bindingResult);
+//        mypageValidator.validate(mypageService, bindingResult);
 
         if (bindingResult.hasErrors()) { // 에러가 날 경우
 
-            redirectAttributes.addFlashAttribute("password", mypageUser.getPassword());
-            redirectAttributes.addFlashAttribute("phone", mypageUser.getPhone());
-            redirectAttributes.addFlashAttribute("email", mypageUser.getEmail());
+            redirectAttributes.addFlashAttribute("password", user.getPassword());
+            redirectAttributes.addFlashAttribute("phone", user.getPhone());
+            redirectAttributes.addFlashAttribute("email", user.getEmail());
+            redirectAttributes.addFlashAttribute("address", user.getAddressId());
 
 
             for (var err : bindingResult.getFieldErrors()) {
@@ -103,7 +101,8 @@ public class MypageController {
         }
 
 
-        model.addAttribute("result", mypageService.updateUser(mypageUser));
+        model.addAttribute("result", mypageService.updateUser(user));
+        System.out.println("user : " + user);
 
         return "/user/mypage";
     }
@@ -159,9 +158,11 @@ public class MypageController {
 
         String userId = principalDetails.getUsername();
         User user = userService.findByUsername(userId);
+        String addressName = mypageService.checkaddress(user.getId());
         MypagePet buddy = mypageService.getByPetBuddyId(user.getId());
 
         model.addAttribute("user", user);
+        model.addAttribute("addressName",addressName);
         model.addAttribute("buddyName", buddy.getBuddyName());
         model.addAttribute("category", buddy.getCategory());
         model.addAttribute("buddyAge", buddy.getBuddyAge());

@@ -1,9 +1,7 @@
 package com.lec.spring.withbuddy_project.repository;
 
-import com.lec.spring.withbuddy_project.domain.MainPage;
-import com.lec.spring.withbuddy_project.domain.Mypage;
-import com.lec.spring.withbuddy_project.domain.MypagePet;
-import com.lec.spring.withbuddy_project.domain.MypageUser;
+import com.lec.spring.withbuddy_project.domain.*;
+import net.minidev.json.JSONUtil;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,8 +29,11 @@ public interface MypageRepository {
 
 
     // 사용자정보수정
-    int updateUser (MypageUser mypageUser);
+    int updateUser (User user);
+
 
 
     int updatePet(Map<String, MultipartFile> files, MypagePet mypagePet);
+
+    String checkaddress(Long userId);
 }

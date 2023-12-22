@@ -13,7 +13,6 @@
 <label>[ 내정보 ]</label><br><br>
 <div class="mypagecontainer col-6">
     <div class="image col-3">
-        <!--        <img th:src="@{/image/face02.png}" width="200" style="border: 1px solid black;">-->
         <img th:src="${buddyImage}" width="230" style="border: 1px solid black;">
     </div>
     <div class="tablecontainer">
@@ -27,20 +26,20 @@
                     <td class="conten"><input type="text" class="form-control" id="userId" name="userId" th:value="${user.userId}" disabled></td>
                 </tr>
                 <tr></tr>
-                <tr>
-                    <td class="td">비밀번호 : </td>
-                    <td class="conten">
-                        <input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요." name="password" th:value="${user.password}">
-                        <span class="text-danger" th:if="${error_password}" th:text="${error_password}"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td">비밀번호확인 : </td>
-                    <td class="conten">
-                        <input type="password" class="form-control" id="repw" placeholder="비밀번호 확인" name="re_password" th:value="${user.password}">
-                        <span class="text-danger" th:if="${error_repassword}" th:utext="${error_repassword}"></span>
-                    </td>
-                </tr>
+<!--                <tr>    비밀번호찾기기능구현X ==> 비밀번호 변경 필요X-->
+<!--                    <td class="td">비밀번호 : </td>-->
+<!--                    <td class="conten">-->
+<!--                        <input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요." name="password" th:value="${user.password}">-->
+<!--                        <span class="text-danger" th:if="${error_password}" th:text="${error_password}"></span>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td class="td">비밀번호확인 : </td>-->
+<!--                    <td class="conten">-->
+<!--                        <input type="password" class="form-control" id="repw" placeholder="비밀번호 확인" name="re_password" th:value="${user.password}">-->
+<!--                        <span class="text-danger" th:if="${error_repassword}" th:utext="${error_repassword}"></span>-->
+<!--                    </td>-->
+<!--                </tr>-->
                 <tr>
                     <td class="td">연락처 : </td>
                     <td class="conten">
@@ -59,14 +58,12 @@
                             <option value="hanmail.net">hanmail.net</option>
                             <option value="nate.com">nate.com</option>
                         </select>
-                        <!--                        <input type="text" id="email">-->
-                        <!--                        <span th:text="${mypageInfo.email}"></span>-->
                     </td>
                 </tr>
                 <tr>
                     <td class="td">주소 : </td>
                     <td class="conten" id="regionbox">
-                        <input type="text" class="form-control" id="region" disabled>&nbsp;
+                        <input type="text" class="form-control" id="region" th:value="${user.addressId}" disabled onchange="selectBoxChange(this.value());">
                         <select class="box" id="regionbtn">
                             <option value="">선택</option>
                             <option value="23">종로구</option>
@@ -104,12 +101,6 @@
                 <a th:href="@{/user/ban}">차단목록 →</a><br><br>
                 <a th:href="@{/user/drop}">탈퇴 →</a><br>
             </div>
-            <!--            <div class="btncontainer col-3 flex">-->
-            <!--                <a href="/user/mypageuser">회원정보수정 →</a><br><br>-->
-            <!--                <a href="/user/mypagepet">펫정보수정 →</a><br><br>-->
-            <!--                <a href="/user/ban">차단목록 →</a><br><br>-->
-            <!--                <a href="/user/drop">탈퇴 →</a><br>-->
-            <!--            </div>-->
 
         </form>
     </div>
