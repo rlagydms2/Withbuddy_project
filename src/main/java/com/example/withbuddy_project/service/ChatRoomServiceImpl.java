@@ -4,10 +4,12 @@ import com.example.withbuddy_project.domain.ChatRoom;
 import com.example.withbuddy_project.domain.User;
 import com.example.withbuddy_project.repository.ChatRoomRepository;
 import com.example.withbuddy_project.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class ChatRoomServiceImpl implements ChatRoomService{
 
 
@@ -38,6 +40,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     @Override
     public ChatRoom findRoomByUserId(Long userId,Long loginId) { // userId와 loginId가 일치하는 채팅방 찾기
         ChatRoom room = chatRoomRepository.findByUserId(userId,loginId);
+        log.info("findRoom : {} ", room);
         return room;
     }
 }

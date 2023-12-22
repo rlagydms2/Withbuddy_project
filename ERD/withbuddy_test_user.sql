@@ -101,5 +101,4 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (100,'CAyEqcb4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-3020-5438','nrfp4nln@gmail.com',16,4,1);
 
 
-select *
-from match_db;
+select * from chat_db;

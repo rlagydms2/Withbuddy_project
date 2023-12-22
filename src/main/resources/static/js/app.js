@@ -102,6 +102,7 @@ $(document).ready(function () {
         const data = {
             "loginId": login_id,
         }
+        console.log("loginId dmList : " + login_id);
         $.ajax({
             url: "/api/dmList", // 누르면 채팅방을 가진 유저들을 보여줌
             type: "post",
@@ -151,11 +152,12 @@ $(document).ready(function () {
     $("#chatSendBtn").click(function () {
         const userId = $("#chatSendBtn").attr("data-send-bt"); //data-send-bt
         // 전달받은 data를 꺼내서 사용
-        console.log("receiver userId: " + userId);
         const data = {
             "userId": userId,
             "loginId": login_id
         }
+        console.log("receiver userId: " + userId);
+
         $.ajax({
             url: "/chatroom/find",  // userId와 loginId를 가지고 찾은 채팅방에 메시지를 전달
             type: "POST",
@@ -274,7 +276,7 @@ function showDmList(list) {
         const userId = list.id;
         const buddyImage=list.buddyImage;
         const username = list.userId;
-        console.log(userId);
+        console.log("userId: " +userId);
         if (userId != login_id) {
 
             const row =
@@ -400,6 +402,7 @@ function loadMessage(data) {
                 `;
             out.push(row);
         }
+        $("#chatBox").html("");
         $("#chatBox").html(out.join('\n'));
     });
 }
