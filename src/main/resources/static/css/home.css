@@ -136,14 +136,14 @@ body {
 }
 
 #listIcon {
-    width: 50px;
+    width: 60px;
     padding: 10px;
 }
 
 /*↑↑↑↑------userList CSS----------↑↑↑↑*/
 
 #mypageBox {
-     height: 955px;
+    height: 955px;
     display: flex;
     justify-content: center;
 }
@@ -181,7 +181,6 @@ body {
 
 .myImage {
     border-radius: 20px;
-    border: dotted #070a38;
     width: 70%;
     margin-bottom: 20px;
     display: inline;
