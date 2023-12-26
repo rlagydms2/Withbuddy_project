@@ -41,7 +41,11 @@
           AND m.receiverId = #{userId}
           AND u.id = #{userId}
     </select>
-<!--    <select id="findUsernameBySenderId" resultType="com.example.demo.domain.dto.MatchResponse">-->
+    <select id="findMatchIdByLoginId" resultType="com.lec.spring.withbuddy_project.domain.Match">
+        <include refid="SELECT_MATCH"/>
+        AND senderId=#{loginId}
+    </select>
+    <!--    <select id="findUsernameBySenderId" resultType="com.example.demo.domain.dto.MatchResponse">-->
 <!--        SELECT-->
 <!--            u.username "username",-->
 <!--            m.senderId "senderId",-->

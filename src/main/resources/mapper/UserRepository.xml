@@ -47,7 +47,9 @@
         FROM user_db u,
              match_db m
         WHERE u.id=m.senderId
+          AND m.receiverId=#{loginId}
           AND m.accept=1
+          AND u.id!=#{loginId}
     </select>
         <select id="findAllWithoutId" resultType="com.lec.spring.withbuddy_project.domain.dto.UserDto">
             SELECT u.id          "id",

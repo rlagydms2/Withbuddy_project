@@ -4,6 +4,7 @@ import com.lec.spring.withbuddy_project.domain.ChatRoom;
 import com.lec.spring.withbuddy_project.domain.User;
 import com.lec.spring.withbuddy_project.repository.ChatRoomRepository;
 import com.lec.spring.withbuddy_project.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
