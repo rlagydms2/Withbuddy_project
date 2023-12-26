@@ -35,11 +35,19 @@
 
     <script th:inline="javascript">
         <!--    서버에서 가져온 데이터 js로 공유-->
+        var mapData = [[${location}]];
+        console.log(mapData);
+    </script>
+
 
 </head>
 <th:block th:with="logged_user=${#authentication.principal.user}">
 
     <body>
+    <script th:inline="javascript">
+        const login_id=[[${logged_user.id}]];
+        console.log(login_id);
+    </script>
     <div id="header">
         <a id="homeBtn" th:href="@{'/home'}">
             <img id="logo" src="/image/withbuddy_logo2.png">
