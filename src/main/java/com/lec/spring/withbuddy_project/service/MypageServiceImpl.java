@@ -74,7 +74,7 @@ public class MypageServiceImpl implements MypageService {
 
     // 펫정보 수정
     @Override
-    public int updatePet(MypagePet mypagePet, Map<String, MultipartFile> files) {
+    public int updatePet(Map<String, MultipartFile> files,MypagePet mypagePet) {
         return mypageRepository.updatePet(files, mypagePet);
     }
 

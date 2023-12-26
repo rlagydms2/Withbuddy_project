@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/mypagepet.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <title>펫정보</title>
 </head>
 
@@ -38,15 +39,15 @@
         </div>
         <div class="tablecontainer col-7">
 
-            <form name="frmupdate" th:action="@{/user/mypage}" method="user">
+            <form name="frmupdate">
                 <table class="myp col-12">
                     <tr>
                         <td class="td">아이디 : </td>
-                        <td class="conten"><input type="text" class="form-control" id="userId" name="userId" th:value="${user.userId}" disabled></td>
+                        <td class="conten"><input type="text" class="form-control" id="userId" name="userId" th:value="${user.userId}" readonly></td>
                     </tr>
                     <tr>
                         <td class="td">펫이름 : </td>
-                        <td class="conten"><input type="text" class="form-control" id="petname" name="petname" th:value="${buddy.buddyName}"></td>
+                        <td class="conten"><input type="text" class="form-control" id="buddyName" name="buddyName" th:value="${buddy.buddyName}"></td>
                     </tr>
                     <tr>
                         <td class="td">견종 : </td>
@@ -54,13 +55,14 @@
                     </tr>
                     <tr>
                         <td class="td">펫나이 : </td>
-                        <td class="conten"><input type="text" class="form-control" id="petage" name="petage" th:value="${buddy.buddyAge}"></td>
+                        <td class="conten"><input type="text" class="form-control" id="buddyAge" name="buddyAge" th:value="${buddy.buddyAge}"></td>
                     </tr>
                     <tr>
                         <td class="td">펫성별 : </td>
                         <!--                    <td class="conten"><input type="text" class="form-control" id="petsex" name="petsex" th:value="${buddy.buddySex}"></td>-->
                         <td class="conten" id="buddysex">
-                            <input type="text" class="form-control" id="buddyse" disabled onchange="selectBoxChange(this.value());">&nbsp;
+<!--                            <span id="buddy" style="margin-right: 10px"></span>-->
+                            <input type="hidden" class="form-control" id="buddyse" disabled>
                             <select class="box" id="sebuddy">
                                 <option value="">선택</option>
                                 <option value="1">남</option>
@@ -93,6 +95,6 @@
 </th:block>
 </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 <script src="/js/mypagepet.js"></script>
 </html>

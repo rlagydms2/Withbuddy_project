@@ -9,9 +9,9 @@ $(document).ready(function (){
 
         // 사용자가 수정한 정보를 가져옴
         var userId = $("#userId").val();
-        var buddyName = $("#petname").val();
+        var buddyName = $("#buddyName").val();
         var category = $("#category").val();
-        var buddyAge = $("#petage").val();
+        var buddyAge = $("#buddyAge").val();
         var buddySex = $("#sebuddy").val();
         var buddyDetail = $("#petdetail").val();
         const id=loginId;
@@ -28,6 +28,7 @@ $(document).ready(function (){
                 buddyAge: buddyAge,
                 buddySex: buddySex,
                 buddyDetail: buddyDetail,
+                buddyImage: buddyImage
             },
             success: function (response) {
                 console.log("response: ",response);
@@ -47,6 +48,7 @@ $(document).ready(function (){
         console.log(buddyDetail);
 
     });
+
 
 
     $("#addbtn").click(function (){

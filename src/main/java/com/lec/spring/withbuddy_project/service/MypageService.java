@@ -28,7 +28,7 @@ public interface MypageService {
     // 사용자정보 수정
     int updateUser(User user);
 
-    int updatePet(MypagePet mypagePet, Map<String, MultipartFile> files);
+    int updatePet(Map<String, MultipartFile> files,MypagePet mypagePet);
 
     String checkaddress(Long userId);
 }
