@@ -31,4 +31,6 @@ public interface UserRepository {
 
     MypagePet findBuddy(Long id);
 
+    String findByAuthorityName(Long id);
+
 }

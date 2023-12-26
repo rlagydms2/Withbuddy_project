@@ -106,4 +106,10 @@
         WHERE 1=1
           AND id=#{id}
     </select>
+    <select id="findByAuthorityName" resultType="java.lang.String">
+        SELECT
+            a.authorityName "authorityName"
+        FROM user_db u, authority_db a
+        WHERE u.authorityId = a.id AND u.id = #{id}
+    </select>
 </mapper>

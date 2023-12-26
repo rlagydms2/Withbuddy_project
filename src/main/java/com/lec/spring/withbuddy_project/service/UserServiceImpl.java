@@ -238,5 +238,11 @@ public class UserServiceImpl implements UserService {
         return (mypagePet == null) ? true : false;
     }
 
+    @Override
+    public String getAuthorityName(Long id) {
+
+        return userRepository.findByAuthorityName(id);
+    }
+
 
 }

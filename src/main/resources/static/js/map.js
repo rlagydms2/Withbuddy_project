@@ -5,14 +5,33 @@ var polygonBG;
 var backup_polygon;
 var polygonData = [];
 var hospital = [];
-// $(document).ready(function () {
-//     $.ajax({
-//         url: "/api/home",
-//         type: "POST",
-//         success: function (data) {
-//         },
-//     })
-// });
+
+
+$(document).ready(function () {
+    $.ajax({
+      url :"api/getauthorit" ,
+        data: {
+          "id": login_id,
+        },
+        type : 'POST',
+        success: function (data){
+          if(data=='권한'){
+              $('#adminBtn').show();
+          } else $('#adminBtn').hide();
+        }
+    })
+    $('#adminBtn').click(function (){
+        $.ajax({
+            url: '/user/deshboard',
+            type: 'GET',
+            success: function () {
+                location.href = this.url;
+            }
+        })
+    })
+});
+
+
 
 function setAreas(areas, data) {
     ground = [ // bgpolygon 사이드 좌표 설정

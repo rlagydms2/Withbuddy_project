@@ -54,5 +54,7 @@ public interface UserService {
         return true;
     }
 
+    String getAuthorityName(Long id);
+
 
 }

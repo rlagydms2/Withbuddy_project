@@ -42,4 +42,10 @@ public class UserApiController {
         return userService.findDm(loginId);     // dmList에 렌더링할 유저들의 정보
     }
 
+    @PostMapping("api/getauthorit")
+    public String authoritName(@RequestParam(name = "id") Long id){
+        return userService.getAuthorityName(id);
+    }
+
+
 }
