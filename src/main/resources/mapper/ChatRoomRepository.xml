@@ -27,7 +27,7 @@
         AND roomId=#{roomId}
     </select>
     <select id="findByUserId" resultType="com.lec.spring.withbuddy_project.domain.ChatRoom">
-        SELECT roomId "roomId"
+        SELECT DISTINCT roomId "roomId"
         FROM userList
         WHERE userId IN (#{userId},#{loginId})
         GROUP BY roomId

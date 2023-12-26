@@ -6,6 +6,7 @@ import com.lec.spring.withbuddy_project.domain.dto.MatchRequest;
 import com.lec.spring.withbuddy_project.domain.dto.MatchResponse;
 import com.lec.spring.withbuddy_project.repository.MatchRepository;
 import com.lec.spring.withbuddy_project.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
