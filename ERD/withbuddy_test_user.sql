@@ -60,8 +60,8 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (59,'gangdong3','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-2672-8169','hi2r054y@gmail.com',2,0,1),
       (60,'gangbuk2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-2537-6812','p32k8m1q@gmail.com',3,11,1),
       (61,'sungdong3','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5906-4365','rs1adi0u@gmail.com',16,4,1),
-      (62,'e1AXQeR9','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-2675-4049','khiba44b@gmail.com',18,2,1),
-      (63,'jRwNaERh','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4851-7878','h9lbcs7n@gmail.com',6,9,1),
+      (62,'songpa2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-2675-4049','khiba44b@gmail.com',18,2,1),
+      (63,'gwangjin1','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4851-7878','h9lbcs7n@gmail.com',6,9,1),
       (64,'jungnang5','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-9450-5603','thvi9kj6@gmail.com',25,8,1),
       (65,'yangcheon2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-8179-5358','3vd8ur6v@gmail.com',19,0,1),
       (66,'dongdaemun3','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-8711-0693','io4rgerl@gmail.com',11,8,1),
@@ -92,7 +92,7 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (91,'gwanak5','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5003-6410','ynslsthz@gmail.com',5,5,1),
       (92,'gangnam4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5813-2920','wtt1u93v@gmail.com',1,13,1),
       (93,'songpa1','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5522-7348','uukp292m@gmail.com',18,3,1),
-      (94,'gwangjin1','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0062-9507','yo8algx9@gmail.com',6,8,1),
+      (94,'gwangjin2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0062-9507','yo8algx9@gmail.com',6,8,1),
       (95,'gangseo7','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-8842-2871','8pynvlw7@gmail.com',4,14,1),
       (96,'gwanak6','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4703-3931','ux2o6o98@gmail.com',5,0,1),
       (97,'dobong2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0160-8014','2l7lg0p6@gmail.com',10,12,1),
@@ -100,12 +100,3 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (99,'yeongdeungpo2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0135-3250','a1w6itl8@gmail.com',20,0,1),
       (100,'sungdong6','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-3020-5438','nrfp4nln@gmail.com',16,4,1);
 
-SELECT DISTINCT
-    u.userId "userId",
-    u.id "id"
-FROM user_db u,
-     match_db m
-WHERE u.id=m.senderId
-  AND m.receiverId=19
-  AND m.accept=1
-  AND u.id!=19;
