@@ -106,7 +106,11 @@
                                 </tr>
                             </table>
                         </form>
-                        <a th:href="@{'/home'}">Logout</a>
+                        <form th:action="@{/user/logout}" method="POST">
+                            <span class="d-flex">
+                        <span><button class="btn btn-link btn-sm" type="submit" id="logoutBtn">Logout</button></span>
+                    </span>
+                        </form>
                     </div>
                 </div>
             </div>

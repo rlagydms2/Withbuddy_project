@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Do+Hyeon&family=Gamja+Flower&family=Jua&family=Noto+Sans+KR:wght@200&family=Noto+Serif+KR:wght@300&family=Rubik:wght@500&display=swap"
+          rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/b53e50b69e.js" crossorigin="anonymous"></script>
     <title>마이페이지</title>
 </head>
 
@@ -13,67 +28,69 @@
 <body>
 <div class="container">
 
-    <label>[ 마이페이지 ]</label><br><br>
+    <div id="mypageHeader">
+        <h3>My page</h3>
+        <a th:href="@{/home}"><img src="/img/homeBtn.png"></a>
+    </div>
 
-    <div class="mypagecontainer col-8">
-        <div class="image col-3">
-            <!--        <img th:src="@{/image/face02.png}" width="100" style="border: 1px solid black;"><br><br>-->
-            <img th:src="${buddyImage}" width="230" style="border: 1px solid black;"><br><br>
-        </div>
+    <div id="mypagesetting">
+        <div id="infoDetailBox">
+            <div id="buddyPhoto">
+                <!--        <img th:src="@{/image/face02.png}" width="100" style="border: 1px solid black;"><br><br>-->
+                <img src="https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665ehttps://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665e" width="250" height="350" style="border: 1px solid darkgray;"><br><br>
+            </div>
 
-        <div class="tablecontainer col-7">
             <form name="frmmypage" method="user">
-                <table class="myp col-12">
+                <table id="myinfoDetail">
                     <tr>
-                        <td class="tds">아이디 : </td>
+                        <td class="tds">아이디 :</td>
                         <td class="conten"><input type="text" class="form-control" id="userId" th:value="${user.userId}" disabled></td>
                     </tr>
-<!--                    <tr> 일반적으로 마이페이지에 비밀번호는 보이지 않는다 -->
-<!--                        <td class="tds">비밀번호 : </td>-->
-<!--                        <td class="conten col-12"><input type="password" class="form-control" id="pw" disabled></td>-->
-<!--                    </tr>-->
+                    <!--                    <tr> 일반적으로 마이페이지에 비밀번호는 보이지 않는다 -->
+                    <!--                        <td class="tds">비밀번호 : </td>-->
+                    <!--                        <td class="conten col-12"><input type="password" class="form-control" id="pw" disabled></td>-->
+                    <!--                    </tr>-->
                     <tr>
-                        <td class="tds">연락처 : </td>
+                        <td class="tds">연락처 :</td>
                         <td class="conten"><input type="text" class="form-control" id="phone" th:value="${user.phone}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">이메일 : </td>
+                        <td class="tds">이메일 :</td>
                         <td class="conten"><input type="text" class="form-control" id="email" th:value="${user.email}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">주소(구) : </td>
+                        <td class="tds">주소(구) :</td>
                         <td class="conten"><input type="text" class="form-control" id="region" th:value="${addressName}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">펫이름 : </td>
+                        <td class="tds">펫이름 :</td>
                         <td class="conten"><input type="text" class="form-control" id="buddyName" th:value="${buddyName}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">견종 : </td>
+                        <td class="tds"> 견&nbsp; 종 :</td>
                         <td class="conten"><input type="text" class="form-control" id="category" th:value="${category}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">펫나이 : </td>
+                        <td class="tds">펫나이 :</td>
                         <td class="conten"><input type="text" class="form-control" id="buddyAge" th:value="${buddyAge}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">펫성별 : </td>
+                        <td class="tds">펫성별 :</td>
                         <td class="conten"><input type="text" class="form-control" id="buddySex" th:value="${buddySex}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">펫성격 : </td>
+                        <td class="tds">펫성격 :</td>
                         <td class="conten"><input type="text" class="form-control" id="buddyDetail" th:value="${buddyDetail}" disabled></td>
                     </tr>
                 </table>
             </form>
+            <div id="pagemove">
+                <a th:href="@{/user/mypageuser}">회원정보수정&nbsp;</a><br><br>
+                <a th:href="@{/user/mypagepet}">&nbsp;&nbsp;펫정보수정&nbsp;&nbsp;</a><br><br>
+                <a th:href="@{/user/ban}">&nbsp;&nbsp;&nbsp;차단&nbsp;목록&nbsp;&nbsp;&nbsp;</a><br><br>
+                <a th:href="@{/user/drop}">&nbsp;&nbsp;&nbsp;&nbsp;탈&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;퇴&nbsp;&nbsp;&nbsp;&nbsp;</a><br>
+            </div>
         </div>
-                <div class="btncontainer col-3 flex">
-                    <a th:href="@{/user/mypageuser}">회원정보수정 →</a><br><br>
-                    <a th:href="@{/user/mypagepet}">펫정보수정 →</a><br><br>
-                    <a th:href="@{/user/ban}">차단목록 →</a><br><br>
-                    <a th:href="@{/user/drop}">탈퇴 →</a><br>
-                </div>
-
     </div>
 </div>
 </body>

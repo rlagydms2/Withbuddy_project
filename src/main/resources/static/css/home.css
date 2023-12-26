@@ -194,6 +194,14 @@ body {
 #infoBox a {
     text-align: end;
     margin: 8px;
+    color: #3d6976;
+    font-weight: bold;
+}
+
+#infoBox a:hover {
+    color: #bdd2d9;
+    background-color: #3d6976;
+    opacity: 80%;
 }
 
 #information {
@@ -203,6 +211,19 @@ body {
     border-spacing: 10px 10px;
 }
 
+#logoutBtn {
+    text-decoration: none;
+    color: #3d6976;
+    margin-top: 5px;
+}
+
+#logoutBtn:hover {
+    color: #bdd2d9;
+    background-color: #3d6976;
+}
+
+
+/*아래부터 chat*/
 
 #chatBox{
     display:flex;
@@ -241,6 +262,8 @@ body {
     color: black;
     font-size: 10px;
 }
+
+
 
 
 /* 반응형 */

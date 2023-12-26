@@ -66,17 +66,30 @@ label {
 }
 
 
-.btncontainer a {
-
-    margin-bottom: 10px;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
+/* 버튼 스타일 */
+#pagemove {
     border-radius: 5px;
-    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0;
 }
 
+#pagemove a {
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #ced4d1;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #fcfcfc;
+    box-shadow: 0 0 10px #a8a8a8;
+
+}
+
+#pagemove a:hover {
+    background-color: #798ea5;
+}
 .myp input:disabled {
     background-color: #ffffff; /* 변경하고자 하는 배경색 */
     color: #000000; /* 변경하고자 하는 텍스트 색상 */
