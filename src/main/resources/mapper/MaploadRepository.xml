@@ -5,14 +5,13 @@
     <resultMap id="MapData" type="com.lec.spring.withbuddy_project.domain.Map">
         <result column="mapId" property="mapId"></result>
         <result column="addressId" property="addressId"></result>
-        <result column="count" property="usercount"></result>
         <result column="addressName" property="addressName"></result>
         <result column="map_X" property="mapX"></result>
         <result column="map_Y" property="mapY"></result>
     </resultMap>
 
     <select id="getData" resultMap="MapData">
-        SELECT m.mapId, m.addressId, a.count, a.addressName,m.map_X,m.map_Y
+        SELECT m.mapId, m.addressId, a.addressName,m.map_X,m.map_Y
         FROM map_db m, address_db a
         WHERE m.addressID = a.id;
 

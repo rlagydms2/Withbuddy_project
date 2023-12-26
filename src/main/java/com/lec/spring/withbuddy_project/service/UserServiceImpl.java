@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findWithoutMe(Long id,Long addressId) { // 나 뺴고 찾음
-        return userRepository.findAllWithoutId(id,addressId);
+    public List<UserDto> findWithoutMe(Long id) { // 나 뺴고 찾음
+        return userRepository.findAllWithoutId(id);
     }
 
 

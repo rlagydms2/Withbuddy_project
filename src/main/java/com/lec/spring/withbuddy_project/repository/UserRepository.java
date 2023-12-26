@@ -16,7 +16,7 @@ public interface UserRepository {
 
     List<User> findAllUser();  // 모든 유저를 찾음
 
-    List<UserDto> findAllWithoutId(Long id,Long addressId); // 나빼고 모든 유저를 찾음
+    List<UserDto> findAllWithoutId(Long id); // 나빼고 모든 유저를 찾음
 
     List<User> findDmListByLoginUserId(Long loginId); // 로그인한 사람의 dmList를 찾음
 

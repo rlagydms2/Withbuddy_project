@@ -29,7 +29,7 @@
     </select>
     <select id="findByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.dto.MatchResponse">
         SELECT b.buddyImage "buddyImage",
-               u.userId   "userId",
+               u.username   "username",
                m.receiverId "receiverId",
                m.senderId   "senderId",
                m.accept     "accept"
@@ -38,8 +38,8 @@
              buddy_db b
         WHERE m.receiverId = u.id
           AND b.id=u.id
-          AND m.receiverId = #{id}
-          AND u.id = #{id}
+          AND m.receiverId = #{userId}
+          AND u.id = #{userId}
     </select>
 <!--    <select id="findUsernameBySenderId" resultType="com.example.demo.domain.dto.MatchResponse">-->
 <!--        SELECT-->
