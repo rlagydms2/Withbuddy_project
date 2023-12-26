@@ -64,7 +64,8 @@
                 <tr>
                     <td class="td">주소 : </td>
                     <td class="conten" id="regionbox">
-                        <input type="text" class="form-control" id="region" th:value="${user.addressId}" disabled onchange="selectBoxChange(this.value());">
+<!--                        <span id="regionn" style="margin-right: 10px"></span>-->
+                        <input type="hidden" class="form-control" id="region" th:value="${user.addressId}" disabled onchange="selectBoxChange(this.value());">
                         <select class="box" id="regionbtn">
                             <option value="">선택</option>
                             <option value="23">종로구</option>

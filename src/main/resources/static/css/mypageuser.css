@@ -96,10 +96,10 @@ label {
 /*    margin-top: 10px;*/
 /*    margin-bottom: 10px;*/
 /*}*/
-/*select {*/
-/*    height: 40px;*/
-/*    align-items: center;*/
-/*}*/
+select {
+    height: 40px;
+    align-items: center;
+}
 /*form {*/
 /*    display: flex;*/
 /*}*/
@@ -131,24 +131,24 @@ label {
 /*.conten {*/
 /*    width: 75%;*/
 /*}*/
-/*#userId ,#pw, #repw, #phone, #email, #region {*/
-/*    border: 1px solid black;*/
-/*    width: 100%;*/
-/*}*/
+#userId ,#pw, #repw, #phone, #email, #region {
+    border: 1px solid black;
+    width: 100%;
+}
 #back, #mypage, #myupdate {
     width: 120px;
 }
 #email {
     border: 1px solid black;
-    width: 30%;
+    width: 100%;
 }
 #email1, #region {
     border: 1px solid black;
     width: 40%;
 }
-#emailbox, #regionbox {
+#regionbox {
     display: flex;
 }
-#emailbtn, #regionbtn {
+#regionbtn {
     width: 30%;
 }

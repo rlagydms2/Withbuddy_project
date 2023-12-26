@@ -34,10 +34,7 @@ $(document).ready(function (){
                 alert("정보수정실패, 입력양식을 확인해주세요.")
             }
         });
-        $("#regionbtn").change(function (){
-            console.log("값변경 : " + $(this).val());
-            $(selectBoxChange).val($(this).val());
-        })
+
         console.log(userId);
         console.log(phone);
         console.log(email);

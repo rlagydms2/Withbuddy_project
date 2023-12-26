@@ -96,10 +96,10 @@ label {
 /*    margin-top: 10px;*/
 /*    margin-bottom: 10px;*/
 /*}*/
-/*select {*/
-/*    height: 40px;*/
-/*    align-items: center;*/
-/*}*/
+select {
+    height: 40px;
+    align-items: center;
+}
 /*form {*/
 /*    display: flex;*/
 /*}*/
@@ -142,7 +142,8 @@ button {
 }
 #addbtn, #delbtn {
     width: 100px;
-    margin-left: 10px;
+    margin-left: 5px;
+    display: inline-block;
 }
 
 #buddysex {

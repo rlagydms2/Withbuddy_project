@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td class="tds">펫성별 : </td>
-                        <td class="conten"><input type="text" class="form-control" id="buddySex" th:value="${buddySex}" disabled></td>
+                        <td class="conten"><input type="text" class="form-control" id="buddySex" th:value="${buddySex == 1 ? '남' : '여'}" disabled></td>
                     </tr>
                     <tr>
                         <td class="tds">펫성격 : </td>
@@ -73,6 +73,9 @@
                     <a th:href="@{/user/ban}">차단목록 →</a><br><br>
                     <a th:href="@{/user/drop}">탈퇴 →</a><br>
                 </div>
+
+
+
 
     </div>
 </div>
