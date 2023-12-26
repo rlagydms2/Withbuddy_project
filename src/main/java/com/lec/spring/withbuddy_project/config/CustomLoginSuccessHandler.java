@@ -54,6 +54,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 
         Long id = userDetails.getId();
         boolean buddy1 = userService.findBuddy(id);
+        System.out.println("버디가 어떻게 나왔냐면"+buddy1);
         boolean buddy = buddy1;
         if (buddy == true) {
             response.sendRedirect("/user/buddy");
