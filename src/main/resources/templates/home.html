@@ -92,24 +92,24 @@
                     </div>
                     <div id="infoBox">
                         <a id="mypageBtn" th:href="@{/user/mypage}">
-                            My page<i class="fa-solid fa-angles-right"></i>
-                        </a>
-                        <form name="frmmynfo" method="post">
-                            <table th:id="information">
-                                <tr>
-                                    <td class="tdm">NAME :</td>
-                                    <td style="width: 180px;"><span th:utext="${user.userId}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="tdm">Buddy :</td>
-                                    <td style="width: 180px;"><span th:utext="${buddy.buddyName}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="tdm">Dog Breeds:</td>
-                                    <td style="width: 180px;"><span th:utext="${buddy.category}"></span></td>
-                                </tr>
-                            </table>
-                        </form>
+                                My page<i class="fa-solid fa-angles-right"></i>
+                            </a>
+                            <form name="frmmynfo" method="post">
+                                <table th:id="information">
+                                    <tr>
+                                        <td class="tdm">NAME :</td>
+                                        <td style="width: 180px;"><span th:utext="${user.userId}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdm">Buddy :</td>
+                                        <td style="width: 180px;"><span th:utext="${buddy.buddyName}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdm">Dog Breeds:</td>
+                                        <td style="width: 180px;"><span th:utext="${buddy.category}"></span></td>
+                                    </tr>
+                                </table>
+                            </form>
                         <form th:action="@{/user/logout}" method="POST">
                             <span class="d-flex">
                         <span><button class="btn btn-link btn-sm" type="submit" id="logoutBtn">Logout</button></span>

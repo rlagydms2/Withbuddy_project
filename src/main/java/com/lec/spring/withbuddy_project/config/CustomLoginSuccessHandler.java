@@ -53,12 +53,15 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         request.getSession().setAttribute("loginTime", loginTime);
 
         Long id = userDetails.getId();
-        boolean buddy = userService.findBuddy(id);
+        boolean buddy1 = userService.findBuddy(id);
+        boolean buddy = buddy1;
         if (buddy == true) {
             response.sendRedirect("/user/buddy");
-        }else {
-            response.sendRedirect("/home");
+            return;
         }
+//        else {
+//            response.sendRedirect("/home");
+//        }
 
         // 로그인 직전 url 로 redirect  하기
         super.onAuthenticationSuccess(request, response, authentication);
