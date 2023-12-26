@@ -17,6 +17,7 @@ public class MypagePet {    // 마이페이지(펫정보)
     private int buddySex;
     private String buddyDetail;
     private String buddyImage;
+    private String userId;
     private Long id;
 
 }

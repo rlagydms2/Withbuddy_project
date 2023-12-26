@@ -10,15 +10,23 @@ select {
 form {
     display: flex;
 }
+
+button {
+    float: left;
+}
+
 .mypagecontainer {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     display: flex;
+}
+.containerbtn {
+    margin-left: 15%;
 }
 .btncontainer {
     border: 1px solid black;
 }
 .myp {
-    /* border: 1px solid red; */
+    border: 1px solid black;
     display: flex;
     overflow-x: auto;
 }
@@ -28,21 +36,31 @@ form {
 }
 .td {
     /*border: 1px solid black;*/
-    width: 150px;
+    width: 25%;
     align-items: center;
 }
 .conten {
-    width: 500px;
+    width: 75%;
 }
 #userId, #petname, #category, #petage, #petsex, #petdetail {
     border: 1px solid black;
     width: 100%;
 }
-#myupdate {
-    width: 100px;
-    margin-left: 680px;
+#back, #mypage, #myupdate {
+    width: 120px;
 }
 #addbtn, #delbtn {
     width: 100px;
     margin-left: 10px;
+}
+
+#buddysex {
+    display: flex;
+}
+#buddyse{
+    border: 1px solid black;
+    width: 40%;
+}
+#sebuddy{
+    width: 30%;
 }

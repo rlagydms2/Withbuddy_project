@@ -1,15 +1,57 @@
 $(document).ready(function (){
 
+    $("#back").click(function (){
+        history.back();
+    });
+
+
     $("#myupdate").click(function (){
-        let answer = confirm("수정완료되었습니다.");
-        if(answer) {
-            $("form[name='frmupdate']").submit();
-        }
+
+        // 사용자가 수정한 정보를 가져옴
+        var userId = $("#userId").val();
+        var buddyName = $("#petname").val();
+        var category = $("#category").val();
+        var buddyAge = $("#petage").val();
+        var buddySex = $("#sebuddy").val();
+        var buddyDetail = $("#petdetail").val();
+        const id=loginId;
+
+
+        // 수정된 정보 서버에 전송
+        $.ajax({
+            type: "POST",    //
+            url: "/user/mypagepet",
+            data: {
+                id: id,
+                buddyName: buddyName,
+                category: category,
+                buddyAge: buddyAge,
+                buddySex: buddySex,
+                buddyDetail: buddyDetail,
+            },
+            success: function (response) {
+                console.log("response: ",response);
+                alert("수정완료 되었습니다.")
+                location.href = '/user/mypage';
+            }
+        });
+        // $("#regionbtn").change(function (){
+        //     console.log("값변경 : " + $(this).val());
+        //     $("#cahngeInput").val($(this).val());
+        // })
+        console.log(userId);
+        console.log(buddyName);
+        console.log(category);
+        console.log(buddyAge);
+        console.log(buddySex);
+        console.log(buddyDetail);
+
     });
 
 
     $("#addbtn").click(function (){
-        // <input type="file" id="inputfile" multiple>)
+        // `(<input type="file" id="inputfile" multiple>)`
+
         var inputfile = document.getElementById('inputfile');
         var fileList = document.getElementById('fileList');
 

@@ -106,9 +106,11 @@
     </div>
 </div>
 <!-- 수정완료 버튼 누르면 마이페이지로 다시 이동(수정사항으로 보여지기) -->
-<div><button type="submit" class="btn btn-outline-dark" id="myupdate">수정완료</button></div>
-
-
+<div class="containerbtn">
+    <button type="submit" class="btn btn-outline-dark" id="back" >뒤로</button>
+    <button type="submit" class="btn btn-outline-dark" id="mypage" onclick="location.href='/user/mypage'">마이페이지</button>
+    <button type="submit" class="btn btn-outline-dark" id="myupdate">수정완료</button>
+</div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

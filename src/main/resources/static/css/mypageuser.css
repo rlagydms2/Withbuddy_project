@@ -11,19 +11,23 @@ form {
     display: flex;
 }
 .mypagecontainer {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     display: flex;
 }
 .btncontainer {
     border: 1px solid black;
 }
 .myp {
-    /* border: 1px solid red; */
+    border: 1px solid black;
     display: flex;
     overflow-x: auto;
 }
 .tablecontainer {
     /* border: 1px solid blue; */
+    display: flex;
+}
+.containerbtn {
+    margin-left: 17%;
     display: flex;
 }
 .td {
@@ -38,9 +42,8 @@ form {
     border: 1px solid black;
     width: 100%;
 }
-#myupdate {
-    width: 100px;
-    margin-left: 680px;
+#back, #mypage, #myupdate {
+    width: 120px;
 }
 #email {
     border: 1px solid black;

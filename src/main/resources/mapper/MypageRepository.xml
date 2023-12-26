@@ -108,13 +108,12 @@
     <!--/* 펫정보수정 */-->
     <update id="updatePet" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.MypagePet">
         UPDATE buddy_db
-        SET buddyName = #{buddyName},
-            category = #{category},
-            buddyAge = #{buddyAge},
-            buddySex = #{buddySex},
-            buddyDetail = #{buddyDetail},
-            buddyImage = #{buddyImage}
-        WHERE id = #{id}
+        SET buddyName = #{mypagePet.buddyName},
+            category = #{mypagePet.category},
+            buddyAge = #{mypagePet.buddyAge},
+            buddySex = #{mypagePet.buddySex},
+            buddyDetail = #{mypagePet.buddyDetail}
+        WHERE id = #{mypagePet.id}
     </update>
 
 

@@ -2,6 +2,7 @@ package com.lec.spring.withbuddy_project.repository;
 
 import com.lec.spring.withbuddy_project.domain.*;
 import net.minidev.json.JSONUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,7 +34,7 @@ public interface MypageRepository {
 
 
 
-    int updatePet(Map<String, MultipartFile> files, MypagePet mypagePet);
+    int updatePet(@Param("files") Map<String, MultipartFile> files, @Param("mypagePet") MypagePet mypagePet);
 
     String checkaddress(Long userId);
 }

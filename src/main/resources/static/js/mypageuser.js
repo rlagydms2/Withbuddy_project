@@ -1,7 +1,11 @@
 // 문서가 전부 로딩되고 실행
 
-
 $(document).ready(function (){
+
+    $('#back').click(function (){
+        history.back();
+    });
+
     $("#myupdate").click(function (){
 
 
@@ -32,17 +36,13 @@ $(document).ready(function (){
         });
         $("#regionbtn").change(function (){
             console.log("값변경 : " + $(this).val());
-            $("#cahngeInput").val($(this).val());
+            $(selectBoxChange).val($(this).val());
         })
         console.log(userId);
-            console.log(phone);
-            console.log(email);
-            console.log(addressId);
+        console.log(phone);
+        console.log(email);
+        console.log(addressId);
 
-        // let answer = confirm("수정완료되었습니다.");
-        // if(answer) {
-        //     $("form[name='frmupdate']").submit();
-        // }
     });
 });
 
