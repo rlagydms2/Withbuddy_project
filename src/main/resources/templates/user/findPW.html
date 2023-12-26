@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <title>findPassword</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .col-auto {
+            text-align: center;
+            width: 300px; /* 고정된 너비 */
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+
+        input, button {
+            width: calc(100% - 16px); /* 여백 고려한 너비 계산 */
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #findPasswordBtn, #confirmBtn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #findPasswordBtn:hover, #confirmBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+<div class="col-auto">
+    <div>
+        <input type="text" placeholder="Username" id="findPasswordUsername" name="findPasswordUsername" class="form-control" required />
+        <input type="email" placeholder="Email" id="findPasswordEmail" name="findPasswordEmail" class="form-control"
+               pattern="^[a-zA-Z0-9+\-_.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-._]+$" required />
+        <button type="button" id="findPasswordBtn" onclick="sendVerificationEmail()">비밀번호 찾기</button>
+    </div>
+    <br>
+    <label for="verificationCode"></label>
+    <input type="text" placeholder="Authenticode" id="verificationCode" name="verificationCode" required />
+    <button id="confirmBtn" onclick="confirmVerificationCode()">인증 확인</button>
+    <a th:href="@{/user/findID}" style="margin-right: 10px ">아이디 찾기</a>
+    <a th:href="@{/user/login}">로그인</a>
+</div>
+
+<script>
+    function sendVerificationEmail() {
+        // 아이디, 이메일 주소 가져오기
+        var username = $("#findPasswordUsername").val();
+        var email = $("#findPasswordEmail").val();
+
+        // 아이디와 이메일이 입력되었는지 확인
+        if (!username || !email) {
+            alert("아이디와 이메일 주소를 모두 입력해주세요.");
+            return;
+        }else if (!email.match(/^[a-zA-Z0-9+\-_.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-._]+$/)) {
+            alert("이메일 양식에 맞춰주세요.");
+            return;
+        }
+
+        // 서버로 아이디와 이메일 전송 및 인증 코드 세션에 저장
+        $.ajax({
+            url: "/user/rest/login/mailConfirm",
+            type: "post",
+            data: {email: email },
+            success: function (result) {
+                console.log(result);
+                sessionStorage.setItem('certCode', result);
+
+                // username, emailForFindPassword 변수에 값 할당
+                sessionStorage.setItem('findPasswordEmail', email);
+
+                alert("이메일이 성공적으로 전송되었습니다.");
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("이메일 전송 중 오류가 발생했습니다.");
+            },
+        });
+    }
+
+    function confirmVerificationCode() {
+        // 사용자가 입력한 확인 코드 가져오기
+        var enteredCode = $("#verificationCode").val();
+
+        // 세션에 저장된 인증 코드 가져오기
+        var storedCode = sessionStorage.getItem('certCode');
+        var findPasswordEmail = sessionStorage.getItem('findPasswordEmail');
+
+        // 인증 코드 매칭 확인
+        if (enteredCode === storedCode) {
+            // 인증 성공 시, 아이디와 이메일 정보를 활용하여 비밀번호 찾기
+            findPW(findPasswordEmail);
+        } else if (enteredCode === "") {
+            alert("인증 코드를 입력해주세요.");
+        }else {
+            alert("인증이 실패했습니다.");
+        }
+    }
+
+    // 아이디와 이메일 정보를 활용하여 비밀번호 찾기
+    function findPW(email) {
+        $.ajax({
+            url: "/user/rest/findPW",
+            type: "post",
+            contentType: "application/json",
+            data: email,
+            success: function (response) {
+                alert(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert("비밀번호 찾기 중 오류가 발생했습니다.");
+            },
+        });
+    }
+</script>
+
+</body>
+
+<!-- <script th:src="@{/js/login.js}" type="text/javascript" charset="UTF-8"></script> -->
+
+</html>

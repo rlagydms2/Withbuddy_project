@@ -25,4 +25,10 @@ public interface UserRepository {
     User findByEmail(String email);
 
     int buddy(MypagePet mypagePet);
+
+    // 12/24 update
+    void update(User user);
+
+    MypagePet findBuddy(Long id);
+
 }

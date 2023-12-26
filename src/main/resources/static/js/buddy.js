@@ -1,45 +1,49 @@
-$(document).ready(function (){
-    $("#addbtn").click(function (){
+$(function(){
+    // TODO
+    // 검증코드등...
 
-        // 업로드 로직을 여기에 추가
-        const formData = new FormData(document.getElementById('uploadForm'));
-
-        // 추가적인 업로드 로직 작성
-        // ...
-
-        // 예: Ajax로 서버에 업로드 요청 보내기
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/upload', true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    alert('파일 업로드 성공: ' + xhr.responseText);
-                } else {
-                    alert('파일 업로드 실패: ' + xhr.responseText);
-                }
-            }
-        };
-        xhr.send(formData);
-
-        // const fileInputs = document.getElementById('fileInputs');
-        //
-        // // 새로운 파일 선택 버튼 추가
-        // const newInput = document.createElement('input');
-        // newInput.type = 'file';
-        // newInput.name = 'files[]';
-        // fileInputs.appendChild(newInput);
-    });
-
-
-    $("#delbtn").click(function (){
-        const fileInputs = document.getElementById('fileInputs');
-
-        // 마지막 파일 선택 버튼 삭제
-        const lastInput = fileInputs.lastElementChild;
-        if (lastInput) {
-            fileInputs.removeChild(lastInput);
+    // [추가] 버튼 누르면 첨부파일 추가
+    $("#btnAdd").click(function(){
+        // 기존에 추가된 파일이 있는지 확인
+        var existingFiles = $("#files").find(".input-group");
+        if (existingFiles.length === 0) {
+            // 파일이 없으면 추가
+            $("#files").append(`
+                <div class="input-group">
+                   <input style="width: 150px;" class="form-control" type="file" name="buddyFile" accept="image/*"/>
+                   <button type="button" class="btn btn-outline-danger" onclick="$(this).parent().remove()">삭제</button>
+                </div>
+            `);
         }
     });
+
+    // Summernote 추가
+    $("#content").summernote({
+        height: 300,
+    });
 });
+
+// //이건 여러개
+// $(function(){
+//     // TODO
+//     // 검증코드등...
+//
+//     // [추가] 버튼 누르면 첨부파일 추가
+//     var i = 0;
+//     $("#btnAdd").click(function(){
+//         $("#files").append(`
+//             <div class="input-group">
+//                <input style="width: 200px;" class="form-control" type="file" name="upfile${i}"/>
+//                <button type="button" class="btn btn-outline-danger" onclick="$(this).parent().remove()">삭제</button>
+//             </div>
+//         `);
+//         i++;
+//     });
+//
+//     // Summernote 추가
+//     $("#content").summernote({
+//         height: 300,
+//     });
+// });
 
 

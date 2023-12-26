@@ -10,20 +10,37 @@ import com.lec.spring.withbuddy_project.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private AuthorityRepository authorityRepository;
+    //파일 업로드 경로
+    @Value("${app.upload.path}")
+    private String uploadDir;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
+    private AuthorityRepository authorityRepository;
+
+
 
     public UserServiceImpl(SqlSession sqlSession) {
         userRepository = sqlSession.getMapper(UserRepository.class);
@@ -47,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BuddyDto findBuddy(Long id, Long code) {
+    public BuddyDto findBuddyProfile(Long id, Long code) {
         return userRepository.findUserById(id,code);
     }
 
@@ -99,8 +116,127 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void buddyregister(MypagePet mypagePet) {
-        userRepository.buddy(mypagePet);
+    public void buddyregister(MypagePet mypagePet, Map<String, MultipartFile> file) {
+
+        addFile(file, mypagePet);
+
+//        userRepository.buddy(mypagePet);
     }
+
+    // 특정 글(id) 첨부파일(들) 추가
+    private void addFile(Map<String, MultipartFile> files, MypagePet mypagePet) {
+        if (files != null) {
+            for (var e : files.entrySet()) {
+
+                // name="upfile##" 인 경우만 첨부파일 등록. (이유, 다른 웹에디터와 섞이지 않도록..ex: summernote)
+                if (!e.getKey().startsWith("buddyFile")) continue;
+
+                // 첨부 파일 정보 출력
+                System.out.println("\n첨부파일 정보: " + e.getKey());   // name값
+//                U.printFileInfo(e.getValue());   // 파일 정보 출력
+                System.out.println();
+
+                // 물리적인 파일 저장
+                mypagePet.setBuddyImage(upload(e.getValue()));
+
+                // 성공하면 DB 에도 저장
+                if (mypagePet.getBuddyImage() != null) {
+//                    file.setBuddyId(id);   // FK 설정
+                    userRepository.buddy(mypagePet);   // INSERT
+                }
+            }
+        }
+    } // end addFiles()
+
+    private String upload(MultipartFile multipartFile) {
+        MypagePet mypagePet = null;
+
+        // 담긴 파일이 없으면 pass
+        String originalFilename = multipartFile.getOriginalFilename();
+        if (originalFilename == null || originalFilename.isEmpty()) return null;
+
+        // 원본파일명
+        // 저장될 파일명
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+        // 파일명 이 중복되는지 확인
+        File file = new File(uploadDir, fileName);
+
+        // a.txt => a_2378142783946.txt  : time stamp 값을 활용할거다!
+        int pos = fileName.lastIndexOf(".");
+        if (pos > -1) {   // 확장자가 있는 경우
+            String name = fileName.substring(0, pos);  // 파일 '이름'
+            String ext = fileName.substring(pos + 1);   // 파일 '확장자'
+
+            // 중복방지를 위한 새로운 이름 (현재시간 ms) 를 파일명에 추가
+            fileName = name + "_" + System.currentTimeMillis() + "." + ext;
+        } else {  // 확장자가 없는 경우
+            fileName += "_" + System.currentTimeMillis();
+        }
+        // 저장할 파일명
+        System.out.println("fileName: " + fileName);
+
+        // java.nio
+        Path copyOfLocation = Paths.get(new File(uploadDir, fileName).getAbsolutePath());
+        System.out.println(copyOfLocation);
+
+        try {
+            // inputStream을 가져와서
+            // copyOfLocation (저장위치)로 파일을 쓴다.
+            // copy의 옵션은 기존에 존재하면 REPLACE(대체한다), 오버라이딩 한다
+
+            Files.copy(
+                    multipartFile.getInputStream(),
+                    copyOfLocation,
+                    StandardCopyOption.REPLACE_EXISTING    // 기존에 존재하면 덮어쓰기
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+//        attachment = Attachment.builder()
+//                .filename(fileName)   // 저장된 이름
+//                .sourcename(sourceName)  // 원본 이름
+//                .build();
+
+        return fileName;
+    }
+
+    // 아이디 찾기 12/24
+    @Override
+    public User findUsernameByEmail(String email) {
+        System.out.println("Searching for user by email: " + email);
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void updatePassword(User user, String newPassword) {
+        if (user != null) {
+            // 새로운 비밀번호를 인코딩하여 저장
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.update(user);
+        }
+    }
+
+
+
+    @Override
+    public String generateNewPassword() {
+        String randomCode = UUID.randomUUID().toString().substring(0,5);
+        return randomCode;
+    }
+
+    // 주소 넣기
+    @Override
+    public void address(User user) {
+        userRepository.update(user);
+    }
+
+    @Override
+    public boolean findBuddy(Long id) {
+        MypagePet mypagePet = userRepository.findBuddy(id);
+        return (mypagePet == null) ? true : false;
+    }
+
 
 }

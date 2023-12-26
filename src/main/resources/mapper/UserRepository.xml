@@ -85,4 +85,25 @@
         <include refid="BASE"/>
         AND email=#{email}
     </select>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.withbuddy_project.domain.User"
+            keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        UPDATE user_db
+        SET userId=#{userId},password=#{password},email=#{email},phone=#{phone},addressId=#{addressId}
+        WHERE id=#{id}
+    </update>
+
+    <select id="findBuddy" resultType="com.lec.spring.withbuddy_project.domain.MypagePet">
+        SELECT
+            id "id",
+            buddyName "buddyName",
+            category "category",
+            buddyAge "buddyAge",
+            buddySex "buddySex",
+            buddyDetail "buddyDetail",
+            buddyImage "buddyImage"
+        FROM buddy_db
+        WHERE 1=1
+          AND id=#{id}
+    </select>
 </mapper>

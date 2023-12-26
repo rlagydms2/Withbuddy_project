@@ -1,6 +1,7 @@
 package com.lec.spring.withbuddy_project.config;
 
 import com.lec.spring.withbuddy_project.config.oauth.PrincipalOauth2UserService;
+import com.lec.spring.withbuddy_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,8 @@ public class SecurityConfig {
     @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
 
+    @Autowired
+    UserService userService;
 
     // ↓ Security 를 동작시키지 않기.
 //    @Bean
@@ -51,12 +54,12 @@ public class SecurityConfig {
                         .loginProcessingUrl("/user/login")  // "/user/login" url 로 POST request 가 들어오면 시큐리티가 낚아채서 처리, 대신 로그인을 진행해준다(인증).
                         // 이와 같이 하면 Controller 에서 /user/login (POST) 를 굳이 만들지 않아도 된다!
                         // 위 요청이 오면 자동으로 UserDetailsService 타입 빈객체의 loadUserByUsername() 가 실행되어 인증여부 확인진행 <- 이를 제공해주어야 한다.
-                        .defaultSuccessUrl("/home") // '직접 /login' → /login(post) 에서 성공하면 "/" 로 이동시키기
+                        .defaultSuccessUrl("/") // '직접 /login' → /login(post) 에서 성공하면 "/" 로 이동시키기
                         // 만약 다른 특정페이지에 진입하려다 로그인 하여 성공하면 해당 페이지로 이동 (너무 편리!)
 
                         // 로그인 성공직후 수행할코드
                         //.successHandler(AuthenticationSuccessHandler)  // 로그인 성공후 수행할 코드.
-                        .successHandler(new CustomLoginSuccessHandler("/home"))
+                        .successHandler(new CustomLoginSuccessHandler("/user/buddy", userService))
 
                         // 로그인 실패하면 수행할 코드
                         // .failureHandler(AuthenticationFailureHandler)

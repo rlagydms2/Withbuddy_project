@@ -9,182 +9,182 @@
 </head>
 
 <body>
-    <!-- 회원가입 -->
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form th:action="@{/user/register}" method="post">
-                <h1>Create Account</h1>
-                <!-- 카카오/구글/네이버 -->
-                <div class="social-container">
-                    <a th:href="@{/oauth2/authorization/google}" class="social"><img th:src="@{/img/google1.png}" alt=""></a>
-                    <a th:href="@{/oauth2/authorization/kakao}"><img th:src="@{/img/kakao.png}" alt=""></a>
-                    <a th:href="@{/oauth2/authorization/naver}" class="social"><img th:src="@{/img/naver.png}" alt=""></a>
-                </div>
-                <span>use your email, phone for registration</span>
-                <div class="center">
-                    <!-- ID(userName) -->
-                    <div class="IdInput ">
-                        <input type="text" placeholder="ID" id="userId" name="userId" class="form-control"
-                               pattern="^[a-zA-Z]{1}[0-9a-zA-Z]{4,20}$" required/>
-                        <span class="text-danger id-fail-msg"
-                              style="color: red; float: left; margin-left: 105px;  font-weight: bold; font-size: 10px;"
-                        ></span>
-                        <span class="text-danger" th:if="${userId}" th:utext="${userId}"
-                              style="color: red; float: left; margin-left: 50px;  font-weight: bold; font-size: 10px;"
-                        ></span>
-                        <script>
-                            const result = document.getElementById("userId");
-                            result.addEventListener("change", () => {
-                                if (result.validity.valueMissing) {
-                                    result.setCustomValidity("아이디는 필수 입력 항목입니다.");
-                                } else if (result.validity.patternMismatch) {
-                                    result.setCustomValidity("영어, 숫자 조합으로 시작하고 5에서 20자 사이의 아이디를 입력하세요.");
-                                } else {
-                                    result.setCustomValidity("");
-                                }
-                            });
-                        </script>
-
-                        <!--                    th:if="${error_userId}" th:utext="${error_userId}"-->
-
-                        <!--                    <script th:inline="javascript">-->
-                        <!--                        const IDBtn = document.getElementById('IDBtn');-->
-                        <!--                        const sad = '[[${error_userId}]]'// Thymeleaf 표현식을 주석으로 감싸 JavaScript 주석으로 만듦-->
-                        <!--                    </script>-->
-
-                        <!--                    <script th:if="${error_userId}">-->
-                        <!--                        // const validityMessage = '[[${error_userId}]]';-->
-                        <!--                        var errorMessage = '[[${error_userId}]]';-->
-                        <!--                        if (errorMessage) {-->
-                        <!--                            console.log(errorMessage)-->
-                        <!--                            alert(errorMessage);-->
-                        <!--                        }-->
-                        <!--                    </script>-->
-
-                    </div>
-                    <!-- password -->
-                    <div class="col-auto">
-                        <input type="password" placeholder="Password" id="password" name="password" class="form-control"
-                               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}" required/>
-                        <span class="text-danger"
-                              style="color: red; float: left; font-weight: bold; font-size: 10px;"
-                              th:if="${error_password}" th:utext="${error_password}"></span>
-
-                        <script>
-                            const passwordInput = document.getElementById("password");
-
-                            passwordInput.addEventListener("change", () => {
-                                const password = passwordInput.value;
-
-                                if (password.length < 8 || password.length > 20) {
-                                    passwordInput.setCustomValidity("비밀번호는 8~20자 사이어야 합니다.");
-                                } else if (!/[A-Za-z]/.test(password)) {
-                                    passwordInput.setCustomValidity("비밀번호에는 영문자가 포함되어야 합니다.");
-                                } else if (!/\d/.test(password)) {
-                                    passwordInput.setCustomValidity("비밀번호에는 숫자가 포함되어야 합니다.");
-                                } else if (!/[$@$!%*#?&]/.test(password)) {
-                                    passwordInput.setCustomValidity("비밀번호에는 특수문자($@$!%*#?&)가 포함되어야 합니다.");
-                                } else {
-                                    passwordInput.setCustomValidity("");
-                                }
-                            });
-                        </script>
-
-
-                        <!--                    <script>-->
-                        <!--                    <script th:if="${error_password}">-->
-                        <!--                        var errorMessage = '[[${error_password}]]';-->
-                        <!--                        if (errorMessage) {-->
-                        <!--                            console.log(errorMessage)-->
-                        <!--                            alert(errorMessage);-->
-                        <!--                        }-->
-                        <!--                    </script>-->
-                    </div>
-                    <!-- re_password -->
-                    <div class="col-auto" >
-                        <input type="password" placeholder="Re Password" id="re_password" name="re_password" class="form-control " required/>
-                        <span class="text-danger password-fail-msg"   style="color: red;  text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"></span>
-                        <span class="text-danger" th:if="${error_re_password}" th:utext="${error_re_password}"  style="color: red;  text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"></span>
-                    </div>
-                    <!--                    <script th:if="${error_re_password}">-->
-                    <!--                        var errorMessage = '[[${error_re_password}]]';-->
-                    <!--                        if (errorMessage) {-->
-                    <!--                            console.log(errorMessage)-->
-                    <!--                            alert(errorMessage);-->
-                    <!--                        }-->
-                    <!--                    </script>-->
-                    <!-- 이메일 입력란과 인증 코드 입력란, 확인 버튼 -->
-
-                    <div class="col-auto" id="emailInput" style="float: left">
-                        <input type="email" placeholder="Email" id="email" name="email" class="form-control"
-                               pattern="^[a-zA-Z0-9+\-_.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-._]+$" required/>
-                        <button type="button" id="verifyBtn" onclick="openVerificationPopup()">인증</button>
-                    </div>
-
+<!-- 회원가입 -->
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form th:action="@{/user/register}" method="post">
+            <h1>Create Account</h1>
+            <!-- 카카오/구글/네이버 -->
+            <div class="social-container">
+                <a th:href="@{/oauth2/authorization/google}" class="social"><img th:src="@{/img/google1.png}" alt=""></a>
+                <a th:href="@{/oauth2/authorization/kakao}"><img th:src="@{/img/kakao.png}" alt=""></a>
+                <a th:href="@{/oauth2/authorization/naver}" class="social"><img th:src="@{/img/naver.png}" alt=""></a>
+            </div>
+            <span>use your email, phone for registration</span>
+            <div class="center">
+                <!-- ID(userName) -->
+                <div class="IdInput ">
+                    <input type="text" placeholder="ID" id="userId" name="userId" class="form-control"
+                           pattern="^[a-zA-Z]{1}[0-9a-zA-Z]{4,20}$" required/>
+                    <span class="text-danger id-fail-msg"
+                          style="color: red; float: left; margin-left: 105px;  font-weight: bold; font-size: 10px;"
+                    ></span>
+                    <span class="text-danger" th:if="${userId}" th:utext="${userId}"
+                          style="color: red; float: left; margin-left: 50px;  font-weight: bold; font-size: 10px;"
+                    ></span>
                     <script>
-                        const email = document.getElementById("email");
-                        email.addEventListener("change", () => {
-                            if (email.validity.valueMissing) {
-                                email.setCustomValidity("이메일은 필수 입력 항목입니다.");
-                            } else if (email.validity.patternMismatch) {
-                                email.setCustomValidity("이메일 (****@****.***)형식으로 입력해야합니다.");
+                        const result = document.getElementById("userId");
+                        result.addEventListener("change", () => {
+                            if (result.validity.valueMissing) {
+                                result.setCustomValidity("아이디는 필수 입력 항목입니다.");
+                            } else if (result.validity.patternMismatch) {
+                                result.setCustomValidity("영어, 숫자 조합으로 시작하고 5에서 20자 사이의 아이디를 입력하세요.");
                             } else {
-                                email.setCustomValidity("");
+                                result.setCustomValidity("");
                             }
                         });
                     </script>
-                    <!--                    <script th:if="${error_email}">-->
-                    <!--                        var errorMessage = '[[${error_email}]]';-->
+
+                    <!--                    th:if="${error_userId}" th:utext="${error_userId}"-->
+
+                    <!--                    <script th:inline="javascript">-->
+                    <!--                        const IDBtn = document.getElementById('IDBtn');-->
+                    <!--                        const sad = '[[${error_userId}]]'// Thymeleaf 표현식을 주석으로 감싸 JavaScript 주석으로 만듦-->
+                    <!--                    </script>-->
+
+                    <!--                    <script th:if="${error_userId}">-->
+                    <!--                        // const validityMessage = '[[${error_userId}]]';-->
+                    <!--                        var errorMessage = '[[${error_userId}]]';-->
                     <!--                        if (errorMessage) {-->
                     <!--                            console.log(errorMessage)-->
                     <!--                            alert(errorMessage);-->
                     <!--                        }-->
                     <!--                    </script>-->
-                    <span class="text-danger email-fail-msg"
-                          style="color: red; float: left; margin-left: 105px;  font-weight: bold; font-size: 10px; text-align: center; display: flex;justify-content: center;"
-                         ></span>
-
-
-                    <!--  --------------------------------  인증 코드 --------------------------------------->
-<!--                                    <div id="verificationInput" style="display: none;">-->
-<!--                                        <input type="text" placeholder="인증 코드" id="verificationCode" name="verificationCode"-->
-<!--                                               class="form-control" required/>-->
-<!--                                        <button type="submit" id="confirmBtn">확인</button>-->
-<!--                                    </div>-->
-
-                    <!-- phone -->
-                    <div class="col-auto">
-                        <input type="tel" placeholder="Phone" id="phone" name="phone" class="form-control"
-                               pattern="^\d{2,3}-\d{3,4}-\d{4}$"
-                               required/>
-                        <span class="text-danger"
-                              style="color: red; text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"
-                              th:if="${error_phone}" th:utext="${error_phone}"></span>
-                        <script>
-                            const phone = document.getElementById("phone");
-                            phone.addEventListener("change", () => {
-                                if (phone.validity.valueMissing) {
-                                    phone.setCustomValidity("전화번호는 필수 입력 항목입니다.");
-                                } else if (phone.validity.patternMismatch) {
-                                    phone.setCustomValidity("(2~3)-(3~4)-(4) 형식의 번호로 입력해야합니다.");
-                                } else {
-                                    phone.setCustomValidity("");
-                                }
-                            });
-                        </script>
-                        <!--                    <script th:if="${error_phone}">-->
-                        <!--                        var errorMessage = '[[${error_phone}]]';-->
-                        <!--                        if (errorMessage) {-->
-                        <!--                            console.log(errorMessage)-->
-                        <!--                            alert(errorMessage);-->
-                        <!--                        }-->
-                        <!--                    </script>-->
-                    </div>
-                    <button id="signUpBtn" type="submit" style="margin-top: 20px">Sign Up</button>
 
                 </div>
-            </form>
-        </div>
+                <!-- password -->
+                <div class="col-auto">
+                    <input type="password" placeholder="Password" id="password" name="password" class="form-control"
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}" required/>
+                    <span class="text-danger"
+                          style="color: red; float: left; font-weight: bold; font-size: 10px;"
+                          th:if="${error_password}" th:utext="${error_password}"></span>
+
+                    <script>
+                        const passwordInput = document.getElementById("password");
+
+                        passwordInput.addEventListener("change", () => {
+                            const password = passwordInput.value;
+
+                            if (password.length < 8 || password.length > 20) {
+                                passwordInput.setCustomValidity("비밀번호는 8~20자 사이어야 합니다.");
+                            } else if (!/[A-Za-z]/.test(password)) {
+                                passwordInput.setCustomValidity("비밀번호에는 영문자가 포함되어야 합니다.");
+                            } else if (!/\d/.test(password)) {
+                                passwordInput.setCustomValidity("비밀번호에는 숫자가 포함되어야 합니다.");
+                            } else if (!/[$@$!%*#?&]/.test(password)) {
+                                passwordInput.setCustomValidity("비밀번호에는 특수문자($@$!%*#?&)가 포함되어야 합니다.");
+                            } else {
+                                passwordInput.setCustomValidity("");
+                            }
+                        });
+                    </script>
+
+
+                    <!--                    <script>-->
+                    <!--                    <script th:if="${error_password}">-->
+                    <!--                        var errorMessage = '[[${error_password}]]';-->
+                    <!--                        if (errorMessage) {-->
+                    <!--                            console.log(errorMessage)-->
+                    <!--                            alert(errorMessage);-->
+                    <!--                        }-->
+                    <!--                    </script>-->
+                </div>
+                <!-- re_password -->
+                <div class="col-auto" >
+                    <input type="password" placeholder="Re Password" id="re_password" name="re_password" class="form-control " required/>
+                    <span class="text-danger password-fail-msg"   style="color: red;  text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"></span>
+                    <span class="text-danger" th:if="${error_re_password}" th:utext="${error_re_password}"  style="color: red;  text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"></span>
+                </div>
+                <!--                    <script th:if="${error_re_password}">-->
+                <!--                        var errorMessage = '[[${error_re_password}]]';-->
+                <!--                        if (errorMessage) {-->
+                <!--                            console.log(errorMessage)-->
+                <!--                            alert(errorMessage);-->
+                <!--                        }-->
+                <!--                    </script>-->
+                <!-- 이메일 입력란과 인증 코드 입력란, 확인 버튼 -->
+
+                <div class="col-auto" id="emailInput" style="float: left">
+                    <input type="email" placeholder="Email" id="email" name="email" class="form-control"
+                           pattern="^[a-zA-Z0-9+\-_.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-._]+$" required/>
+                    <button type="button" id="verifyBtn" onclick="openVerificationPopup()">인증</button>
+                </div>
+
+                <script>
+                    const email = document.getElementById("email");
+                    email.addEventListener("change", () => {
+                        if (email.validity.valueMissing) {
+                            email.setCustomValidity("이메일은 필수 입력 항목입니다.");
+                        } else if (email.validity.patternMismatch) {
+                            email.setCustomValidity("이메일 (****@****.***)형식으로 입력해야합니다.");
+                        } else {
+                            email.setCustomValidity("");
+                        }
+                    });
+                </script>
+                <!--                    <script th:if="${error_email}">-->
+                <!--                        var errorMessage = '[[${error_email}]]';-->
+                <!--                        if (errorMessage) {-->
+                <!--                            console.log(errorMessage)-->
+                <!--                            alert(errorMessage);-->
+                <!--                        }-->
+                <!--                    </script>-->
+                <span class="text-danger email-fail-msg"
+                      style="color: red; float: left; margin-left: 105px;  font-weight: bold; font-size: 10px; text-align: center; display: flex;justify-content: center;"
+                ></span>
+
+
+                <!--  --------------------------------  인증 코드 --------------------------------------->
+                <!--                                    <div id="verificationInput" style="display: none;">-->
+                <!--                                        <input type="text" placeholder="인증 코드" id="verificationCode" name="verificationCode"-->
+                <!--                                               class="form-control" required/>-->
+                <!--                                        <button type="submit" id="confirmBtn">확인</button>-->
+                <!--                                    </div>-->
+
+                <!-- phone -->
+                <div class="col-auto">
+                    <input type="tel" placeholder="Phone" id="phone" name="phone" class="form-control"
+                           pattern="^\d{2,3}-\d{3,4}-\d{4}$"
+                           required/>
+                    <span class="text-danger"
+                          style="color: red; text-align: center; display: flex; justify-content: center; font-weight: bold; font-size: 10px;"
+                          th:if="${error_phone}" th:utext="${error_phone}"></span>
+                    <script>
+                        const phone = document.getElementById("phone");
+                        phone.addEventListener("change", () => {
+                            if (phone.validity.valueMissing) {
+                                phone.setCustomValidity("전화번호는 필수 입력 항목입니다.");
+                            } else if (phone.validity.patternMismatch) {
+                                phone.setCustomValidity("(2~3)-(3~4)-(4) 형식의 번호로 입력해야합니다.");
+                            } else {
+                                phone.setCustomValidity("");
+                            }
+                        });
+                    </script>
+                    <!--                    <script th:if="${error_phone}">-->
+                    <!--                        var errorMessage = '[[${error_phone}]]';-->
+                    <!--                        if (errorMessage) {-->
+                    <!--                            console.log(errorMessage)-->
+                    <!--                            alert(errorMessage);-->
+                    <!--                        }-->
+                    <!--                    </script>-->
+                </div>
+                <button id="signUpBtn" type="submit" style="margin-top: 20px">Sign Up</button>
+
+            </div>
+        </form>
+    </div>
     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <!-- 로그인 -->
     <div class="form-container sign-in-container">

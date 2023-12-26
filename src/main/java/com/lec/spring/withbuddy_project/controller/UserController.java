@@ -1,40 +1,64 @@
 package com.lec.spring.withbuddy_project.controller;
 
+
 import com.lec.spring.withbuddy_project.config.PrincipalDetails;
 import com.lec.spring.withbuddy_project.domain.MypagePet;
 import com.lec.spring.withbuddy_project.domain.User;
 import com.lec.spring.withbuddy_project.domain.UserValidator;
 import com.lec.spring.withbuddy_project.service.UserService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @GetMapping("/login")
-    public void login(Model model) {
+    public void login() {
     }
 
+    //  .loginProcessingUrl("/user/login") 이 설정된 경우
+    //  Security 가 낚아채기 때문에 아래 핸들러는 실행되지 않는다
+    // login post  확인용!!!!
+//    @PostMapping("/login")
+//    public void loginProcess(){
+//        System.out.println("POST: /user/login 요청 발생!");
+//
+//    }
+
+    // onAuthenticationFailure 에서 로그인 실패시 forwarding 용
+    // request 에 담겨진 attribute 는 Thymeleaf 에서 그대로 표현 가능.
     @PostMapping("/loginError")
     public String loginError() {
         return "user/login";
     }
+
+    @RequestMapping("/rejectAuth")
+    public String rejectAuth() {
+        return "user/rejectAuth";
+    }
+
+//    @PostMapping("/register")
+//    public String join(User user, Model model){
+//        int cnt = userService.register(user);
+//        model.addAttribute("result", cnt);
+//        return "/user/registerOk";
+//    }
 
     @PostMapping("/register")
     public String registerOk(@Valid User user
@@ -66,7 +90,14 @@ public class UserController {
         // 에러 없었으면 회원 등록 진행
         int cnt = userService.register(user);
         model.addAttribute("result", cnt);
+
+
         return "/user/registerOk";
+    }
+
+    //일반 로그인 완료후 메인페이지로
+    @GetMapping("/main")
+    public void main() {
     }
 
 
@@ -77,32 +108,49 @@ public class UserController {
     }
 
 
-//    //  메인페이지(내정보)
-//    @GetMapping("/home")  // 정보조회용도 ==> Getmapping
-//    public String home(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-////        // 현재 로그인한 사용자의 아이디 가져오기
-//        String userId = principalDetails.getUsername();
-//
-////        로그인id, err확인
-////        log.info("userId : {}",userId);
-////        log.error("userId : {}",userId);
-//
-//        User user = userService.findByUsername(userId);
-//        MypagePet buddy = mypageService.getByPetBuddyId(user.getId());
-////        System.out.println("user : "  + user.getUserId());
-//        model.addAttribute("user",user);
-//        model.addAttribute("buddy", buddy);
-//        return "user/home";
-//    }
-
-    @PostMapping("/buddy")
-    public String join(@AuthenticationPrincipal PrincipalDetails principalDetails,MypagePet mypagePet) {
-        //        // 현재 로그인한 사용자의 아이디 가져오기
-
+    @PostMapping("/buddy") // 12/26 수정
+    public String join(
+            @AuthenticationPrincipal PrincipalDetails principalDetails,
+            MypagePet mypagePet,
+            User user,
+            @RequestParam Map<String, MultipartFile> buddyFile
+    ) {
+        // 현재 로그인한 사용자의 아이디 가져오기
         mypagePet.setId(principalDetails.getId());
-        userService.buddyregister(mypagePet);
+        // 주소설정 필요
+        user.setId(principalDetails.getId());
+        user.setUserId(principalDetails.getUsername());
+        user.setPassword(principalDetails.getPassword());
+        user.setEmail(principalDetails.getEmail());
+        user.setPhone(principalDetails.getPhone());
+
+        System.out.println(buddyFile);
+        userService.buddyregister(mypagePet,buddyFile);
+        System.out.println(user);
+        userService.address(user);
         return "redirect:/home";
     }
+
+    //아이디 찾기
+    @GetMapping("/findID")
+    public void findID() {
+    }
+    //비밀번호 찾기
+    @GetMapping("/findPW")
+    public void findPW() {
+    }
+//    //로그아웃
+//    @PostMapping("/logout")
+//    public String logout(HttpSession session){
+//
+//        String sessionName = "userId";
+//
+//        // 세션 삭제
+//        session.removeAttribute(sessionName);
+//
+//        return "session/logout";
+//    }
+
 
     @Autowired
     UserValidator userValidator;

@@ -14,10 +14,8 @@ signInButton.addEventListener('click', () => {
 
 // ---------------------이메일 인증 토글-----------------------------------------------
 let verificationPopup;
-
 function openVerificationPopup() {
     sendMail();
-
     try {
         if (!verificationPopup || verificationPopup.closed) {
             // 팝업이 없거나 닫혀있으면 새로운 팝업 열기
@@ -61,7 +59,6 @@ function openVerificationPopup() {
     }
 }
 
-
 function sendMail(){
     $.ajax({
         url: `/user/rest/login/mailConfirm`, //url
@@ -85,7 +82,6 @@ function sendMail(){
 }
 //-----------------------------------------------------------------------------------------
 
-
 //아이디 중복 검사
 $('#userId').on('change',function () {
     $.ajax({
@@ -101,7 +97,6 @@ $('#userId').on('change',function () {
             }else {
                 console.log('사용ㄴㄴ')
                 $('.id-fail-msg').text('중복된 아이디 입니다');
-
             }
         },
         error: function (a, b, c) {
@@ -142,14 +137,15 @@ $('#re_password').on('change',function () {
     }
 })
 
+
 //-----------------------양식 안맞으면 가입막기-----------------------------------------------
+
 $("#signUpBtn").on("click", function (e) {
     if ($(".password-fail-msg").text() !== "") {
-        e.preventDefault(); // 제출 막기
-        alert("양식을 다 써주세요!");
+        e.preventDefault(); // 폼 제출 막기
+        alert("양식을 모두 입력해주세요!");
     }
 });
-
 
 // document.getElementById("signUpBtn").addEventListener("click", function (e) {
 //     // 유효성 검사
