@@ -38,8 +38,8 @@
              buddy_db b
         WHERE m.receiverId = u.id
           AND b.id=u.id
-          AND m.receiverId = #{userId}
-          AND u.id = #{userId}
+          AND m.receiverId = #{id}
+          AND u.id = #{id}
     </select>
     <select id="findMatchIdByLoginId" resultType="com.lec.spring.withbuddy_project.domain.Match">
         <include refid="SELECT_MATCH"/>

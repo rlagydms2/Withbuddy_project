@@ -125,7 +125,7 @@ public class MypageController {
     @PostMapping("/user/mypagepet")
     public String mypagepetOk(
             @RequestParam Map<String, MultipartFile> files
-            , MypagePet mypagePet
+            , @Valid MypagePet mypagePet
             , BindingResult bindingResult
             , Model model
             , RedirectAttributes redirectAttributes) {
@@ -148,7 +148,7 @@ public class MypageController {
 //        }
 
         model.addAttribute("result", mypageService.updatePet(mypagePet, files));
-        return "/user/mypagepetOk";
+        return "/user/mypage";
     }
 
 

@@ -63,8 +63,8 @@
                  buddy_db b
             WHERE 1 = 1
               AND u.id!=#{id}
-              AND a.addressId=u.addressId
-              AND u.addressId=#{code}
+              AND a.id=u.addressId
+              AND u.addressId=#{addressId}
               AND u.id=b.id
         </select>
     <select id="findUserById" flushCache="true" resultType="com.lec.spring.withbuddy_project.domain.dto.BuddyDto">
