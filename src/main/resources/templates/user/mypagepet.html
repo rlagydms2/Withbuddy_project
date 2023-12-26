@@ -10,12 +10,14 @@
 </head>
 
 <body>
+<div class="container">
 <th:block  th:with="logged_user=${#authentication.principal.user}">
     <script th:inline="javascript">
         const loginId = [[${logged_user.id}]];
     </script>
-    <div class="mypagecontainer col-6">
-        <div class="image col-4">
+    <label>[ 펫정보 ]</label><br><br>
+    <div class="mypagecontainer col-8">
+        <div class="image col-3">
             <div id="inputimage">
 
                 <img th:src="${buddyImage}" width="230" style="border: 1px solid black;"><br><br>
@@ -34,10 +36,10 @@
             </form>
 
         </div>
-        <div class="tablecontainer">
+        <div class="tablecontainer col-7">
 
             <form name="frmupdate" th:action="@{/user/mypage}" method="user">
-                <table class="myp col-9">
+                <table class="myp col-12">
                     <tr>
                         <td class="td">아이디 : </td>
                         <td class="conten"><input type="text" class="form-control" id="userId" name="userId" th:value="${user.userId}" disabled></td>
@@ -71,15 +73,14 @@
                         <td class="conten"> <input type="text" class="form-control" id="petdetail" name="petdetail" th:value="${buddy.buddyDetail}"></td>
                     </tr>
                 </table>
-                <div class="btncontainer col-4 flex">
+            </form>
+        </div>
+                <div class="btncontainer col-3 flex">
                     <a th:href="@{/user/mypageuser}">회원정보수정 →</a><br><br>
                     <a th:href="@{/user/mypagepet}">펫정보수정 →</a><br><br>
                     <a th:href="@{/user/ban}">차단목록 →</a><br><br>
                     <a th:href="@{/user/drop}">탈퇴 →</a><br>
                 </div>
-            </form>
-
-        </div>
     </div>
     <!-- 수정완료 버튼 누르면 마이페이지로 다시 이동(수정사항으로 보여지기) -->
     <div class="containerbtn">
@@ -90,6 +91,7 @@
 
 
 </th:block>
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="/js/mypagepet.js"></script>

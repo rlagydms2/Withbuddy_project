@@ -10,17 +10,18 @@
 </head>
 
 <body>
+<div class="container">
 <label>[ 내정보 ]</label><br><br>
-<div class="mypagecontainer col-6">
+<div class="mypagecontainer col-8">
     <div class="image col-3">
         <img th:src="${buddyImage}" width="230" style="border: 1px solid black;">
     </div>
-    <div class="tablecontainer">
+    <div class="tablecontainer col-7">
 
         <form name="frmupdate" th:action="@{/user/mypage}" method="user">
             <input type="hidden" name="userId" th:value="${user.id}">
 
-            <table class="myp col-9">
+            <table class="myp col-12">
                 <tr>
                     <td class="td">아이디 : </td>
                     <td class="conten"><input type="text" class="form-control" id="userId" name="userId" th:value="${user.userId}" disabled></td>
@@ -49,14 +50,14 @@
                 <tr>
                     <td class="td">이메일 : </td>
                     <td class="conten" id="emailbox">
-                        <input type="text" class="form-control" id="email"> @
-                        <input type="text" class="form-control" id="email1">&nbsp;
-                        <select class="box" id="emailbtn">
-                            <option value="type">직접입력</option>
-                            <option value="naver.com">naver.com</option>
-                            <option value="gmail.com">gmail.com</option>
-                            <option value="hanmail.net">hanmail.net</option>
-                            <option value="nate.com">nate.com</option>
+                        <input type="text" class="form-control" id="email" th:value="${user.email}">
+<!--                        <input type="text" class="form-control" id="email1">&nbsp;-->
+<!--                        <select class="box" id="emailbtn">-->
+<!--                            <option value="type">직접입력</option>-->
+<!--                            <option value="naver.com">naver.com</option>-->
+<!--                            <option value="gmail.com">gmail.com</option>-->
+<!--                            <option value="hanmail.net">hanmail.net</option>-->
+<!--                            <option value="nate.com">nate.com</option>-->
                         </select>
                     </td>
                 </tr>
@@ -95,6 +96,8 @@
                     </td>
                 </tr>
             </table>
+        </form>
+    </div>
             <div class="btncontainer col-3 flex">
                 <a th:href="@{/user/mypageuser}">회원정보수정 →</a><br><br>
                 <a th:href="@{/user/mypagepet}">펫정보수정 →</a><br><br>
@@ -102,8 +105,6 @@
                 <a th:href="@{/user/drop}">탈퇴 →</a><br>
             </div>
 
-        </form>
-    </div>
 </div>
 <!-- 수정완료 버튼 누르면 마이페이지로 다시 이동(수정사항으로 보여지기) -->
 <div class="containerbtn">
@@ -111,7 +112,7 @@
     <button type="submit" class="btn btn-outline-dark" id="mypage" onclick="location.href='/user/mypage'">마이페이지</button>
     <button type="submit" class="btn btn-outline-dark" id="myupdate">수정완료</button>
 </div>
-
+</div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="/js/mypageuser.js"></script>

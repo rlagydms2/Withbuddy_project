@@ -15,15 +15,15 @@
 
     <label>[ 마이페이지 ]</label><br><br>
 
-    <div class="mypagecontainer col-6">
+    <div class="mypagecontainer col-8">
         <div class="image col-3">
             <!--        <img th:src="@{/image/face02.png}" width="100" style="border: 1px solid black;"><br><br>-->
             <img th:src="${buddyImage}" width="230" style="border: 1px solid black;"><br><br>
         </div>
 
-        <div class="tablecontainer col-9">
+        <div class="tablecontainer col-7">
             <form name="frmmypage" method="user">
-                <table class="myp col-9">
+                <table class="myp col-12">
                     <tr>
                         <td class="tds">아이디 : </td>
                         <td class="conten"><input type="text" class="form-control" id="userId" th:value="${user.userId}" disabled></td>
@@ -65,15 +65,15 @@
                         <td class="conten"><input type="text" class="form-control" id="buddyDetail" th:value="${buddyDetail}" disabled></td>
                     </tr>
                 </table>
-                <div class="btncontainer col-4 flex">
+            </form>
+        </div>
+                <div class="btncontainer col-3 flex">
                     <a th:href="@{/user/mypageuser}">회원정보수정 →</a><br><br>
                     <a th:href="@{/user/mypagepet}">펫정보수정 →</a><br><br>
                     <a th:href="@{/user/ban}">차단목록 →</a><br><br>
                     <a th:href="@{/user/drop}">탈퇴 →</a><br>
                 </div>
-            </form>
 
-        </div>
     </div>
 </div>
 </body>
