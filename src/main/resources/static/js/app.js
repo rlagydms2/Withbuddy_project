@@ -250,7 +250,7 @@ function showAlarm(list) {
         console.log(accept);
         console.log(senderId);
         console.log(username);
-        if (accept == 0 && senderId != login_id) {
+        if (accept == 0) {
             const row =
                 `
           <tr>

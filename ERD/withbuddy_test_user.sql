@@ -89,16 +89,23 @@ insert into user_db (id, userId, password, phone, email, addressId, reportCount,
       (88,'gwanak4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-9463-0775','4y1e0u6c@gmail.com',5,4,1),
       (89,'dongjak6','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5879-2624','li3xkhlb@gmail.com',12,8,1),
       (90,'dongjak7','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-2583-1498','gf0r1rIf@gmail.com',12,14,1),
-      (91,'gwanak4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5003-6410','ynslsthz@gmail.com',5,5,1),
+      (91,'gwanak5','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5003-6410','ynslsthz@gmail.com',5,5,1),
       (92,'gangnam4','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5813-2920','wtt1u93v@gmail.com',1,13,1),
       (93,'songpa1','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-5522-7348','uukp292m@gmail.com',18,3,1),
       (94,'gwangjin1','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0062-9507','yo8algx9@gmail.com',6,8,1),
       (95,'gangseo7','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-8842-2871','8pynvlw7@gmail.com',4,14,1),
-      (96,'gwanak5','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4703-3931','ux2o6o98@gmail.com',5,0,1),
+      (96,'gwanak6','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-4703-3931','ux2o6o98@gmail.com',5,0,1),
       (97,'dobong2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0160-8014','2l7lg0p6@gmail.com',10,12,1),
       (98,'yongsan7','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-7119-8472','soipolpa@gmail.com',21,1,1),
       (99,'yeongdeungpo2','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-0135-3250','a1w6itl8@gmail.com',20,0,1),
       (100,'sungdong6','$2a$10$6gVaMy7.lbezp8bGRlV2fOArmA3WAk2EHxSKxncnzs28/m3DXPyA2','010-3020-5438','nrfp4nln@gmail.com',16,4,1);
 
-
-
+SELECT DISTINCT
+    u.userId "userId",
+    u.id "id"
+FROM user_db u,
+     match_db m
+WHERE u.id=m.senderId
+  AND m.receiverId=19
+  AND m.accept=1
+  AND u.id!=19;

@@ -3,24 +3,18 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 /* Drop Tables */
 
 DROP TABLE IF EXISTS chat_db;
-alter table chat_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS chatroom_db;
 DROP TABLE IF EXISTS acceptList_db;
-alter table acceptlist_db AUTO_INCREMENT = 1;
-alter table banlist_db AUTO_INCREMENT = 1;
+drop table if exists banlist_db;
 DROP TABLE IF EXISTS buddy_db;
-alter table buddy_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS user_db;
-alter table user_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS userlist;
 DROP TABLE IF EXISTS address_db;
-alter table address_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS Authority_db;
-alter table authority_db AUTO_INCREMENT = 1;
+DROP TABLE IF EXISTS match_db;
 DROP TABLE IF EXISTS map_db;
-alter table map_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS marker_db;
-alter table marker_db AUTO_INCREMENT = 1;
 DROP TABLE IF EXISTS markerIcon_db;
-alter table markericon_db AUTO_INCREMENT = 1;
 
 
 
@@ -42,6 +36,7 @@ CREATE TABLE address_db
 (
 	id int NOT NULL AUTO_INCREMENT,
 	addressName varchar(50) NOT NULL,
+	count int default 0,
 	PRIMARY KEY (id),
 	UNIQUE (addressName)
 );
