@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 실패가 뜨는 코드에 alert내용만 바꿔놓음 코드수정필요!!! -->
+<script th:unless="${result > 0}">
+    alert("1년간 재가입이 불가능합니다. 삭제하시겠습니까?");
+    history.back();
+</script>
+
+<script th:if="${result > 0}" th:inline="javascript">
+    alert("탈퇴가 완료되었습니다.");
+    location.href = `myinfo/[[${myinfo.id}]]`; <!-- 상대주소 -->
+</script>
+</html>

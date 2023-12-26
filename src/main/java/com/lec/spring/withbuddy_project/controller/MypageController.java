@@ -161,6 +161,8 @@ public class MypageController {
         String addressName = mypageService.checkaddress(user.getId());
         MypagePet buddy = mypageService.getByPetBuddyId(user.getId());
 
+        System.out.println(user);
+
         model.addAttribute("user", user);
         model.addAttribute("addressName",addressName);
         model.addAttribute("buddyName", buddy.getBuddyName());
@@ -178,6 +180,23 @@ public class MypageController {
     @InitBinder("MypageUser")
     public void initiBinder(WebDataBinder binder) {
         binder.setValidator(mypageValidator);
+    }
+
+
+    @GetMapping("/user/ban")
+    public void ban() {
+
+    }
+
+    @GetMapping("/user/drop")
+    public void drop() {
+
+    }
+
+
+    @PostMapping("/user/drop")
+    public String dropOk() {
+        return "user/drop";
     }
 
 }
