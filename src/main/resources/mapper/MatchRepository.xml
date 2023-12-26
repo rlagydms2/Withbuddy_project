@@ -29,7 +29,7 @@
     </select>
     <select id="findByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.dto.MatchResponse">
         SELECT b.buddyImage "buddyImage",
-               u.username   "username",
+               u.userId   "userId",
                m.receiverId "receiverId",
                m.senderId   "senderId",
                m.accept     "accept"
