@@ -14,6 +14,7 @@ signInButton.addEventListener('click', () => {
 
 // ---------------------이메일 인증 토글-----------------------------------------------
 let verificationPopup;
+
 function openVerificationPopup() {
     sendMail();
     try {
@@ -59,7 +60,7 @@ function openVerificationPopup() {
     }
 }
 
-function sendMail(){
+function sendMail() {
     $.ajax({
         url: `/user/rest/login/mailConfirm`, //url
         type: "post",
@@ -69,6 +70,8 @@ function sendMail(){
         //ajax에 연결이 되면
         success: function (result) {
             console.log(result)
+
+            storedCode = result; // 이 부분 추가 12 /27
 
             // sessionStorage.push('certCode', result);
             sessionStorage.setItem('certCode', result);
@@ -80,21 +83,23 @@ function sendMail(){
     });
 
 }
+
 //-----------------------------------------------------------------------------------------
 
 //아이디 중복 검사
-$('#userId').on('change',function () {
+$('#userId').on('change', function () {
     $.ajax({
         url: `/user/rest/checkId`, //url
         type: "post",
         data: {
-            userId: $("#userId").val()},
+            userId: $("#userId").val()
+        },
         //ajax에 연결이 되면
         success: function (result) {
-            if (result){
+            if (result) {
                 console.log('사용가능')
                 $('.id-fail-msg').text('');
-            }else {
+            } else {
                 console.log('사용ㄴㄴ')
                 $('.id-fail-msg').text('중복된 아이디 입니다');
             }
@@ -106,18 +111,19 @@ $('#userId').on('change',function () {
 });
 
 //이메일 중복 확인
-$('#email').on('change',function () {
+$('#email').on('change', function () {
     $.ajax({
         url: `/user/rest/email`, //url
         type: "post",
         data: {
-            email: $("#email").val()},
+            email: $("#email").val()
+        },
         //ajax에 연결이 되면
         success: function (result) {
-            if (result){
+            if (result) {
                 console.log('사용가능')
                 $('.email-fail-msg').text('');
-            }else {
+            } else {
                 console.log('사용ㄴㄴ')
                 $('.email-fail-msg').text('중복된 이메일 입니다');
             }
@@ -129,23 +135,44 @@ $('#email').on('change',function () {
 });
 
 //비밀번호 재입력검사
-$('#re_password').on('change',function () {
-    if ($('#password').val() != $('#re_password').val()){
+$('#re_password').on('change', function () {
+    if ($('#password').val() != $('#re_password').val()) {
         $('.password-fail-msg').text('비밀번호 불일치');
-    }else {
+    } else {
         $('.password-fail-msg').text('');
     }
 })
 
 
 //-----------------------양식 안맞으면 가입막기-----------------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector("form");
 
-$("#signUpBtn").on("click", function (e) {
-    if ($(".password-fail-msg").text() !== "") {
-        e.preventDefault(); // 폼 제출 막기
-        alert("양식을 모두 입력해주세요!");
-    }
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // 폼 제출 방지
+        console.log("회원양식 다안써서 막기");
+
+        const verificationCode = verificationPopup ? verificationPopup.document.getElementById("verificationCode").value : "";
+
+        enteredCode = verificationCode; // 이 부분 추가
+
+        if ($(".password-fail-msg").text() !== "" || !verificationCode || enteredCode !== storedCode) {
+            alert("양식을 모두 입력해주세요!");
+        } else {
+            // 여기서 필요한 동작 수행
+            form.submit();
+        }
+    });
 });
+
+// $("#signUpBtn").on("click", function (e) {
+//     const verificationCode = verificationPopup ? verificationPopup.document.getElementById("verificationCode").value : "";
+//
+//     if ($(".password-fail-msg").text() !== "" || !verificationCode) {
+//         e.preventDefault(); // 폼 제출 막기
+//         alert("양식을 모두 입력해주세요!");
+//     }
+// });
 
 // document.getElementById("signUpBtn").addEventListener("click", function (e) {
 //     // 유효성 검사

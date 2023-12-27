@@ -37,6 +37,8 @@
     <script th:inline="javascript">
         <!--    서버에서 가져온 데이터 js로 공유-->
         var mapData = [[${location}]];
+        var usercount = [[${usercount}]]; //marker에 카운트 뜨게 하기 위한
+        var usercountaddress = [[${usercountaddress}]]
         console.log(mapData);
     </script>
 
@@ -54,6 +56,10 @@
             <img id="logo" src="/image/withbuddy_logo2.png">
         </a>
         <div id="navBox">
+            <button class="btn btn-link btn-xs" type="button"
+                    data-bs-target="#mypage" id="adminBtn">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </button>
             <button class="btn btn-link btn-xs" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#mypage" id="mypagesideBtn">
                 <i class="fa-solid fa-user fa-1x"></i>
@@ -89,24 +95,24 @@
                     </div>
                     <div id="infoBox">
                         <a id="mypageBtn" th:href="@{/user/mypage}">
-                            My page<i class="fa-solid fa-angles-right"></i>
-                        </a>
-                        <form name="frmmynfo" method="post">
-                            <table th:id="information">
-                                <tr>
-                                    <td class="tdm">NAME :</td>
-                                    <td style="width: 180px;"><span th:utext="${user.userId}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="tdm">Buddy :</td>
-                                    <td style="width: 180px;"><span th:utext="${buddy.buddyName}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="tdm">Dog Breeds:</td>
-                                    <td style="width: 180px;"><span th:utext="${buddy.category}"></span></td>
-                                </tr>
-                            </table>
-                        </form>
+                                My page<i class="fa-solid fa-angles-right"></i>
+                            </a>
+                            <form name="frmmynfo" method="post">
+                                <table th:id="information">
+                                    <tr>
+                                        <td class="tdm">NAME :</td>
+                                        <td style="width: 180px;"><span th:utext="${user.userId}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdm">Buddy :</td>
+                                        <td style="width: 180px;"><span th:utext="${buddy.buddyName}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdm">Dog Breeds:</td>
+                                        <td style="width: 180px;"><span th:utext="${buddy.category}"></span></td>
+                                    </tr>
+                                </table>
+                            </form>
                         <form th:action="@{/user/logout}" method="POST">
                             <span class="d-flex">
                         <span><button class="btn btn-link btn-sm" type="submit" id="logoutBtn">Logout</button></span>
@@ -121,19 +127,7 @@
             <img src="/image/list_icon.png" id="listIcon">
             <table class="table table-hover">
                 <tbody id="userTable">
-                <tr> <!--/*진짜 리스트다*/-->
 
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-image-portrait"></i></td>
-                    <td>Moe</td>
-                    <td>sdfklajhnsdlkfa%%</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-image-portrait"></i></td>
-                    <td>Dooley</td>
-                    <td>sdfklajhnsdlkfa%%</td>
-                </tr>
                 </tbody>
             </table>
             <!-- 필터 관련 HTML -->

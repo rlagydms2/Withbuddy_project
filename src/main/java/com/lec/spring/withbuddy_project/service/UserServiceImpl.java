@@ -77,6 +77,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> findAllUser(Long id) {
+        return userRepository.findAllUser(id);
+    }
+
+    @Override
     public List<Authority> selectAuthoritiesById(Long id) {
         User user = userRepository.findById(id);
         return authorityRepository.findByUser(user);
@@ -236,6 +241,12 @@ public class UserServiceImpl implements UserService {
     public boolean findBuddy(Long id) {
         MypagePet mypagePet = userRepository.findBuddy(id);
         return (mypagePet == null) ? true : false;
+    }
+
+    @Override
+    public String getAuthorityName(Long id) {
+
+        return userRepository.findByAuthorityName(id);
     }
 
 

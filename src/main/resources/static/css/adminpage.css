@@ -8,14 +8,26 @@ side_nav {
     border: 3px solid black;
 }
 
-side_tap {
-    margin-bottom: 10px;
-    border: 3px solid black;
-    width: 200px;
-    padding: 5px;
-    height: max-content;
+side_nav>h1{
+    border-bottom: 2px solid black;
 }
 
+side_nav>label{
+    margin-top: 20px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+side_nav>label:hover{
+    cursor: pointer;
+}
+
+label>h3{
+    font-weight: bolder;
+    font-size: 20px;
+}
 
 detail_tap {
     display: flex;
@@ -26,7 +38,7 @@ detail_tap {
     height: max-content;
 }
 
-side_tap > label > input {
+side_nav > label > input {
     display: none;
 }
 
@@ -44,13 +56,18 @@ h2 {
     font-weight: bolder;
 }
 
-h3 {
-    width: 100%;
-    font-size: 20px;
+td, th{
+    border: 2px solid black;
+    text-align: center;
 }
-
-h3 > a {
-    font-size: 15px;
-    text-decoration: none;
-    color: aliceblue;
+.container {overflow: scroll
 }
+.UT_No      {width: 50px;}
+.UT_ID      {width: 100px}
+.UT_Email   {width: 200px}
+.UT_Match   {width: 70px}
+.UT_Address {width: 150px}
+.UT_Name    {width: 150px}
+.UT_Category{width: 200px}
+.UT_Age     {width: 100px}
+.UT_Sex     {width: 150px}

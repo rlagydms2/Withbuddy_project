@@ -30,10 +30,6 @@ body {
     font-weight: bold;
 }
 
-#adminBtn {
-    display: none;
-}
-
 #logo {
     /* border: solid black; */
     margin: 10px;
@@ -54,6 +50,14 @@ body {
 }
 
 /* content 전체 박스 */
+
+#adminBtn{
+    /* border: solid red; */
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    margin-left: 20px;
+}
 
 #mypagesideBtn{
     /* border: solid red; */

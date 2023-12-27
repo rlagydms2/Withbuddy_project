@@ -14,7 +14,7 @@ public interface UserRepository {
 
     User findById(Long id);
 
-    List<User> findAllUser();  // 모든 유저를 찾음
+    List<UserDto> findAllUser(Long id);   // 모든 유저를 찾음
 
     List<UserDto> findAllWithoutId(Long id,Long addressId); // 나빼고 모든 유저를 찾음
 
@@ -30,5 +30,7 @@ public interface UserRepository {
     void update(User user);
 
     MypagePet findBuddy(Long id);
+
+    String findByAuthorityName(Long id);
 
 }

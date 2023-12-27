@@ -14,7 +14,7 @@
 
 <body style="display: flex; flex-flow: wrap;">
     <header style="background-color: black; display: flex;text-align: center; width: 100%; height: 200px;">
-        <div style="width: 500px; height: 200px; display: flex; align-items: center; justify-content: center"><img id="logo_img" th:src="@{/image/withbuddy_logo.png}"></div>
+        <div style="width: 500px; height: 200px; display: flex; align-items: center; justify-content: center"><img id="logo_img" th:src="@{/image/withbuddy_logo.png}" style="width: 100%; height: 100%"></div>
     </header>
     <side_nav>
             <h1>조회 및 관리</h1>
@@ -43,7 +43,6 @@
                         <th class="UT_No">No</th>
                         <th class="UT_ID">유저 ID</th>
                         <th class="UT_Email">유저 Email</th>
-                        <th class="UT_Match">매칭 수</th>
                         <th class="UT_Address">활동 지역</th>
                         <th class="UT_Name">버디 네임 </th>
                         <th class="UT_Category">견종</th>
@@ -56,7 +55,6 @@
                         <td class="UT_No"><span th:text="${userboard.id}"></span></td>
                         <td class="UT_ID"><span th:text="${userboard.userId}"></span></td>
                         <td class="UT_Email"><span th:text="${userboard.email}"></span></td>
-                        <td class="UT_Match"><span th:text="${userboard.matchCnt}"></span></td>
                         <td class="UT_Address"><span th:text="${userboard.address}"></span></td>
                         <td class="UT_Name"><span th:text="${userboard.name}"></span></td>
                         <td class="UT_Category"><span th:text="${userboard.category}"></span></td>
