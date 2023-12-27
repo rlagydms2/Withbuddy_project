@@ -2,9 +2,7 @@ package com.lec.spring.withbuddy_project.controller;
 
 import com.lec.spring.withbuddy_project.config.PrincipalDetails;
 import com.lec.spring.withbuddy_project.domain.*;
-import com.lec.spring.withbuddy_project.service.MapService;
-import com.lec.spring.withbuddy_project.service.MypageService;
-import com.lec.spring.withbuddy_project.service.UserService;
+import com.lec.spring.withbuddy_project.service.*;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,8 @@ import java.util.Map;
 public class MypageController {
 
     @Autowired
+    private  final DeshboardUserService deshboardUserService;
+    @Autowired
     private final MypageService mypageService;
     @Autowired
     private UserService userService;
@@ -34,7 +34,8 @@ public class MypageController {
 
 
     // 기본생성자
-    public MypageController(MypageService mypageService, MapService mapService) {
+    public MypageController(DeshboardUserService deshboardUserService, MypageService mypageService, MapService mapService) {
+        this.deshboardUserService = deshboardUserService;
         this.mypageService = mypageService;
         this.mapService = mapService;
         System.out.println("MypageController() 생성");
@@ -61,6 +62,8 @@ public class MypageController {
         model.addAttribute("buddy", buddy);
         model.addAttribute("buddyImage", buddy.getBuddyImage());
         model.addAttribute("location",mapService.locationData());
+        model.addAttribute("address",deshboardUserService.address());
+        model.addAttribute("usercount",deshboardUserService.usercount());
         return "/home";
     }
 

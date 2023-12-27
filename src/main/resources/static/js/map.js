@@ -5,8 +5,11 @@ var polygonBG;
 var backup_polygon;
 var polygonData = [];
 var hospital = [];
+var addresscount = {};
 
-
+$.each(address,function (i,addressName){
+    addresscount[addressName] = usercount[i];
+});
 $(document).ready(function () {
     $.ajax({
       url :"api/getauthorit" ,
@@ -227,7 +230,7 @@ function displayArea(area) {
 
     $.each(mapData, function (i, value) {
         let position = new kakao.maps.LatLng(parseFloat(value.mapY), parseFloat(value.mapX));
-        let content = '<h5 id="Gu">' + value.addressName + '<br>' + value.usercount + '</h5>';
+        let content = '<h5 id="Gu">' + value.addressName + '<br>' + addresscount[value.addressName] + '</h5>';
         let marker = new kakao.maps.Marker({
             map: map,
             position: position,
