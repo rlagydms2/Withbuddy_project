@@ -37,6 +37,8 @@
     <script th:inline="javascript">
         <!--    서버에서 가져온 데이터 js로 공유-->
         var mapData = [[${location}]];
+        var usercount = [[${usercount}]]; //marker에 카운트 뜨게 하기 위한
+        var usercountaddress = [[${usercountaddress}]]
         console.log(mapData);
     </script>
 
@@ -56,7 +58,7 @@
         <div id="navBox">
             <button class="btn btn-link btn-xs" type="button"
                     data-bs-target="#mypage" id="adminBtn">
-                <i class="fa-solid fa-user fa-1x"></i>
+                <i class="fa-solid fa-screwdriver-wrench"></i>
             </button>
             <button class="btn btn-link btn-xs" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#mypage" id="mypagesideBtn">
@@ -124,19 +126,7 @@
             <img src="/image/list_icon.png" id="listIcon">
             <table class="table table-hover">
                 <tbody id="userTable">
-                <tr> <!--/*진짜 리스트다*/-->
 
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-image-portrait"></i></td>
-                    <td>Moe</td>
-                    <td>sdfklajhnsdlkfa%%</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-image-portrait"></i></td>
-                    <td>Dooley</td>
-                    <td>sdfklajhnsdlkfa%%</td>
-                </tr>
                 </tbody>
             </table>
             <!-- 필터 관련 HTML -->

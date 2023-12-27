@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
+
+    List<UserDto> findAllUser(Long id);
     List<Authority> selectAuthoritiesById(Long id);
 
     User findByUsername(String userId);

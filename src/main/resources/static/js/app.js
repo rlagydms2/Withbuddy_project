@@ -171,6 +171,16 @@ $(document).ready(function () {
     $("#chatModal").on('shown.bs.modal', function () {
         scroll();  // 채팅방에 들어가면 스크롤이 내려가게
     });
+    $.ajax({
+        url:"/api/AllUser",
+        type: 'POST',
+        data: {
+            "loginId":login_id
+        },
+        success: function (data){
+            firstList(data);
+        }
+    });
 });
 
 function showList(list) {
@@ -411,4 +421,31 @@ function loadMessage(data) {
 function scroll() {
     var chatBox = document.getElementById('chatBox');
     chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function firstList(data) {
+    const out = [];
+    data.forEach(user => {
+        let id = user.id;
+        console.log("data-modal-tr:", id);
+
+        let image = user.buddyImage;
+        let username = user.userId;
+        const buddyName = user.buddyName;
+
+        const row =
+            `
+            <tr data-modal-tr="${id}">
+                <td><img src="/image/dog3.jpg" style="width: 40px; height: 40px;"></td>
+                <td>
+                    <button type="button" class="btn">${username}</button>
+                </td>
+                <td>
+                    <span>${buddyName}</span>
+                </td>
+            </tr>
+            `;
+        out.push(row);
+    });
+    $("#userTable").html(out.join("\n"));
 }

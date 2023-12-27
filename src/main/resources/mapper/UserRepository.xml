@@ -37,8 +37,18 @@
         <include refid="BASE"/>
         AND id=#{id}
     </select>
-    <select id="findAllUser" resultType="com.lec.spring.withbuddy_project.domain.User">
-        <include refid="BASE"/>
+    <select id="findAllUser" resultType="com.lec.spring.withbuddy_project.domain.dto.UserDto">
+        SELECT u.id          "id",
+               u.userId      "userId",
+               b.category    "category",
+               b.buddyName   "buddyName",
+               b.buddyImage  "buddyImage"
+        FROM user_db u,
+             buddy_db b
+        WHERE 1 = 1
+          AND u.id!=#{id}
+          AND u.id=b.id
+            LIMIT 1,10
     </select>
     <select id="findDmListByLoginUserId" resultType="com.lec.spring.withbuddy_project.domain.User">
         SELECT DISTINCT

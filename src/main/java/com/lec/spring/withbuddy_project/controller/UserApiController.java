@@ -47,5 +47,10 @@ public class UserApiController {
         return userService.getAuthorityName(id);
     }
 
+    @PostMapping("/api/AllUser")
+    public List<UserDto> AllUser(@RequestParam(name = "loginId") Long loginId){
+        List<UserDto> allUser = userService.findAllUser(loginId);
+        return allUser;
+    }
 
 }

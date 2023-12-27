@@ -1,6 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    padding-top: 50px;
+    background-image: url("../img/bgimg.png");
 }
 
 .container {
@@ -109,10 +110,10 @@ label {
 /*    margin-top: 10px;*/
 /*    margin-bottom: 10px;*/
 /*}*/
-select {
-    height: 40px;
-    align-items: center;
-}
+/*select {*/
+/*    height: 40px;*/
+/*    align-items: center;*/
+/*}*/
 /*form {*/
 /*    display: flex;*/
 /*}*/
@@ -144,24 +145,24 @@ select {
 /*.conten {*/
 /*    width: 75%;*/
 /*}*/
-#userId ,#pw, #repw, #phone, #email, #region {
-    border: 1px solid black;
-    width: 100%;
-}
+/*#userId ,#pw, #repw, #phone, #email, #region {*/
+/*    border: 1px solid black;*/
+/*    width: 100%;*/
+/*}*/
 #back, #mypage, #myupdate {
     width: 120px;
 }
 #email {
     border: 1px solid black;
-    width: 100%;
+    width: 30%;
 }
 #email1, #region {
     border: 1px solid black;
     width: 40%;
 }
-#regionbox {
+#emailbox, #regionbox {
     display: flex;
 }
-#regionbtn {
+#emailbtn, #regionbtn {
     width: 30%;
 }
