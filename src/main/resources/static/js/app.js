@@ -284,7 +284,6 @@ function showDmList(list) {
     const out = [];
     list.forEach(list => {
         const userId = list.id;
-        const buddyImage=list.buddyImage;
         const username = list.userId;
         console.log("userId: " +userId);
         if (userId != login_id) {
@@ -295,7 +294,7 @@ function showDmList(list) {
                 <td>
                     <div class="d-inline-flex">
                     <div class="col-4">
-                        <img src="/image/${buddyImage}">
+                        <img src="/image/dog3.jpg">
                     </div>
                     <div class="col-8 d-flex">
                         <button type="button" data-dm-btn="${userId}" class="btn btn-white dmChat">${username}</button>
