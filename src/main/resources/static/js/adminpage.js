@@ -9,8 +9,8 @@ $(document).ready(function(){
 
 function checkbtn(btn){
     if(btn.is(':checked')){
-        btn.parent().css('background-color','white','color','black');
-        btn.parent().siblings().css('background-color','grey');
+        btn.parent().css('background-color','Whitesmoke');
+        btn.parent().siblings().css('background-color','Lightblue');
         switch (btn.attr('id')){
             case 'joinlist_btn' :
                 $('joindata').css('display', 'flex');

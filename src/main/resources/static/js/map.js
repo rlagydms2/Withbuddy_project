@@ -62,7 +62,7 @@ function setAreas(areas, data) {
         strokeWeight: 2,
         strokeColor: '#445A6EFF',
         strokeOpacity: 0.8,
-        fillColor: '#fff',
+        fillColor: '#e5e9ef',
         fillOpacity: 1
     });
         displayArea(areas);

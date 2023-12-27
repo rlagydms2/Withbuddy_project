@@ -37,7 +37,7 @@
         <div id="infoDetailBox">
             <div id="buddyPhoto">
                 <!--        <img th:src="@{/image/face02.png}" width="100" style="border: 1px solid black;"><br><br>-->
-                <img src="https://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665ehttps://img.freepik.com/free-photo/dog-waiting-in-the-veterinarian-office_23-2149198673.jpg?w=740&t=st=1703144333~exp=1703144933~hmac=62911612f6e5f6b6fe1b5b190d39804abd1620e32d60f251f09be9b15543665e" width="250" height="350" style="border: 1px solid darkgray;"><br><br>
+                <img src="/img/002.png" width="250" height="350" style="border: 1px solid darkgray;"><br><br>
             </div>
 
             <form name="frmmypage" method="user">
@@ -79,19 +79,18 @@
                         <td class="conten"><input type="text" class="form-control" id="buddySex" th:value="${buddySex == 1 ? '남' : '여'}" disabled></td>
                     </tr>
                     <tr>
-                        <td class="tds">펫성격 : </td>
+                        <td class="tds">펫성격 :</td>
                         <td class="conten"><input type="text" class="form-control" id="buddyDetail" th:value="${buddyDetail}" disabled></td>
                     </tr>
                 </table>
             </form>
+            <div id="pagemove">
+                <a th:href="@{/user/mypageuser}">회원정보수정&nbsp;</a><br><br>
+                <a th:href="@{/user/mypagepet}">&nbsp;&nbsp;펫정보수정&nbsp;&nbsp;</a><br><br>
+                <a th:href="@{/user/ban}">&nbsp;&nbsp;&nbsp;차단&nbsp;목록&nbsp;&nbsp;&nbsp;</a><br><br>
+                <a th:href="@{/user/drop}">&nbsp;&nbsp;&nbsp;&nbsp;탈&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;퇴&nbsp;&nbsp;&nbsp;&nbsp;</a><br>
+            </div>
         </div>
-                <div class="btncontainer col-3 flex">
-                    <a th:href="@{/user/mypageuser}">회원정보수정 →</a><br><br>
-                    <a th:href="@{/user/mypagepet}">펫정보수정 →</a><br><br>
-                    <a th:href="@{/user/ban}">차단목록 →</a><br><br>
-                    <a th:href="@{/user/drop}">탈퇴 →</a><br>
-                </div>
-
     </div>
 </div>
 </body>
