@@ -91,23 +91,23 @@ public class SecurityConfig {
                  * OAuth2 로그인
                  * .oauth2Login(OAuth2LoginConfigurer)
                  ********************************************/
-//                .oauth2Login(httpSecurityOAuth2LoginConfigurer -> httpSecurityOAuth2LoginConfigurer
-//                                .loginPage("/user/login")   // 로그인 페이지는 기존과 동일한 url 로 지정
-//
-//                        // 구글 인증후에 후처리가 필요하다.
-//                        //  - 우리측 회원 가입
-//                        //  - 로그인후 세션 생성
-//
-//                        // code 를 받아오는 것이 아니라, AccessToken 과 사용자 profile 정보를 받아오게 된다.
-//                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
-//                                // userService(OAuth2UserService<OAuth2UserRequest, OAuth2User>)
-//                                //   이 설정을 통해 인증서버의 UserInfo Endpoint 후처리 진행
-//                                .userService(principalOauth2UserService)
-//                        )
-//
-//
-//
-//                )
+                .oauth2Login(httpSecurityOAuth2LoginConfigurer -> httpSecurityOAuth2LoginConfigurer
+                                .loginPage("/user/login")   // 로그인 페이지는 기존과 동일한 url 로 지정
+
+                        // 구글 인증후에 후처리가 필요하다.
+                        //  - 우리측 회원 가입
+                        //  - 로그인후 세션 생성
+
+                        // code 를 받아오는 것이 아니라, AccessToken 과 사용자 profile 정보를 받아오게 된다.
+                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
+                                // userService(OAuth2UserService<OAuth2UserRequest, OAuth2User>)
+                                //   이 설정을 통해 인증서버의 UserInfo Endpoint 후처리 진행
+                                .userService(principalOauth2UserService)
+                        )
+
+
+
+                )
 
                 .build();
     }

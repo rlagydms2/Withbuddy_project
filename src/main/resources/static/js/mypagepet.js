@@ -8,12 +8,12 @@ $(document).ready(function (){
     $("#myupdate").click(function (){
 
         // 사용자가 수정한 정보를 가져옴
-        var userId = $("#userId").val();
-        var buddyName = $("#buddyName").val();
-        var category = $("#category").val();
-        var buddyAge = $("#buddyAge").val();
-        var buddySex = $("#sebuddy").val();
-        var buddyDetail = $("#petdetail").val();
+        const userId = $("#userId").val();
+        const buddyName = $("#buddyName").val();
+        const category = $("#category").val();
+        const buddyAge = $("#buddyAge").val();
+        const buddySex = $("#sebuddy").val();
+        const buddyDetail = $("#petdetail").val();
         const id=loginId;
 
 
@@ -46,23 +46,39 @@ $(document).ready(function (){
         console.log(buddyAge);
         console.log(buddySex);
         console.log(buddyDetail);
+        console.log(buddyImage);
+
+
 
     });
 
 
+    // $("#btnAdd").click(function(){
+    //     // 기존에 추가된 파일이 있는지 확인
+    //     var existingFiles = $("#files").find(".input-group");
+    //     if (existingFiles.length === 0) {
+    //         // 파일이 없으면 추가
+    //         $("#files").append(`
+    //             <div class="input-group">
+    //                <input style="width: 150px;" class="form-control" type="file" name="buddyFile" accept="image/*"/>
+    //                <button type="button" class="btn btn-outline-danger" onclick="$(this).parent().remove()">삭제</button>
+    //             </div>
+    //         `);
+    //     }
+    // });
 
     $("#addbtn").click(function (){
-        // `(<input type="file" id="inputfile" multiple>)`
 
-        var inputfile = document.getElementById('inputfile');
-        var fileList = document.getElementById('fileList');
+
+        const inputfile = document.getElementById('inputfile');
+        const fileList = document.getElementById('fileList');
 
         for (var i = 0; i < inputfile.files.length; i++) {
-            var imageFile = inputfile.files[i];
-            var reader = new FileReader();
+            const imageFile = inputfile.files[i];
+            const reader = new FileReader();
 
             reader.onload = function (e) {
-                var img = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = e.target.result;
                 img.classList.add('preview-image');
                 fileList.appendChild(img);

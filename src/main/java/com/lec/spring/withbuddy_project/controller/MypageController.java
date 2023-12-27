@@ -56,8 +56,10 @@ public class MypageController {
 
         MypagePet buddy = mypageService.getByPetBuddyId(user.getId());
 //        System.out.println("user : "  + user.getUserId());
+        System.out.println(buddy);
         model.addAttribute("user",user);
         model.addAttribute("buddy", buddy);
+        model.addAttribute("buddyImage", buddy.getBuddyImage());
         model.addAttribute("location",mapService.locationData());
         return "/home";
     }

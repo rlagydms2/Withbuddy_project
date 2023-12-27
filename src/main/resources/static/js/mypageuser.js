@@ -10,10 +10,10 @@ $(document).ready(function (){
 
 
         // 사용자가 수정한 정보를 가져옴
-        var userId = $("#userId").val();
-        var phone = $("#phone").val();
-        var email = $("#email").val();
-        var addressId = $("#regionbtn").val();
+        const userId = $("#userId").val();
+        const phone = $("#phone").val();
+        const email = $("#email").val();
+        const addressId = $("#regionbtn").val();
 
 
         // 수정된 정보 서버에 전송

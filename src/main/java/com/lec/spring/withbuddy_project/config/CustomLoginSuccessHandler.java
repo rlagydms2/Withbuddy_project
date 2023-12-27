@@ -56,9 +56,10 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         boolean buddy = userService.findBuddy(id);
         if (buddy == true) {
             response.sendRedirect("/user/buddy");
-        }else {
-            response.sendRedirect("/home");
         }
+//        else {
+//            response.sendRedirect("/home");
+//        }
 
         // 로그인 직전 url 로 redirect  하기
         super.onAuthenticationSuccess(request, response, authentication);

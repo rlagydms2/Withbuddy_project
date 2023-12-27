@@ -17,27 +17,25 @@
         const loginId = [[${logged_user.id}]];
     </script>
     <label>[ 펫정보 ]</label><br><br>
-    <div class="mypagecontainer col-8">
-        <div class="image col-3">
+    <div class="mypagecontainer col-9">
+        <div class="image col-4">
             <div id="inputimage">
-
-                <img th:src="${buddyImage}" width="230" style="border: 1px solid black;"><br><br>
+<!--                <img th:src="@{'/upload/' + ${buddyImage}}">-->
+                <img th:src="${buddyImage}" class="img-thumbnail" style="width: 200px; height: 200px; border: 1px solid black;">
+                    <ul id="fileList"></ul>
             </div>
 
             <form id="uploadForm">
                 <div id="fileInputs">
-                    <!-- 초기 파일 선택 버튼 -->
-                    <!--                <button type="button" class="btn btn-outline-dark" id="triggerInputfile">파일선택</button>-->
-                    <ul id="fileList"></ul>
-                    <input type="file" id="inputfile" multiple>
 
+                    <input type="file" id="inputfile" multiple>
                     <button type="button" class="btn btn-outline-dark" id="addbtn">추가</button>
                     <button type="button" class="btn btn-outline-dark" id="delbtn">삭제</button>
                 </div>
             </form>
 
         </div>
-        <div class="tablecontainer col-7">
+        <div class="tablecontainer col-6">
 
             <form name="frmupdate">
                 <table class="myp col-12">
