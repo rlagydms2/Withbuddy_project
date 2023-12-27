@@ -112,8 +112,7 @@
             category = #{mypagePet.category},
             buddyAge = #{mypagePet.buddyAge},
             buddySex = #{mypagePet.buddySex},
-            buddyDetail = #{mypagePet.buddyDetail},
-            buddyImage = #{mypagePet.buddyImage}
+            buddyDetail = #{mypagePet.buddyDetail}
         WHERE id = #{mypagePet.id}
     </update>
 

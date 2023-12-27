@@ -27,8 +27,7 @@ $(document).ready(function (){
                 category: category,
                 buddyAge: buddyAge,
                 buddySex: buddySex,
-                buddyDetail: buddyDetail,
-                buddyImage: buddyImage
+                buddyDetail: buddyDetail
             },
             success: function (response) {
                 console.log("response: ",response);
