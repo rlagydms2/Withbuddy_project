@@ -202,7 +202,7 @@
             <!-- ID/password -->
             <input type="text" placeholder="ID" name="username" class="form-control" required>
             <input type="password" placeholder="Password" name="password" class="form-control" required/>
-            <a href="#">Forgot your password?</a>
+            <a th:href="@{/user/findID}">Forgot your password?</a>
             <button type="submit">Sign In</button>
             <span class="text-danger"
                   style="color: red; float: left; font-weight: bold; font-size: 10px; margin-top: 10px;"
