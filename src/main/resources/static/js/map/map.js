@@ -1,11 +1,24 @@
 selectJson();
+// areas: 폴리곤 데이터를 담을 배열
 let areas = [];
-var ground;
-var polygonBG;
-var backup_polygon;
-var polygonData = [];
-var hospital = [];
-var addresscount = {};
+
+// ground: 배경 폴리곤의 좌표 설정을 담을 변수
+let ground;
+
+// polygonBG: 검은색 배경 폴리곤 객체
+let polygonBG;
+
+// backup_polygon: 이전에 클릭한 폴리곤의 백업을 담을 변수
+let backup_polygon;
+
+// polygonData: 폴리곤 및 마커 데이터를 담을 배열
+const polygonData = [];
+
+// hospital: 병원 마커를 담을 배열
+const hospital = [];
+
+// addresscount: 주소별 사용자 수를 담을 객체
+const addresscount = {};
 
 $.each(address,function (i,addressName){
     addresscount[addressName] = usercount[i];
