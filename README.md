@@ -42,12 +42,12 @@ kb경영연구소의 ‘2023 한국 반려동물보고서’에 따르면, 2022�
 마이페이지바를 모달로 만들어 간편히 접근할 수 있도록 구현하였습니다.
 
 ### 메인페이지 지도 폴리곤 
-![GOMCAM20240325_1036100781-ezgif com-resize](https://github.com/leejonghyeon99/anbd/assets/151723087/8da09cde-efa6-4589-9607-cf49d07668f1)<br/>
+![GOMCAM20240325_1036100781-ezgif com-resize](https://github.com/leejonghyeon99/anbd/assets/151723087/8da09cde-efa6-4589-9607-cf49d07668f1)<br/><br/>
 <br/>
-클릭한 지역은 폴리곤이 사라지면서 해당 지역의 중심좌표로 확대됩니다.<br/>
+✔️ 클릭한 지역은 폴리곤이 사라지면서 해당 지역의 중심좌표로 확대됩니다.<br/><br/>
 ![GOMCAM20240325_1048400131-ezgif com-resize](https://github.com/leejonghyeon99/anbd/assets/151723087/4901c338-5e50-494f-967f-b2873ede2335)<br/><br/>
-좌측 상단에 있는 지도 버튼을 클릭하면 다시 폴리곤이 복구되며 전체 지역을 지도에 표시합니다.<br/>
+✔️ 좌측 상단에 있는 지도 버튼을 클릭하면 다시 폴리곤이 복구되며 전체 지역을 지도에 표시합니다.<br/><br/>
 ![GOMCAM20240325_1054350775-ezgif com-resize](https://github.com/leejonghyeon99/anbd/assets/151723087/11d92b38-38ae-46ec-ac64-ff6bb9cdc29a)<br/><br/>
-좌측 리스트를 보시면 선택한 지역에 따라 그 지역의 회원 리스트로 변경되는 것을 확인할 수 있습니다.<br/>
+✔️ 좌측 리스트를 보시면 선택한 지역에 따라 그 지역의 회원 리스트로 변경되는 것을 확인할 수 있습니다.<br/><br/>
 <img width="773" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/18e19d05-815f-4eaf-88fe-7f5ff79c4ccf">
 <img width="773" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/157f91a5-b514-4985-b724-f80380c387f7">
