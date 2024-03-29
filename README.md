@@ -1,4 +1,4 @@
-<img width="1268" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/dbdf3fc9-cf42-450e-a53f-b8651e4d1d4b">
+8<img width="1268" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/dbdf3fc9-cf42-450e-a53f-b8651e4d1d4b">
 
 ## **프로젝트 발표 영상**
 
@@ -33,7 +33,7 @@ kb경영연구소의 ‘2023 한국 반려동물보고서’에 따르면, 2022�
 
 **2023.11.28 ~ 2024.12.27 (총 4주)**
 
-## **서비스 기능 소개**
+## **(김효은 구현)서비스 기능 소개**
 
 ### 마이페이지 모달
 
