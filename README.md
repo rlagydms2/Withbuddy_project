@@ -1,4 +1,4 @@
-8<img width="1268" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/dbdf3fc9-cf42-450e-a53f-b8651e4d1d4b">
+<img width="1268" alt="image" src="https://github.com/rlagydms2/Withbuddy_project/assets/151723087/dbdf3fc9-cf42-450e-a53f-b8651e4d1d4b">
 
 ## **프로젝트 발표 영상**
 
